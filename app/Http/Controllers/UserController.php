@@ -102,8 +102,13 @@ class UserController extends Controller
         $famous->email = $request->email;
         $famous->professional_license_number = $request->professional_license_number;
         $famous->is_famous = $request->is_famous;
-        $famous->famoustype_id = $request->famoustype_id;
-        $famous->follower_type = $request->follower_type;
+        $famous->views_number = $request->views_number;
+        $famous->followers_number = $request->followers_number;
+
+        $famous->famoustype_id = json_encode($request->famoustype_id);
+        $famous->follower_type = json_encode($request->follower_type);
+        $famous->name_actor = $request->name_actor;
+        $famous->phone_actor = $request->phone_actor;
         $famous->tiktok = $request->tiktok;
         $famous->instagram = $request->instagram;
         $famous->snapchat = $request->snapchat;
