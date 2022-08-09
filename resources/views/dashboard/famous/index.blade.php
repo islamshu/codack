@@ -242,7 +242,7 @@
 
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="email"> الفئة التي تتابعك : <span class="required">*</span></label>
+                                <label for="email"> فئة المتابعين : <span class="required">*</span></label>
                                 <select name="follower_type" required  id="follower_type" class="form-control">
                                     <option value="">اختر </option>
                                     <option value="male">رجال</option>
@@ -260,14 +260,14 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email"> :<i class="fa fa-instagram fa-3x" aria-hidden="true"></i></label>
+                                    <label for="email"> <i class="fa fa-instagram fa-3x" style="color:orangered" aria-hidden="true"></i></label>
                                     <input type="text" name="instagram" placeholder="www.instagram.com"
                                         class="form-control" id="instagram">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email">: <i class="fa fa-snapchat fa-3x"></i></label>
+                                    <label for="email"> <i class="fa fa-snapchat fa-3x" style="color:yellow"></i></label>
                                     <input type="text" name="snapchat" placeholder="www.snapchat.com" class="form-control"
                                         id="snapchat">
                                 </div>
@@ -331,7 +331,7 @@
                         @csrf
 
                         <div class="form-group">
-                            <label data-error="wrong" data-success="right" for="form3">صورة الدولة <span
+                            <label data-error="wrong" data-success="right" for="form3">علم الدولة <span
                                     class="required">*</span></label>
                             <input type="file" id="imagestore" required name="flag" class="form-control image">
                         </div>

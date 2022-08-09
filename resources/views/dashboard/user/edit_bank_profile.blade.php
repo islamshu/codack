@@ -55,14 +55,15 @@
                                         </div>
                                     </div>
                                     <h4 class="form-section"><i class="la la-add"></i>تغير البيانات الحالية     </h4>
-                                    <form action="">
+                                    <form action="{{ route('update_back_info') }}" method="post">
+                                        @csrf
                                         <div class="row">
     
                                              
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email">  اسم البنك الجديد  :</label>
-                                                    <input type="text" class="form-control" name="bank_name_temp" >
+                                                    <input type="text" class="form-control" value="{{@ auth('famous')->user()->bank->bank_name_temp }}" name="bank_name_temp" >
                                                 </div>
                                             </div>
                                         
@@ -70,13 +71,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email"> رقم الحساب الجديد       :</label>
-                                                    <input type="number" class="form-control" required name="account_nubmer_temp" >
+                                                    <input type="number" class="form-control" required value="{{@ auth('famous')->user()->bank->account_nubmer_temp }}" name="account_nubmer_temp" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email">   الاسم بالبنك الجديد  :</label>
-                                                    <input type="text" class="form-control" required name="account_name_temp">
+                                                    <input type="text" class="form-control" required value="{{@ auth('famous')->user()->bank->account_name_temp }}" name="account_name_temp">
                                                 </div>
                                             </div>
                                         </div>

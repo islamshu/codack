@@ -64,6 +64,9 @@ Route::group(['middleware' => ['auth:famous'], 'prefix' => 'dashboard'], functio
 Route::get('edit_profile', 'App\Http\Controllers\UserController@edit_profile')->name('edit_profile');
 Route::post('update_my_profile', 'App\Http\Controllers\UserController@update_my_profile')->name('update_my_profile');
 Route::get('edit_bank_profile', 'App\Http\Controllers\UserController@edit_bank_profile')->name('edit_bank_profile');
+Route::get('update_back_info', 'App\Http\Controllers\UserController@update_back_info')->name('update_back_info');
+
+
 
 
 

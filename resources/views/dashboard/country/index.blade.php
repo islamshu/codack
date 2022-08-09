@@ -122,7 +122,7 @@
                         @csrf
 
                         <div class="form-group">
-                            <label data-error="wrong" data-success="right" for="form3">صورة الدولة <span
+                            <label data-error="wrong" data-success="right" for="form3">علم الدولة <span
                                     class="required">*</span></label>
                             <input type="file" id="imagestore" required name="flag" class="form-control image">
                         </div>

@@ -12,7 +12,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="align-self-center">
-                                    <i class="icon-rocket text-white font-large-2 float-right"></i>
+                                    <i class="fa fa-building   text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right">
                                     <h3 class="text-white">{{ App\Models\Stores::count() }}</h3>
@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="align-self-center">
-                                    <i class="icon-rocket text-white font-large-2 float-right"></i>
+                                    <i class="fa fa-user text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right">
                                     <h3 class="text-white">{{ App\Models\Famous::count() }}</h3>
@@ -46,7 +46,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="align-self-center">
-                                    <i class="icon-rocket text-white font-large-2 float-right"></i>
+                                    <i class="fa fa-eercast text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right">
                                     <h3 class="text-white">156</h3>
@@ -63,7 +63,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="align-self-center">
-                                    <i class="icon-rocket text-white font-large-2 float-right"></i>
+                                    <i class="fa fa-play text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right">
                                     <h3 class="text-white">100</h3>
@@ -80,7 +80,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="align-self-center">
-                                    <i class="icon-rocket text-white font-large-2 float-right"></i>
+                                    <i class="fa fa-pause text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right">
                                     <h3 class="text-white">56</h3>
@@ -224,7 +224,7 @@
         
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="email"> الفئة التي تتابعك : <span class="required">*</span></label>
+                                        <label for="email"> فئة المتابعين : <span class="required">*</span></label>
                                         <select name="follower_type" required  id="follower_type" class="form-control">
                                             <option value="">اختر </option>
                                             <option value="male">رجال</option>
@@ -242,14 +242,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email"> :<i class="fa fa-instagram fa-3x" aria-hidden="true"></i></label>
+                                            <label for="email"> <i class="fa fa-instagram fa-3x" style="color:orangered" aria-hidden="true"></i></label>
                                             <input type="text" name="instagram" placeholder="www.instagram.com"
                                                 class="form-control" id="instagram">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email">: <i class="fa fa-snapchat fa-3x"></i></label>
+                                            <label for="email"> <i class="fa fa-snapchat fa-3x" style="color:yellow"></i></label>
                                             <input type="text" name="snapchat" placeholder="www.snapchat.com" class="form-control"
                                                 id="snapchat">
                                         </div>
@@ -313,7 +313,7 @@
                                 @csrf
         
                                 <div class="form-group">
-                                    <label data-error="wrong" data-success="right" for="form3">صورة الدولة <span
+                                    <label data-error="wrong" data-success="right" for="form3">علم الدولة <span
                                             class="required">*</span></label>
                                     <input type="file" id="imagestore" required name="flag" class="form-control image">
                                 </div>
@@ -466,7 +466,7 @@
                             </tbody>
                             <tr>
                                 <td style="font-size: 30px;text-align: center;">
-                                    <a title="اضف جديد" data-toggle="modal" data-target="#myModal3"><i class="fa fa-plus"> اضف جديد</i> </a></td>
+                                    <a title="اضف جديد" data-toggle="modal" class="btn btn-success" data-target="#myModal3">اضف جديد</a></td>
                                 <td></td> 
                                 <td></td> 
                                 <td></td> 
