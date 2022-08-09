@@ -1,0 +1,181 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Country;
+use App\Models\Famous;
+use App\Models\FamousSoial;
+use App\Models\FamousType;
+use App\Models\SoicalType;
+use App\Models\Stores;
+use Illuminate\Http\Request;
+
+class FamousController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        return view('dashboard.famous.index')
+        ->with('stores',Stores::get())
+        ->with('famous', Famous::orderby('id', 'desc')->get())
+        ->with('countries', Country::get())
+        ->with('typs', FamousType::get())
+        ->with('soicals', SoicalType::get())
+        ->with('request',$request);
+    }
+    public function get_country_code(Request $request)
+    {
+        $country = Country::find($request->id);
+        return $country;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'image' => 'required',
+            'name' => 'required',
+            'country_id' => 'required',
+            'phone' => 'required|unique:famouses,phone',
+            'email' => 'email|required|unique:famouses,email',
+            'professional_license_number' => 'required',
+            'is_famous' => 'required',
+            'famoustype_id' => 'required',
+            'follower_type' => 'required',
+        ]);
+        $famous = new Famous();
+        $famous->image = $request->image->store('famous_image');
+        $famous->name = $request->name;
+        $famous->country_id = $request->country_id;
+        $famous->phone = $request->phone;
+        $famous->email = $request->email;
+        $famous->professional_license_number = $request->professional_license_number;
+        $famous->is_famous = $request->is_famous;
+        $famous->famoustype_id = $request->famoustype_id;
+        $famous->follower_type = $request->follower_type;
+        $famous->tiktok = $request->tiktok;
+        $famous->instagram = $request->instagram;
+        $famous->snapchat = $request->snapchat;
+        $famous->save();
+        $count = Famous::count();
+        if($request->addmore != null){
+        foreach ($request->addmore as $key => $value) {
+
+            $blog = FamousSoial::create([
+                'famous_id'    => $famous->id,
+                'social_title' => $value['name_socal'],
+                'social_url' => $value['url']
+            ]);
+        }
+    }
+        return view('dashboard.famous._famous')->with('item', $famous)->with('key', $count);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Famous  $famous
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Famous $famous)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Famous  $famous
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view('dashboard.famous.edit')->with('famous', Famous::find($id))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Famous  $famous
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'country_id' => 'required',
+            'phone' => 'required|unique:famouses,phone,'.$id,
+            'email' => 'email|required|unique:famouses,email,'.$id,
+            'professional_license_number' => 'required',
+            'is_famous' => 'required',
+            'famoustype_id' => 'required',
+            'follower_type' => 'required',
+        ]);
+        $famous = Famous::find($id);
+        if ($request->image != null) {
+            $famous->image = $request->image->store('famous_image');
+        }
+        $famous->name = $request->name;
+        $famous->country_id = $request->country_id;
+        $famous->phone = $request->phone;
+        $famous->email = $request->email;
+        $famous->professional_license_number = $request->professional_license_number;
+        $famous->is_famous = $request->is_famous;
+        $famous->famoustype_id = $request->famoustype_id;
+        $famous->follower_type = $request->follower_type;
+        $famous->tiktok = $request->tiktok;
+        $famous->instagram = $request->instagram;
+        $famous->snapchat = $request->snapchat;
+        $famous->save();
+        if($request->addmore != null){
+            foreach(FamousSoial::where('famous_id',$famous->id)->get() as $fa){
+                $fa->delete();
+            }
+            foreach ($request->addmore as $key => $value) {
+
+                $blog = FamousSoial::create([
+                    'famous_id'    => $famous->id,
+                    'social_title' => $value['name_socal'],
+                    'social_url' => $value['url']
+                ]);
+            }
+        }
+        return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
+        
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Famous  $famous
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $country = Famous::find($id);
+        $country->delete();
+        return redirect()->back()->with(['success' => 'تم الحذف بنجاح']);
+    }
+}
