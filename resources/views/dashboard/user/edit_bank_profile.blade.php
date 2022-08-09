@@ -63,7 +63,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email">  اسم البنك الجديد  :</label>
-                                                    <input type="text" class="form-control" value="{{old('bank_name')}}" name="bank_name" >
+                                                    <input type="text" class="form-control" required value="{{old('bank_name')}}" name="bank_name" >
                                                 </div>
                                             </div>
                                         
