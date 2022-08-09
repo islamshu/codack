@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::put('changes/{id}', 'App\Http\Controllers\UserController@update_changes')->name('changes.update');
 
     Route::get('changes/{id}/edit', 'App\Http\Controllers\UserController@edit_changes')->name('changes.edit');
-    Route::get('update_back_info_by_admin', 'App\Http\Controllers\UserController@update_back_info_by_admin')->name('update_back_info_by_admin');
+    Route::post('update_back_info_by_admin', 'App\Http\Controllers\UserController@update_back_info_by_admin')->name('update_back_info_by_admin');
 
     
 
