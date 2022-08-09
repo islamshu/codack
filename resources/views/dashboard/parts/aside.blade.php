@@ -48,6 +48,17 @@
 
             </ul>
         </li>
+        <li class="nav-item has-sub ">
+            <a href="#">
+                <i class="fa fa-bookmark"></i>
+                <span class="menu-title">بيانات بنوك المشاهير</span></a>
+            <ul class="menu-content" style="">
+                <li class="is-shown"><a class="menu-item" href="{{ route('changes.index') }}">طلبات التغير  </a>
+                </li>
+
+
+            </ul>
+        </li>
           <li class="nav-item has-sub ">
               <a href="#">
                   <i class="fa fa-bookmark"></i>
