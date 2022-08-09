@@ -53,23 +53,13 @@
                   <i class="fa fa-bookmark"></i>
                   <span class="menu-title">اكواد الخصم</span></a>
               <ul class="menu-content" style="">
-                  <li class="is-shown"><a class="menu-item" href="codes.html">جميع اكواد الخصم</a>
+                  <li class="is-shown"><a class="menu-item" href="{{ route('codes.index') }}">جميع اكواد الخصم</a>
                   </li>
 
 
               </ul>
           </li>
-          <li class="nav-item has-sub ">
-              <a href="#">
-                  <i class="fa fa-bookmark"></i>
-                  <span class="menu-title">بوابة المشهور </span></a>
-              <ul class="menu-content" style="">
-                  <li class="is-shown"><a class="menu-item" href="famous_portal.html">دخول كمشهور  </a>
-                  </li>
-
-
-              </ul>
-          </li>
+          
       </ul>
       @endif
       @if(auth()->user()->type  == 'famous')

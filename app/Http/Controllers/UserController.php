@@ -124,6 +124,9 @@ class UserController extends Controller
         return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
         
     }
+    public function codes(){
+        return view('dashboard.codes.index');
+    }
     
     public function edit_profile()
     {
