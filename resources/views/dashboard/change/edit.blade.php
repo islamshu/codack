@@ -55,7 +55,7 @@
                                         </div>
                                     </div>
                                     <h4 class="form-section"><i class="la la-add"></i>تغير البيانات الحالية     </h4>
-                                    <form action="{{ route('update_back_info') }}" method="post">
+                                    <form action="{{ route('update_back_info_by_admin') }}" method="post">
                                         @csrf
                                         <div class="row">
     
