@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::post('store_scope_for_famous', 'App\Http\Controllers\FamousTypeController@store_scope_for_famous')->name('store_scope_for_famous');
     Route::get('logout', 'App\Http\Controllers\UserController@logout')->name('logout');
     Route::get('codes', 'App\Http\Controllers\UserController@codes')->name('codes.index');
+    Route::get('changes', 'App\Http\Controllers\UserController@changes')->name('changes.index');
+
+    
 
     Route::get('/', function () {
         return view('dashboard.index');

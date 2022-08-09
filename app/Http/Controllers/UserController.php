@@ -130,6 +130,9 @@ class UserController extends Controller
         return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
         
     }
+    public function changes(){
+        return view('dashboard.change.index')->with('changes',Changbank::orderby('id','desc')->get());
+    }
     public function codes(){
         return view('dashboard.codes.index');
     }
