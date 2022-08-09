@@ -47,9 +47,8 @@
                                                     <td>{{ $item->famous->name }} </td>
 
                                                     <td>
-                                                        <button class="btn btn-info" data-toggle="modal"
-                                                            data-target="#myModal4" onclick="make('{{ $item->id }}')"><i
-                                                                class="fa fa-edit"></i></button>
+                                                       <a href="{{ route('changes.edit',$item->id) }}"><i
+                                                        class="fa fa-edit"></i></a>
                                                         <form style="display: inline"
                                                             action="{{ route('soical.destroy', $item->id) }}"
                                                             method="post">
