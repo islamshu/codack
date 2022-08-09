@@ -9,5 +9,14 @@ class Changbank extends Model
 {
     use HasFactory;
     protected $guareded=[];
+    /**
+     * Get the user that owns the Changbank
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function famous()
+    {
+        return $this->belongsTo(Famous::class);
+    }
 
 }
