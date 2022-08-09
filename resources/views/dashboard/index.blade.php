@@ -7,7 +7,7 @@
 
         <div class="row">
             <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card bg-secondary">
+                <div class="radies card bg-secondary">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card bg-info">
+                <div class="radies card bg-info">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card bg-danger">
+                <div class="radies card bg-danger">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card bg-success">
+                <div class="radies card bg-success">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card bg-warning">
+                <div class="radies card bg-warning">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
@@ -686,7 +686,7 @@
     <section id="configuration">
         <div class="row">
             <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card bg-info">
+                <div class="radies card bg-info">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
@@ -703,7 +703,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card bg-success">
+                <div class="radies card bg-success">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
@@ -712,7 +712,7 @@
                                 </div>
                                 <div class="media-body text-white text-right">
                                     <h3 class="text-white">500</h3>
-                                    <span> اجمالي ما تم تحويله   </span>
+                                    <span>  ما تم تحويله   </span>
                                 </div>
                             </div>
                         </div>
@@ -720,7 +720,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card bg-warning">
+                <div class="radies card bg-warning">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
@@ -729,7 +729,7 @@
                                 </div>
                                 <div class="media-body text-white text-right">
                                     <h3 class="text-white">500</h3>
-                                    <span> اجمالي  المبالغ المعلقة    </span>
+                                    <span>   المبالغ المعلقة    </span>
                                 </div>
                             </div>
                         </div>
