@@ -23,8 +23,7 @@
                                 @include('dashboard.parts._success')
     
                                 <form method="post" action="{{ route('famous.update',$famous->id) }}" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('put')
+                                    @csrf @method('put')
             
             
                                     <div class="row">
@@ -104,8 +103,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="email"> مجال المشهور : <span class="required">*</span></label>
-                                            <select required class="select2-rtl form-control" id="is_famous" name="famoustype_id[]"
-                                id="select2-rtl-multi" multiple="multiple">
+                                            <select required class="select2-rtl form-control" id="is_famous" name="famoustype_id[]" id="select2-rtl-multi" multiple="multiple">
                                                 <option value="">اختر </option>
                                                 @foreach ($typs as $item)
                                                     <option value="{{ $item->id }}" @if(in_array( $item->id, json_decode($famous->famoustype_id)) ) selected @endif>{{ $item->title }}</option>

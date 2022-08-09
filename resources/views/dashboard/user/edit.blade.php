@@ -22,8 +22,9 @@
                                 @include('dashboard.parts._error')
                                 @include('dashboard.parts._success')
     
+                             
                                 <form method="post" action="{{ route('update_my_profile') }}" enctype="multipart/form-data">
-                                    @csrf
+                                    @csrf 
             
             
                                     <div class="row">
@@ -80,33 +81,59 @@
                                         <div class="form-group col-md-6">
                                             <label for="email"> هل انت ممثل عن المشهور ام المشهور نفسه : <span
                                                     class="required">*</span></label>
-                                            <select name="is_famous" required class="form-control">
+                                            <select name="is_famous" id="select_is_famous" required class="form-control">
                                                 <option value="">اختر </option>
                                                 <option value="1" @if($famous->is_famous == 1 ) selected @endif>المشهور نفسه</option>
                                                 <option value="2" @if($famous->is_famous == 2 ) selected @endif>ممثل عن المشهور </option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="row is_famous_show " @if($famous->is_famous == 1) style="display: none" @else style="display: -webkit-box" @endif >
+                                        
+                                        <div class="form-group col-md-6">
+                                            <label for="email"> اسم ممثل المشهور   : <span class="required">*</span></label>
+                                            <input type="text" name="name_actor"  @if($famous->is_famous == 2) required @endif class="form-control"
+                                                value="{{ $famous->name_actor }}" id="name_actor">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="email"> رقم ممثل المشهور   : <span class="required">*</span></label>
+                                            <input type="number" name="phone_actor" @if($famous->is_famous == 2) required @endif  class="form-control"
+                                                value="{{ $famous->phone_actor }}" id="phone_actor">
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="email"> مجال المشهور : <span class="required">*</span></label>
-                                            <select name="famoustype_id" required id="is_famous" class="form-control">
+                                            <select required class="select2-rtl form-control" id="is_famous" name="famoustype_id[]" id="select2-rtl-multi" multiple="multiple">
                                                 <option value="">اختر </option>
                                                 @foreach ($typs as $item)
-                                                    <option value="{{ $item->id }}" @if($famous->famoustype_id == $item->id) selected @endif>{{ $item->title }}</option>
+                                                    <option value="{{ $item->id }}" @if(in_array( $item->id, json_decode($famous->famoustype_id)) ) selected @endif>{{ $item->title }}</option>
                                                 @endforeach
             
                                             </select>
                                         </div>
+                                    
                                         <div class="col-md-2 mt-2 col-sm-2 form-group ">
                                             <button type="button" class="btn btn-info" id="addscope"> <i class="fa fa-plus"></i></button>
             
                                         </div>
                                         <div class="form-group col-md-6">
+                                            <label for="email"> عدد المتابعين   : <span class="required">*</span></label>
+                                            <input type="number" name="followers_number"  class="form-control"
+                                                value="{{ $famous->followers_number }}" id="followers_number">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="email"> عدد المشاهدات   : <span class="required">*</span></label>
+                                            <input type="number" name="views_number"  class="form-control"
+                                                value="{{ $famous->views_number }}" id="views_number">
+                                        </div>
+                                        <div class="form-group col-md-6">
                                             <label for="email"> فئة المتابعين : <span class="required">*</span></label>
-                                            <select name="follower_type" required  id="follower_type" class="form-control">
+                                            <select name="follower_type[]" class="select2-rtl form-control" required  id="follower_type" id="select2-rtl-multi" multiple="multiple">
                                                 <option value="">اختر </option>
-                                                <option value="male" @if($famous->follower_type == 'male' ) selected @endif>رجال</option>
-                                                <option value="femail" @if($famous->follower_type == 'femail' ) selected @endif>نساء </option>
-                                                <option value="children" @if($famous->follower_type == 'children' ) selected @endif> أطفال</option>
+                                                <option value="male" @if(in_array( 'male', json_decode($famous->follower_type)) ) selected @endif>رجال</option>
+                                                <option value="femail" @if(in_array( 'femail', json_decode($famous->follower_type)) ) selected @endif>نساء </option>
+                                                <option value="children" @if(in_array( 'children', json_decode($famous->follower_type)) ) selected @endif> أطفال</option>
             
                                             </select>
                                         </div>
@@ -596,6 +623,19 @@
 
         });
            
+        });
+        $('#select_is_famous').change(function() {
+            let selval = $('#select_is_famous').val();
+           if(selval== 2){
+            $('.is_famous_show').css({display: '-webkit-box'});
+            $('#name_actor').prop('required', true);   
+            $('#phone_actor').prop('required', true);   
+
+           }else{
+            $('.is_famous_show').css({display: 'none'});
+            $('#name_actor').prop('required', false);   
+            $('#phone_actor').prop('required', false);   
+           }
         });
     </script>
 @endsection
