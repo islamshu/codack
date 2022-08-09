@@ -89,10 +89,11 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="email"> مجال المشهور : <span class="required">*</span></label>
-                                            <select name="famoustype_id" required id="is_famous" class="form-control">
+                                            <select required class="select2-rtl form-control" id="is_famous" name="famoustype_id[]"
+                                id="select2-rtl-multi" multiple="multiple">
                                                 <option value="">اختر </option>
                                                 @foreach ($typs as $item)
-                                                    <option value="{{ $item->id }}" @if($famous->famoustype_id == $item->id) selected @endif>{{ $item->title }}</option>
+                                                    <option value="{{ $item->id }}" @if(in_array( $item->id, json_decode($famous->famoustype_id)) ) selected @endif>{{ $item->title }}</option>
                                                 @endforeach
             
                                             </select>
@@ -103,11 +104,11 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="email"> فئة المتابعين : <span class="required">*</span></label>
-                                            <select name="follower_type" required  id="follower_type" class="form-control">
+                                            <select name="follower_type[]" class="select2-rtl form-control" required  id="follower_type" id="select2-rtl-multi" multiple="multiple">
                                                 <option value="">اختر </option>
-                                                <option value="male" @if($famous->follower_type == 'male' ) selected @endif>رجال</option>
-                                                <option value="femail" @if($famous->follower_type == 'femail' ) selected @endif>نساء </option>
-                                                <option value="children" @if($famous->follower_type == 'children' ) selected @endif> أطفال</option>
+                                                <option value="male" @if(in_array( 'male', json_decode($famous->follower_type)) ) selected @endif>رجال</option>
+                                                <option value="femail" @if(in_array( 'femail', json_decode($famous->follower_type)) ) selected @endif>نساء </option>
+                                                <option value="children" @if(in_array( 'children', json_decode($famous->follower_type)) ) selected @endif> أطفال</option>
             
                                             </select>
                                         </div>

@@ -144,12 +144,12 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-
                     // var table = $('#stores').DataTable();
                     if (data['status'] == true) {
                         $("#send_phone").css("display", "none");
                         $("#check_otp").css("display", "block");
-                        $('#form-errors').css("display", "none");
+                        alert('dd');
+
                         $("<input>").attr({
                             name: "phone",
                             id: "hiddenId",
@@ -162,9 +162,11 @@
 
                         successHtml += '</ul></di>';
                         $('#form-success').html(successHtml);
+                        
+                        $('#form-success').css("display", "block");
+                     
                     } else if (data['status'] == false) {
-                        $('#form-errors').css("display", "block");
-                        $('#form-success').css("display", "none");
+                       
                         errorsHtml = '<div class="alert alert-danger"><ul>';
                         errorsHtml += '<li> لم يتطابق رقم الهاتف مع سجلاتنا</li>';
 
