@@ -511,7 +511,6 @@
                 },
 
                 success: function(data) {
-                    alert('dd');
                     // var table = $('#stores').DataTable();
                     let code = '<h5>' + data.code + '</h5>';
                     // $("#phone").val(code);
