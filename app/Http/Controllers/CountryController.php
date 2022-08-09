@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Storage;
 
 class CountryController extends Controller
 {
@@ -20,6 +21,11 @@ class CountryController extends Controller
    
     public function store(Request $request)
     {
+        $url = $request->flag;
+        $contents = file_get_contents($url);
+        $name = 'country/'. \Carbon\Carbon::now()->timestamp.'.svg';
+        Storage::put($name, $contents);
+
         $request->validate([
             'title_ar'=>'required',
             'title_en'=>'required',
@@ -29,11 +35,12 @@ class CountryController extends Controller
         ]);
         $country = new Country();
         $country->title = ['ar'=>$request->title_ar,'en'=>$request->title_en];
-        $country->flag = $request->flag->store('country');
+        $country->flag = $name;
         $country->code = $request->code;
         $country->save();
         $count = Country::count() ;
-        return view('dashboard.country._country')->with('country',$country)->with('key',$count);
+        
+       return redirect()->back()->with(['success'=>'تم الاضافة بنجاح']);
     }
     public function store_country_for_famous(Request $request)
     {
