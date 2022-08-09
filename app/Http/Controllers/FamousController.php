@@ -71,6 +71,9 @@ class FamousController extends Controller
         $famous->email = $request->email;
         $famous->professional_license_number = $request->professional_license_number;
         $famous->is_famous = $request->is_famous;
+        $famous->views_number = $request->views_number;
+        $famous->followers_number = $request->followers_number;
+
         $famous->famoustype_id = json_encode($request->famoustype_id);
         $famous->follower_type = json_encode($request->follower_type);
         $famous->tiktok = $request->tiktok;
@@ -143,6 +146,8 @@ class FamousController extends Controller
         $famous->email = $request->email;
         $famous->professional_license_number = $request->professional_license_number;
         $famous->is_famous = $request->is_famous;
+        $famous->views_number = $request->views_number;
+        $famous->followers_number = $request->followers_number;
         $famous->famoustype_id = json_encode($request->famoustype_id);
         $famous->follower_type = json_encode($request->follower_type);
         $famous->tiktok = $request->tiktok;
