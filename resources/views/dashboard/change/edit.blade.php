@@ -72,13 +72,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email"> رقم الحساب الجديد       :</label>
-                                                    <input type="number" class="form-control" required  value="{{$change->account_name}}" name="account_name" >
+                                                    <input type="number" class="form-control" required  value="{{$change->account_number}}" name="account_name" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email">   الاسم بالبنك الجديد  :</label>
-                                                    <input type="text" class="form-control" required value="{{$change->account_number}}" name="account_number">
+                                                    <input type="text" class="form-control" required value="{{$change->account_name}}" name="account_number">
                                                 </div>
                                             </div>
                                         </div>
