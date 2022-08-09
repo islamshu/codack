@@ -1,3 +1,4 @@
+@extends('layouts.backend')
 @section('content')
     <div class="content-wrapper">
         <div class="content-body">
