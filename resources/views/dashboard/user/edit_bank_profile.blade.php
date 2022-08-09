@@ -63,7 +63,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email">  اسم البنك الجديد  :</label>
-                                                    <input type="text" class="form-control" value="{{@ auth('famous')->user()->bank->bank_name_temp }}" name="bank_name_temp" >
+                                                    <input type="text" class="form-control" value="{{old('bank_name')}}" name="bank_name" >
                                                 </div>
                                             </div>
                                         
@@ -71,13 +71,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email"> رقم الحساب الجديد       :</label>
-                                                    <input type="number" class="form-control" required value="{{@ auth('famous')->user()->bank->account_nubmer_temp }}" name="account_nubmer_temp" >
+                                                    <input type="number" class="form-control" required value="{{old('account_name')}}" name="account_name" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email">   الاسم بالبنك الجديد  :</label>
-                                                    <input type="text" class="form-control" required value="{{@ auth('famous')->user()->bank->account_name_temp }}" name="account_name_temp">
+                                                    <input type="text" class="form-control" required value="{{old('account_number')}}" name="account_number">
                                                 </div>
                                             </div>
                                         </div>
