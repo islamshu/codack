@@ -44,7 +44,7 @@
                                                 <fieldset class="form-group position-relative">
                                                     <input type="number" max="100" min="5" name="phone"  class="form-control form-control-lg input-lg"
                                                         id="iconLeft3">
-                                                    <div class="form-control-position phoneicon" style="margin-top: 7px;">
+                                                    <div class="form-control-position " style="margin-top: 7px;">
                                                         <h5>%</h5>
                 
                                                     </div>
@@ -57,7 +57,7 @@
                                                 <fieldset class="form-group position-relative">
                                                     <input type="number" max="100" min="5" name="phone"  class="form-control form-control-lg input-lg"
                                                         id="iconLeft3">
-                                                    <div class="form-control-position phoneicon" style="margin-top: 7px;">
+                                                    <div class="form-control-position " style="margin-top: 7px;">
                                                         <h5>%</h5>
                 
                                                     </div>
@@ -203,9 +203,8 @@
                                 <fieldset class="form-group position-relative">
                                     <input type="number" name="phone" required class="form-control form-control-lg input-lg"
                                         id="iconLeft3">
-                                    <div class="form-control-position phoneicon" style="margin-top: 7px;">
-                                        <h5>+</h5>
-
+                                    <div class="form-control-position phoneicon" style="margin-top: 4px;width: 65px;display: flex">
+                                        +
                                     </div>
                                 </fieldset>
                             </div>
@@ -584,7 +583,11 @@
 
                 success: function(data) {
                     // var table = $('#stores').DataTable();
-                    let code = '<h5>' + data.code + '</h5>';
+                    let img ="{{ asset('uploads/') }}" + '/'+ data.flag;
+                    let image = '  <img src="'+img+'" width="30" height="20" alt="" style="margin-top: 4px;">';
+                  
+
+                    let code = '<h5>' + data.code + image + '</h5>';
                     // $("#phone").val(code);
                     $(".phoneicon").empty();
                     $(".phoneicon").append(code);
