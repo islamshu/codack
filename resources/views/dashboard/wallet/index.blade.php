@@ -179,7 +179,7 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">طلب تحويل مالي </h4>
+                    <h4 class="modal-title">بينات الطلب   </h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -190,6 +190,8 @@
                           <tr>
                             <th scope="col">#</th>
                             <th scope="col">المبلغ</th>
+                            <th scope="col">المتجر</th>
+                            <th scope="col">المشهور</th>
                             <th scope="col">تاريخ الطلب</th>
                           </tr>
                         </thead>
@@ -197,11 +199,16 @@
                           <tr>
                             <th scope="row">1</th>
                             <td>1000</td>
+                            <td>متجر قيس</td>
+                            <td>islam </td>
+
                             <td>09-08-2022</td>
                           </tr>
                           <tr>
                             <th scope="row">2</th>
                             <td>300</td>
+                            <td>متجر قيس</td>
+                            <td>islam </td>
                             <td>07-08-2022</td>
                           </tr>
                           
