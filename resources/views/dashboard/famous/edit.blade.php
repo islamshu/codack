@@ -103,6 +103,16 @@
             
                                         </div>
                                         <div class="form-group col-md-6">
+                                            <label for="email"> عدد المتابعين   : <span class="required">*</span></label>
+                                            <input type="number" name="followers_number" required class="form-control"
+                                                value="{{ $famous->followers_number }}" id="followers_number">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="email"> عدد المشاهدات   : <span class="required">*</span></label>
+                                            <input type="number" name="views_number" required class="form-control"
+                                                value="{{ $famous->views_number }}" id="views_number">
+                                        </div>
+                                        <div class="form-group col-md-6">
                                             <label for="email"> فئة المتابعين : <span class="required">*</span></label>
                                             <select name="follower_type[]" class="select2-rtl form-control" required  id="follower_type" id="select2-rtl-multi" multiple="multiple">
                                                 <option value="">اختر </option>

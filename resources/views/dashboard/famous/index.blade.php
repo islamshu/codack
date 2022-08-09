@@ -246,12 +246,12 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="email"> عدد المتابعين   : <span class="required">*</span></label>
-                                <input type="text" name="followers_number" required class="form-control"
+                                <input type="number" name="followers_number" required class="form-control"
                                     value="{{ old('followers_number') }}" id="followers_number">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="email"> عدد المشاهدات   : <span class="required">*</span></label>
-                                <input type="text" name="views_number" required class="form-control"
+                                <input type="number" name="views_number" required class="form-control"
                                     value="{{ old('views_number') }}" id="views_number">
                             </div>
 
