@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::get('logout', 'App\Http\Controllers\UserController@logout')->name('logout');
     Route::get('codes', 'App\Http\Controllers\UserController@codes')->name('codes.index');
     Route::get('changes', 'App\Http\Controllers\UserController@changes')->name('changes.index');
+    Route::put('changes/{id}', 'App\Http\Controllers\UserController@update_changes')->name('changes.update');
+
+    Route::get('changes/{id}/edit', 'App\Http\Controllers\UserController@edit_changes')->name('changes.edit');
 
     
 

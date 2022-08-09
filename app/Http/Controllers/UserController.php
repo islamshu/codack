@@ -133,6 +133,9 @@ class UserController extends Controller
     public function changes(){
         return view('dashboard.change.index')->with('changes',Changbank::orderby('id','desc')->get());
     }
+    public function edit_changes($id){
+        return view('dashboard.change.edit')->with('change',Changbank::find($id));
+    }
     public function codes(){
         return view('dashboard.codes.index');
     }
