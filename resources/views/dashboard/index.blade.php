@@ -615,7 +615,7 @@
                         
                         <div class="form-group">
                             <label data-error="wrong" data-success="right"
-                                for="form3">صورة المتجر <span class="required">*</span></label>
+                                for="form3">شعار المتجر <span class="required">*</span></label>
                             <input type="file" id="imagestore" required name="image"
                                 class="form-control image">
                         </div>
