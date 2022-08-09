@@ -218,15 +218,32 @@
                                 <input type="text" name="professional_license_number" required class="form-control"
                                     value="{{ old('professional_license_number') }}" id="professional_license_number">
                             </div>
+                            
                             <div class="form-group col-md-6">
                                 <label for="email"> هل انت ممثل عن المشهور ام المشهور نفسه : <span
                                         class="required">*</span></label>
-                                <select name="is_famous" required class="form-control">
+                                <select name="is_famous" id="select_is_famous" required class="form-control">
                                     <option value="">اختر </option>
                                     <option value="1">المشهور نفسه</option>
                                     <option value="2">ممثل عن المشهور </option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="row is_famous_show "style="display: none">
+                            
+                            <div class="form-group col-md-6">
+                                <label for="email"> اسم ممثل المشهور   : <span class="required">*</span></label>
+                                <input type="text" name="name_actor"  class="form-control"
+                                    value="{{ old('name_actor') }}" id="name_actor">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="email"> رقم ممثل المشهور   : <span class="required">*</span></label>
+                                <input type="number" name="phone_actor"  class="form-control"
+                                    value="{{ old('phone_actor') }}" id="phone_actor">
+                            </div>
+                        </div>
+                        <div class="row">
+
                             <div class="form-group col-md-5">
                                 <label for="email"> مجال المشهور : <span class="required">*</span></label>
                                 <br>
@@ -246,12 +263,12 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="email"> عدد المتابعين   : <span class="required">*</span></label>
-                                <input type="number" name="followers_number" required class="form-control"
+                                <input type="number" name="followers_number"  class="form-control"
                                     value="{{ old('followers_number') }}" id="followers_number">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="email"> عدد المشاهدات   : <span class="required">*</span></label>
-                                <input type="number" name="views_number" required class="form-control"
+                                <input type="number" name="views_number"  class="form-control"
                                     value="{{ old('views_number') }}" id="views_number">
                             </div>
 
@@ -618,6 +635,20 @@
                 },
             });
         });
+        $('#select_is_famous').change(function() {
+            let selval = $('#select_is_famous').val();
+           if(selval== 2){
+            $('.is_famous_show').css({display: '-webkit-box'});
+            $('#name_actor').prop('required', true);   
+            $('#phone_actor').prop('required', true);   
+
+           }else{
+            $('.is_famous_show').css({display: 'none'});
+            $('#name_actor').prop('required', false);   
+            $('#phone_actor').prop('required', false);   
+           }
+        });
+        
 
         function make(id) {
             $("#myModal4").show();

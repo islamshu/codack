@@ -81,12 +81,27 @@
                                         <div class="form-group col-md-6">
                                             <label for="email"> هل انت ممثل عن المشهور ام المشهور نفسه : <span
                                                     class="required">*</span></label>
-                                            <select name="is_famous" required class="form-control">
+                                            <select name="is_famous" id="select_is_famous" required class="form-control">
                                                 <option value="">اختر </option>
                                                 <option value="1" @if($famous->is_famous == 1 ) selected @endif>المشهور نفسه</option>
                                                 <option value="2" @if($famous->is_famous == 2 ) selected @endif>ممثل عن المشهور </option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="row is_famous_show " @if($famous->is_famous == 1) style="display: none" @else style="display: -webkit-box" @endif >
+                                        
+                                        <div class="form-group col-md-6">
+                                            <label for="email"> اسم ممثل المشهور   : <span class="required">*</span></label>
+                                            <input type="text" name="name_actor"  @if($famous->is_famous == 2) required @endif class="form-control"
+                                                value="{{ $famous->name_actor }}" id="name_actor">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="email"> رقم ممثل المشهور   : <span class="required">*</span></label>
+                                            <input type="number" name="phone_actor" @if($famous->is_famous == 2) required @endif  class="form-control"
+                                                value="{{ $famous->phone_actor }}" id="phone_actor">
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="email"> مجال المشهور : <span class="required">*</span></label>
                                             <select required class="select2-rtl form-control" id="is_famous" name="famoustype_id[]"
@@ -98,18 +113,19 @@
             
                                             </select>
                                         </div>
+                                    
                                         <div class="col-md-2 mt-2 col-sm-2 form-group ">
                                             <button type="button" class="btn btn-info" id="addscope"> <i class="fa fa-plus"></i></button>
             
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="email"> عدد المتابعين   : <span class="required">*</span></label>
-                                            <input type="number" name="followers_number" required class="form-control"
+                                            <input type="number" name="followers_number"  class="form-control"
                                                 value="{{ $famous->followers_number }}" id="followers_number">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="email"> عدد المشاهدات   : <span class="required">*</span></label>
-                                            <input type="number" name="views_number" required class="form-control"
+                                            <input type="number" name="views_number"  class="form-control"
                                                 value="{{ $famous->views_number }}" id="views_number">
                                         </div>
                                         <div class="form-group col-md-6">
@@ -608,6 +624,19 @@
 
         });
            
+        });
+        $('#select_is_famous').change(function() {
+            let selval = $('#select_is_famous').val();
+           if(selval== 2){
+            $('.is_famous_show').css({display: '-webkit-box'});
+            $('#name_actor').prop('required', true);   
+            $('#phone_actor').prop('required', true);   
+
+           }else{
+            $('.is_famous_show').css({display: 'none'});
+            $('#name_actor').prop('required', false);   
+            $('#phone_actor').prop('required', false);   
+           }
         });
     </script>
 @endsection
