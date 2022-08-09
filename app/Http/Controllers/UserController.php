@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Changbank;
 use App\Models\Country;
 use App\Models\Famous;
 use App\Models\FamousBank;
@@ -140,6 +141,25 @@ class UserController extends Controller
     public function edit_bank_profile()
     {
         return view('dashboard.user.edit_bank_profile')->with('famous', Famous::find(auth('famous')->id()))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+    }
+    public function update_back_info(Request $request)
+    {
+       $bank = Changbank::where('famous_id',auth('famous')->id())->first();
+       if($bank){
+        return redirect()->back()->with(['error'=>'لقد تم ارسال طلب مسبقا بانتظار الموافقة من قبل الادارة']);
+       }else{
+        $bank = new Changbank();
+        $bank->bank_name = $request->bank_name;
+        $bank->account_name = $request->account_name;
+        $bank->account_number = $request->account_number;
+        $bank->famous_id = auth('famous')->id();
+        $bank->save();
+        return redirect()->back()->with(['success'=>'تم ارسال طلبك بنجاح']);
+
+
+       }
+       
+
     }
 
     
