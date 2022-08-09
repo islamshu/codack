@@ -53,10 +53,11 @@
         <style>
             .select2 {
                 width: 100% !important;
-                .radies {
+               
+            }
+            .radies {
                     border-radius: 30%
                 }
-            }
         </style>
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/chat.css') }}"> --}}
 
