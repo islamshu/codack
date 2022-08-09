@@ -42,7 +42,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::post('store_country_for_famous', 'App\Http\Controllers\CountryController@store_country_for_famous')->name('store_country_for_famous');
     Route::post('store_scope_for_famous', 'App\Http\Controllers\FamousTypeController@store_scope_for_famous')->name('store_scope_for_famous');
     Route::get('logout', 'App\Http\Controllers\UserController@logout')->name('logout');
-    Route::get('wallet', 'App\Http\Controllers\UserController@wallet')->name('wallet');
     Route::get('codes', 'App\Http\Controllers\UserController@codes')->name('codes.index');
 
     Route::get('/', function () {
@@ -67,6 +66,7 @@ Route::get('edit_bank_profile', 'App\Http\Controllers\UserController@edit_bank_p
 Route::get('update_back_info', 'App\Http\Controllers\UserController@update_back_info')->name('update_back_info');
 
 
+Route::get('wallet', 'App\Http\Controllers\UserController@wallet')->name('wallet');
 
 
 
