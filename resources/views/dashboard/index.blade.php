@@ -489,7 +489,7 @@
                                 <!-- Modal body -->
                                 <div class="modal-body ">
 
-                                    <form action=">
+                                    <form action="">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -528,21 +528,21 @@
                                                     <label for="email"> نسبة كود الخصم :</label>
                                                     <!-- <input type="text" class="form-control percentage" value="%" id="email"> -->
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder=">
+                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder="">
                                                         <div class="form-control-position">
                                                             %
                                                         </div>
 
                                                     </fieldset>
                                                 </div>
-                                            </div>
                                         </div>
+                                    </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email"> فايدة استخدام الكود     :</label>
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder=">
+                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder="">
                                                         <div class="form-control-position">
                                                             %
                                                         </div>
@@ -554,21 +554,22 @@
                                                 <div class="form-group">
                                                     <label for="email"> نسبة كودك  :</label>
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder=">
+                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder="">
                                                         <div class="form-control-position">
                                                             %
                                                         </div>
 
                                                     </fieldset>
                                                 </div>
-                                            </div>
+                                          
+                                        </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email"> نسبة المشهور     :</label>
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder=">
+                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" >
                                                         <div class="form-control-position">
                                                             %
                                                         </div>
@@ -576,8 +577,9 @@
                                                     </fieldset>
                                                 </div>
                                             </div>
-
                                         </div>
+
+                                        
 
                                         <button type="submit" class="btn btn-default">اضافة</button>
                                     </form>
