@@ -88,8 +88,9 @@
                                                 <th>#</th>
                                                 <th>شعار المتجر</th>
                                                 <th>أسم المتجر</th>
-                                                <th>عدد اكواد الخصم الفغالة</th>
-                                                <th>عدد اكواد الخصم المنتهية</th>
+                                                <th style="width: 10% "> اكواد  الفغالة</th>
+                                                <th style="width: 10% "> اكواد  المنتهية</th>
+                                                <th style="width: 30% ">اضيفت بواسطة</th>
                                                 <th>الاجراءات</th>
                                     
                                             </tr>
@@ -98,11 +99,14 @@
                                             @foreach ($stores as $key => $item)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td><img src="{{ asset('uploads/'.$item->image) }}" width="100" height="70" alt=""> </td>
+                                                    <td><img src="{{ asset('uploads/'.$item->image) }}" width="50" height="30" alt=""> </td>
                                                     <td>{{ $item->title }} </td>
                                                     <td>0 </td>
                                                     <td>0</td>
+                                                    <td>{{ @$item->user->hasRole('Admin') ?'الادارة' : @$item->user->name }}</td>
                                                     <td>
+                                                        @if(auth()->user()->hasRole('Admin'))
+
                                                         <button class="btn btn-info" data-toggle="modal" data-target="#myModal4"
                                                         onclick="make('{{ $item->id }}')"><i class="fa fa-edit"></i></button>
                                                         <form style="display: inline" action="{{ route('stores.destroy',$item->id) }}" method="post">
@@ -110,6 +114,9 @@
                                                             <button type="submit"  class="btn btn-danger"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @else
+                                                        _
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

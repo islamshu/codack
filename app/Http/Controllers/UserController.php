@@ -19,67 +19,67 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function admin_login(){
+    public function admin_login()
+    {
         return view('auth.user.login');
     }
-    public function famous_login(){
+    public function famous_login()
+    {
         return view('auth.user.famous_login');
     }
-    public function famous_login_post(Request $request){
-        $user = Famous::where('phone',$request->phone)->first();
-        if($user){
-            $meesage = 'رمز التحقق هو '.$user->otp;
-            return response()->json(['status'=>true,'message'=>$meesage,'phone'=>$request->phone]);
-        }else{
-            return response()->json(['status'=>false,'message'=>'لم يتم العثور على رقم الهاتف']);
+    public function famous_login_post(Request $request)
+    {
+        $user = User::where('phone', $request->phone)->first();
+        if ($user) {
+            $meesage = 'رمز التحقق هو ' . $user->otp;
+            return response()->json(['status' => true, 'message' => $meesage, 'phone' => $request->phone]);
+        } else {
+            return response()->json(['status' => false, 'message' => 'لم يتم العثور على رقم الهاتف']);
         }
     }
-    public function check_otp(Request $request){
-        $user = Famous::where('phone',$request->phone)->where('otp',$request->otp)->first();
-        if($user){
-            
+    public function check_otp(Request $request)
+    {
+        $user = User::where('phone', $request->phone)->where('otp', $request->otp)->first();
+        if ($user) {
 
-            auth('famous')->login($user, true);
-            $admin = Auth::user();
-            if($admin){
-                Auth::logout(); 
-            }
-            return response()->json(['status'=>true,'redirecturl'=>route('famous-dashboard')]);
 
-        }else{
-            return response()->json(['status'=>false,'message'=>'رمز التحقق خاطيء']);
+            auth()->login($user, true);
+
+            return response()->json(['status' => true, 'redirecturl' => route('famous-dashboard')]);
+        } else {
+            return response()->json(['status' => false, 'message' => 'رمز التحقق خاطيء']);
         }
     }
-    
-    public function process_login(Request $request){
+
+    public function process_login(Request $request)
+    {
         $request->validate([
-            'email'=>'required|email',
-            'password'=>'required',
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect('/dashboard/home');
-        }else{
-            return redirect()->back()->with(['error'=>'البيانات غير متطابقة مع سجلاتنا']);
+        } else {
+            return redirect()->back()->with(['error' => 'البيانات غير متطابقة مع سجلاتنا']);
         }
     }
-    public function send_bank_data(Request $request){
-        $famous = FamousBank::where('famous_id',auth('famous')->id())->first();
-        if($famous){
-            return response()->json(['status'=>true,'message'=>'تم ارسال طلب التحويل بنجاح']);
-        }else{
+    public function send_bank_data(Request $request)
+    {
+        $famous = FamousBank::where('famous_id', auth('famous')->id())->first();
+        if ($famous) {
+            return response()->json(['status' => true, 'message' => 'تم ارسال طلب التحويل بنجاح']);
+        } else {
             $famouss = new FamousBank();
             $famouss->famous_id = auth('famous')->id();
             $famouss->bank_name = $request->bank_name;
             $famouss->account_name = $request->account_name;
             $famouss->account_nubmer = $request->account_number;
             $famouss->save();
-            return response()->json(['status'=>true,'message'=>'تم تخزين بيانات البنك وارسال الطلب']);
-
+            return response()->json(['status' => true, 'message' => 'تم تخزين بيانات البنك وارسال الطلب']);
         }
-
     }
-    
+
     public function update_my_profile(Request $request)
     {
         $famous = Famous::find(auth('famous')->id());
@@ -87,8 +87,8 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'country_id' => 'required',
-            'phone' => 'required|unique:famouses,phone,'.auth('famous')->id(),
-            'email' => 'email|required|unique:famouses,email,'.auth('famous')->id(),
+            'phone' => 'required|unique:famouses,phone,' . auth('famous')->id(),
+            'email' => 'email|required|unique:famouses,email,' . auth('famous')->id(),
             'professional_license_number' => 'required',
             'is_famous' => 'required',
             'famoustype_id' => 'required',
@@ -114,8 +114,20 @@ class UserController extends Controller
         $famous->instagram = $request->instagram;
         $famous->snapchat = $request->snapchat;
         $famous->save();
-        if($request->addmore != null){
-            foreach(FamousSoial::where('famous_id',$famous->id)->get() as $fa){
+        $role = Role::where('name', 'Famous')->first();
+        $user = User::where('phone', $request->phone)->first();
+        if (!$user) {
+            $user = new User();
+            $user->name = $famous->name;
+            $user->email = $famous->email;
+            $user->phone = $famous->phone;
+            $user->save();
+            $user->assignRole([$role->id]);
+        }
+        $famous->user_id = $user->id;
+        $famous->save();
+        if ($request->addmore != null) {
+            foreach (FamousSoial::where('famous_id', $famous->id)->get() as $fa) {
                 $fa->delete();
             }
             foreach ($request->addmore as $key => $value) {
@@ -127,30 +139,32 @@ class UserController extends Controller
                 ]);
             }
         }
-        return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
-        
+        return redirect()->back()->with(['success' => 'تم التعديل بنجاح']);
     }
-    public function changes(){
-        return view('dashboard.change.index')->with('changes',Changbank::orderby('id','desc')->get());
+    public function changes()
+    {
+        return view('dashboard.change.index')->with('changes', Changbank::orderby('id', 'desc')->get());
     }
-    public function edit_changes($id){
-        return view('dashboard.change.edit')->with('change',Changbank::find($id));
+    public function edit_changes($id)
+    {
+        return view('dashboard.change.edit')->with('change', Changbank::find($id));
     }
-    public function codes(){
+    public function codes()
+    {
         return view('dashboard.codes.index');
     }
-    public function update_back_info_by_admin(Request $request){
+    public function update_back_info_by_admin(Request $request)
+    {
         $id = $request->famous_id;
-        $bank = FamousBank::where('famous_id',$id)->first();
-        $bank->bank_name= $request->bank_name;
-        $bank->account_name= $request->account_name;
-        $bank->account_nubmer= $request->account_number;
+        $bank = FamousBank::where('famous_id', $id)->first();
+        $bank->bank_name = $request->bank_name;
+        $bank->account_name = $request->account_name;
+        $bank->account_nubmer = $request->account_number;
         $bank->save();
-        $bb = Changbank::where('famous_id',$id)->first()->delete();
-        return redirect()->route('changes.index')->with(['success'=>'تم تغير بيانات بنجاح']);
-
+        $bb = Changbank::where('famous_id', $id)->first()->delete();
+        return redirect()->route('changes.index')->with(['success' => 'تم تغير بيانات بنجاح']);
     }
-    
+
     public function edit_profile()
     {
         return view('dashboard.user.edit')->with('famous', Famous::find(auth('famous')->id()))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
@@ -161,28 +175,24 @@ class UserController extends Controller
     }
     public function update_back_info(Request $request)
     {
-       $bank = Changbank::where('famous_id',auth('famous')->id())->first();
-       if($bank){
-        return redirect()->back()->with(['error'=>'لقد تم ارسال طلب مسبقا بانتظار الموافقة من قبل الادارة']);
-       }else{
-        $bank = new Changbank();
-        $bank->bank_name = $request->bank_name;
-        $bank->account_name = $request->account_name;
-        $bank->account_number = $request->account_number;
-        $bank->famous_id = auth('famous')->id();
-        $bank->save();
-        return redirect()->back()->with(['success'=>'تم ارسال طلبك بنجاح']);
-
-
-       }
-       
-
+        $bank = Changbank::where('famous_id', auth('famous')->id())->first();
+        if ($bank) {
+            return redirect()->back()->with(['error' => 'لقد تم ارسال طلب مسبقا بانتظار الموافقة من قبل الادارة']);
+        } else {
+            $bank = new Changbank();
+            $bank->bank_name = $request->bank_name;
+            $bank->account_name = $request->account_name;
+            $bank->account_number = $request->account_number;
+            $bank->famous_id = auth('famous')->id();
+            $bank->save();
+            return redirect()->back()->with(['success' => 'تم ارسال طلبك بنجاح']);
+        }
     }
 
-    
+
     public function wallet()
     {
-       return view('dashboard.wallet.index');
+        return view('dashboard.wallet.index');
     }
 
     public function index(Request $request)
@@ -191,14 +201,14 @@ class UserController extends Controller
         return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
-    public function logout(){
-        if(auth()->user() != null){
+    public function logout()
+    {
+        if (auth()->user() != null) {
             auth()->logout();
             return redirect()->route('admin_login');
-        }else{
+        } else {
             auth('famous')->logout();
             return redirect()->route('famous_login');
-
         }
     }
 

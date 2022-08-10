@@ -8,7 +8,9 @@ use App\Models\FamousSoial;
 use App\Models\FamousType;
 use App\Models\SoicalType;
 use App\Models\Stores;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class FamousController extends Controller
 {
@@ -26,6 +28,7 @@ class FamousController extends Controller
         ->with('typs', FamousType::get())
         ->with('soicals', SoicalType::get())
         ->with('request',$request);
+
     }
     public function get_country_code(Request $request)
     {
@@ -56,8 +59,8 @@ class FamousController extends Controller
             'image' => 'required',
             'name' => 'required',
             'country_id' => 'required',
-            'phone' => 'required|unique:famouses,phone',
-            'email' => 'email|required|unique:famouses,email',
+            'phone' => 'required|unique:famouses,phone|unique:users,phone',
+            'email' => 'email|required|unique:famouses,email|unique:users,phone',
             'professional_license_number' => 'required',
             'is_famous' => 'required',
             'famoustype_id' => 'required',
@@ -82,6 +85,21 @@ class FamousController extends Controller
         $famous->instagram = $request->instagram;
         $famous->snapchat = $request->snapchat;
         $famous->save();
+        $role = Role::where('name','Famous')->first();
+        $user = User::where('phone',$request->phone)->first();
+        if(!$user){
+        $user= new User();
+        $user->name = $famous->name;
+        $user->email = $famous->email;
+        $user->phone = $famous->phone;
+        $user->save();
+        $user->assignRole([$role->id]);
+    }
+       $famous->user_id = $user->id;
+        $famous->save();
+       
+
+
         $count = Famous::count();
         if($request->addmore != null){
         foreach ($request->addmore as $key => $value) {
@@ -158,7 +176,22 @@ class FamousController extends Controller
         $famous->tiktok = $request->tiktok;
         $famous->instagram = $request->instagram;
         $famous->snapchat = $request->snapchat;
+        $role = Role::where('name','Famous')->first();
+        $user = User::where('phone',$request->phone)->first();
+        if(!$user){
+        $user= new User();
+        $user->name = $famous->name;
+        $user->email = $famous->email;
+        $user->phone = $famous->phone;
+        $user->save();
+        $user->assignRole([$role->id]);
+    }
+       $famous->user_id = $user->id;
         $famous->save();
+      
+        
+        
+
         if($request->addmore != null){
             foreach(FamousSoial::where('famous_id',$famous->id)->get() as $fa){
                 $fa->delete();

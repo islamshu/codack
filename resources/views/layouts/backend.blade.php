@@ -56,7 +56,7 @@
                
             }
             .radies {
-                    border-radius: 20%
+                    border-radius: 30%
                 }
         </style>
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/chat.css') }}"> --}}

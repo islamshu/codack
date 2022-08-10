@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('content')
-@if(auth()->user()->type  != 'famous')
+@if(auth()->user()->hasRole('Admin'))
 
 <div class="content-body">
     <section id="minimal-statistics-bg">
@@ -681,7 +681,7 @@
 
 </div>
 @endif
-@if(auth()->user()->type  == 'famous')
+@if(auth()->user()->hasRole('Famous'))
 <div class="content-body">
     <section id="configuration">
         <div class="row">

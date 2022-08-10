@@ -32,6 +32,7 @@ class StoresController extends Controller
         $store->website = $request->website;
         $store->android = $request->android;
         $store->ios = $request->ios;
+        $store->added_by = auth()->id();
         $store->save();
         $count = Stores::count() ;
         return view('dashboard.stores._stores')->with('store',$store)->with('key',$count);

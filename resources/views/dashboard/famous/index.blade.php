@@ -106,6 +106,7 @@
                                                     <td>{{ $item->phone }} </td>
 
                                                     <td>
+                                                        @if(auth()->user()->hasRole('Admin'))
                                                         <a href="{{ route('famous.edit', $item->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                                         <form style="display: inline"
                                                             action="{{ route('famous.destroy', $item->id) }}"
@@ -114,6 +115,7 @@
                                                             <button type="submit" class="btn btn-danger"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
