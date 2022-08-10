@@ -1,6 +1,6 @@
 <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true">
   <div class="main-menu-content">
-    {{-- @if(auth()->user()->type  != 'famous' || auth('famous')->user() == null) --}}
+    {{-- @if(auth()->user()->type  != 'famous' || auth()->user()->famous == null) --}}
     @if(auth()->user()->hasRole('Admin'))
     
       <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">

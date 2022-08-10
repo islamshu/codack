@@ -884,7 +884,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email">  اسم البنك  :</label>
-                                <input type="text" class="form-control" value="{{@ auth('famous')->user()->bank->bank_name }}" required name="bank_name" id="email">
+                                <input type="text" class="form-control" value="{{@ auth()->user()->famous->bank->bank_name }}" required name="bank_name" id="email">
                             </div>
                         </div>
                     </div>
@@ -892,13 +892,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email"> رقم الحساب       :</label>
-                                <input type="number" class="form-control" required value="{{@ auth('famous')->user()->bank->account_nubmer }}" name="account_number" id="email">
+                                <input type="number" class="form-control" required value="{{@ auth()->user()->famous->bank->account_nubmer }}" name="account_number" id="email">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email">   الاسم بالبنك  :</label>
-                                <input type="text" class="form-control" required value="{{@ auth('famous')->user()->bank->account_name }}" name="account_name" id="email">
+                                <input type="text" class="form-control" required value="{{@ auth()->user()->famous->bank->account_name }}" name="account_name" id="email">
                             </div>
                         </div>
                     </div>
