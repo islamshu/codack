@@ -223,11 +223,10 @@ class UserController extends Controller
     }
     public function logout()
     {
-        if (auth()->user() != null) {
+        if (auth()->user()->hasRole('Admin') ) {
             auth()->logout();
             return redirect()->route('admin_login');
         } else {
-            auth('famous')->logout();
             return redirect()->route('famous_login');
         }
     }
