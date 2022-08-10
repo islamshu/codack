@@ -20,4 +20,13 @@ class Stores extends Model
     {
         return $this->belongsTo(User::class,'added_by');
     }
+    /**
+     * Get all of the comments for the Stores
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function codes()
+    {
+        return $this->hasMany(Code::class,'store_id');
+    }
 }

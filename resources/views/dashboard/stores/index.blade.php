@@ -26,11 +26,11 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="userinput2">@lang('المتجر')</label>
-                                                <select name="nationality_id" id="" class="form-control">
+                                                <select name="store_id" id="" class="form-control">
 
                                                     <option value="">@lang('اختر المتجر')</option>
-                                                    @foreach ($stores as $item)
-                                                        <option value="{{ $item->id }}">
+                                                    @foreach (App\Models\Stores::get() as $item)
+                                                        <option value="{{ $item->id }}" @if(@$request->store_id == $item->id) selected @endif>
                                                             {{ $item->title }}</option>
                                                     @endforeach
                                                 </select>
@@ -41,7 +41,7 @@
                                             <div class="form-group">
                                                 <label for="userinput2">نسبة خصم التاجر (من)</label>
                                                 <fieldset class="form-group position-relative">
-                                                    <input type="number" max="100" min="5" name="phone"  class="form-control form-control-lg input-lg"
+                                                    <input type="number" max="100" min="5" value="{{ @$request->famous_discount_from }}" name="famous_discount_from"  class="form-control form-control-lg input-lg"
                                                         id="iconLeft3">
                                                     <div class="form-control-position phoneicon" style="margin-top: 7px;">
                                                         <h5>%</h5>
@@ -54,7 +54,7 @@
                                             <div class="form-group">
                                                 <label for="userinput2">نسبة خصم التاجر (الى)</label>
                                                 <fieldset class="form-group position-relative">
-                                                    <input type="number" max="100" min="5" name="phone"  class="form-control form-control-lg input-lg"
+                                                    <input type="number" max="100" min="5" value="{{ @$request->famous_discount_to }}" name="famous_discount_to"  class="form-control form-control-lg input-lg"
                                                         id="iconLeft3">
                                                     <div class="form-control-position phoneicon" style="margin-top: 7px;">
                                                         <h5>%</h5>
@@ -101,8 +101,8 @@
                                                     <td>{{ $key + 1 }}</td>
                                                     <td><img src="{{ asset('uploads/'.$item->image) }}" width="50" height="30" alt=""> </td>
                                                     <td>{{ $item->title }} </td>
-                                                    <td>0 </td>
-                                                    <td>0</td>
+                                                    <td>{{ App\Models\Code::where('store_id',$item->id)->where('status',1)->count() }} </td>
+                                                    <td>{{ App\Models\Code::where('store_id',$item->id)->where('status',0)->count() }}</td>
                                                     <td>{{ @$item->user->hasRole('Admin') ?'الادارة' : @$item->user->name }}</td>
                                                     <td>
                                                         @if(auth()->user()->hasRole('Admin'))
