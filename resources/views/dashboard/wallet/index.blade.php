@@ -137,6 +137,9 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>اسم المتجر </th>
+                                                @if(auth()->user()->hasRole('Admin'))
+                                                <th>اسم المشهور</th>
+                                                @endif 
                                                 <th>اجمالي التحويل </th>
                                                 <th>الكود</th>
 
@@ -148,6 +151,9 @@
                                             <tr>
                                                 <td>1 </td>
                                                 <td>متجر قيس</td>
+                                                @if(auth()->user()->hasRole('Admin'))
+                                                <td>islam </td>
+                                                @endif
                                                 <td>1300 </td>
                                                 <td>QQQ</td>
 
