@@ -12,6 +12,8 @@ use App\Models\FamousSoial;
 use App\Models\FamousType;
 use App\Models\SoicalType;
 use App\Models\User;
+use App\Notifications\ApproveChange;
+use App\Notifications\ChangeData;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -66,12 +68,12 @@ class UserController extends Controller
     }
     public function send_bank_data(Request $request)
     {
-        $famous = FamousBank::where('famous_id', auth('famous')->id())->first();
+        $famous = FamousBank::where('famous_id', auth()->user()->famous->id)->first();
         if ($famous) {
             return response()->json(['status' => true, 'message' => 'تم ارسال طلب التحويل بنجاح']);
         } else {
             $famouss = new FamousBank();
-            $famouss->famous_id = auth('famous')->id();
+            $famouss->famous_id = auth()->user()->famous->id;
             $famouss->bank_name = $request->bank_name;
             $famouss->account_name = $request->account_name;
             $famouss->account_nubmer = $request->account_number;
@@ -162,6 +164,15 @@ class UserController extends Controller
         $bank->account_name = $request->account_name;
         $bank->account_nubmer = $request->account_number;
         $bank->save();
+        $famous = Famous::find($id)->user_id;
+        $admin = User::find($famous);
+        $data = [
+            'id' => $bank->id,
+            'name' => $admin->name,
+            'url' => route('edit_bank_profile'),
+            'time'=>$bank->created_at
+        ];
+        $admin->notify(new ApproveChange($data));
         $bb = Changbank::where('famous_id', $id)->first()->delete();
         return redirect()->route('changes.index')->with(['success' => 'تم تغير بيانات بنجاح']);
     }
@@ -186,6 +197,14 @@ class UserController extends Controller
             $bank->account_number = $request->account_number;
             $bank->famous_id = auth('famous')->id();
             $bank->save();
+            $admin = User::role('Admin')->first();
+            $data = [
+                'id' => $bank->id,
+                'name' => $bank->famous->name,
+                'url' => route('changes.edit', $bank->id),
+                'time'=>$bank->created_at
+            ];
+            $admin->notify(new ChangeData($data));
             return redirect()->back()->with(['success' => 'تم ارسال طلبك بنجاح']);
         }
     }

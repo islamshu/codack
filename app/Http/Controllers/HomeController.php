@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\General;
+use App\Models\Notification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,6 +14,21 @@ class HomeController extends Controller
      *
      * @return void
      */
+    public function notification($id)
+    {
+        $not = Notification::find($id);
+        $not->read_at = Carbon::now();
+        $not->save();
+        return redirect(json_decode($not->data)->url);
+    }
+    public function read_all_notofication()
+    {
+        $notifications = auth()->user()->unreadNotifications;
+        foreach ($notifications as $notification) {
+            $notification->read_at = Carbon::now();
+            $notification->save();
+        }
+    }
     public function general()
     {
         return view('dashboard.general');

@@ -144,6 +144,9 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
+                    
+
+
                     // var table = $('#stores').DataTable();
                     if (data['status'] == true) {
                         $("#send_phone").css("display", "none");
