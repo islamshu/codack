@@ -148,8 +148,7 @@
                     if (data['status'] == true) {
                         $("#send_phone").css("display", "none");
                         $("#check_otp").css("display", "block");
-                        alert('dd');
-
+                        $('#form-errors').css("display", "none");
                         $("<input>").attr({
                             name: "phone",
                             id: "hiddenId",
@@ -166,6 +165,7 @@
                         $('#form-success').css("display", "block");
                      
                     } else if (data['status'] == false) {
+
                        
                         errorsHtml = '<div class="alert alert-danger"><ul>';
                         errorsHtml += '<li> لم يتطابق رقم الهاتف مع سجلاتنا</li>';
@@ -177,6 +177,7 @@
 
                 },
                 error: function(data) {
+
                     var errors = data.responseJSON;
                     var errors = data.responseJSON;
                     errorsHtml = '<div class="alert alert-danger"><ul>';
