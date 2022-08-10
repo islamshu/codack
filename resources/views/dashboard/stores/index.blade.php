@@ -20,7 +20,7 @@
                             </div>
 
                             <div class="card-content collapse show">
-                                <form >
+                                <form style="margin-right:4%" >
 
                                     <div class="row">
                                         <div class="col-md-3">
