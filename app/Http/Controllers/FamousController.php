@@ -179,6 +179,8 @@ class FamousController extends Controller
         $famous->snapchat = $request->snapchat;
         $role = Role::where('name','Famous')->first();
         $user = User::where('phone',$request->phone)->first();
+        $user->otp = rand(1111,9999);
+        $user->save();
         if(!$user){
         $user= new User();
         $user->name = $famous->name;
