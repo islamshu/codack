@@ -92,6 +92,7 @@ class FamousController extends Controller
         $user->name = $famous->name;
         $user->email = $famous->email;
         $user->phone = $famous->phone;
+        $user->otp = rand(1111,9999);
         $user->save();
         $user->assignRole([$role->id]);
     }
@@ -183,6 +184,7 @@ class FamousController extends Controller
         $user->name = $famous->name;
         $user->email = $famous->email;
         $user->phone = $famous->phone;
+        $user->otp = rand(1111,9999);
         $user->save();
         $user->assignRole([$role->id]);
     }

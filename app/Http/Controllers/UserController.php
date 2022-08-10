@@ -121,7 +121,8 @@ class UserController extends Controller
             $user->name = $famous->name;
             $user->email = $famous->email;
             $user->phone = $famous->phone;
-            $user->save();
+            $user->otp = rand(1111,9999);
+        $user->save();
             $user->assignRole([$role->id]);
         }
         $famous->user_id = $user->id;
