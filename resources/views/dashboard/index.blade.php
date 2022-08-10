@@ -11,10 +11,10 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
-                                <div class="align-self-center">
+                                <div class="align-self-center" style="margin-right:10%">
                                     <i class="fa fa-building   text-white font-large-2 float-right"></i>
                                 </div>
-                                <div class="media-body text-white text-right">
+                                <div class="media-body text-white text-right" style="margin-left: 33px;">
                                     <h3 class="text-white">{{ App\Models\Stores::count() }}</h3>
                                     <span> اجمالي المتاجر   </span>
                                 </div>
@@ -28,10 +28,10 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
-                                <div class="align-self-center">
+                                <div class="align-self-center" style="margin-right:10%">
                                     <i class="fa fa-user text-white font-large-2 float-right"></i>
                                 </div>
-                                <div class="media-body text-white text-right">
+                                <div class="media-body text-white text-right" style="margin-left: 33px;">
                                     <h3 class="text-white">{{ App\Models\Famous::count() }}</h3>
                                     <span>اجمالي عدد المشاهير</span>
                                 </div>
@@ -45,10 +45,10 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
-                                <div class="align-self-center">
+                                <div class="align-self-center" style="margin-right:10%">
                                     <i class="fa fa-eercast text-white font-large-2 float-right"></i>
                                 </div>
-                                <div class="media-body text-white text-right">
+                                <div class="media-body text-white text-right" style="margin-left: 33px;">
                                     <h3 class="text-white">156</h3>
                                     <span>اجمالي اكواد الخصم </span>
                                 </div>
@@ -62,10 +62,10 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
-                                <div class="align-self-center">
+                                <div class="align-self-center" style="margin-right:10%">
                                     <i class="fa fa-play text-white font-large-2 float-right"></i>
                                 </div>
-                                <div class="media-body text-white text-right">
+                                <div class="media-body text-white text-right" style="margin-left: 33px;">
                                     <h3 class="text-white">100</h3>
                                     <span>  اكواد  الفعالة</span>
                                 </div>
@@ -79,10 +79,10 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
-                                <div class="align-self-center">
+                                <div class="align-self-center" style="margin-right:10%">
                                     <i class="fa fa-pause text-white font-large-2 float-right"></i>
                                 </div>
-                                <div class="media-body text-white text-right">
+                                <div class="media-body text-white text-right" style="margin-left: 33px;">
                                     <h3 class="text-white">56</h3>
                                     <span>  اكواد  الغير فعالة</span>
                                 </div>
@@ -168,7 +168,7 @@
                                     <div class=" form-group col-md-4 col-sm-4">
                                         <label for="email"> الدولة : <span class="required">*</span></label>
                                         <select name="country_id" id="country_id" class="form-control">
-                                            <option value="">اختر دولة</option>
+                                            <option value=">اختر دولة</option>
                                             @foreach (App\Models\Country::get() as $item)
                                                 <option value="{{ $item->id }}">{{ $item->title }}</option>
                                             @endforeach
@@ -204,7 +204,7 @@
                                         <label for="email"> هل انت ممثل عن المشهور ام المشهور نفسه : <span
                                                 class="required">*</span></label>
                                         <select name="is_famous" required class="form-control">
-                                            <option value="">اختر </option>
+                                            <option value=">اختر </option>
                                             <option value="1">المشهور نفسه</option>
                                             <option value="2">ممثل عن المشهور </option>
                                         </select>
@@ -212,7 +212,7 @@
                                     <div class="form-group col-md-4">
                                         <label for="email"> مجال المشهور : <span class="required">*</span></label>
                                         <select name="famoustype_id" required id="is_famous" class="form-control">
-                                            <option value="">اختر </option>
+                                            <option value=">اختر </option>
                                             @foreach (App\Models\FamousType::get() as $item)
                                                 <option value="{{ $item->id }}">{{ $item->title }}</option>
                                             @endforeach
@@ -226,7 +226,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="email"> فئة المتابعين : <span class="required">*</span></label>
                                         <select name="follower_type" required  id="follower_type" class="form-control">
-                                            <option value="">اختر </option>
+                                            <option value=">اختر </option>
                                             <option value="male">رجال</option>
                                             <option value="femail">نساء </option>
                                             <option value="children"> أطفال</option>
@@ -235,7 +235,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email"> <img src="https://cdn.iconscout.com/icon/free/png-256/tiktok-2270636-1891163.png" width="50" height="50" alt=""></label>
+                                            <label for="email"> <img src="https://cdn.iconscout.com/icon/free/png-256/tiktok-2270636-1891163.png" width="50" height="50" alt="></label>
                                             <input type="text"name="tiktok" placeholder="www.tiktok.com" class="form-control"
                                                 id="tiktok">
                                         </div>
@@ -319,7 +319,7 @@
                                 </div>
                                 <div class="form-group">
                                     <img src="{{ asset('uploads/product_images/default.png') }}" style="width: 100px"
-                                        class="img-thumbnail image-preview" alt="">
+                                        class="img-thumbnail image-preview" alt=">
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
@@ -489,15 +489,15 @@
                                 <!-- Modal body -->
                                 <div class="modal-body ">
 
-                                    <form action="">
+                                    <form action=">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email"> المتجر :</label>
-                                                    <select name="" class="form-control" id="">
-                                                    <option value="">متجر قيس</option>
-                                                    <option value="">متجر اناس</option>
-                                                    <option value="">متجر فور ايفر</option>
+                                                    <select name="" class="form-control" id=">
+                                                    <option value=">متجر قيس</option>
+                                                    <option value=">متجر اناس</option>
+                                                    <option value=">متجر فور ايفر</option>
                                 
                                                 </select>
                                                 </div>
@@ -505,12 +505,12 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email"> المشهور :</label>
-                                                    <select name="" class="form-control" id="">
-                                                    <option value="">محمود </option>
-                                                    <option value="">ايهاب </option>
-                                                    <option value="">خالد  </option>
-                                                    <option value="">محمد  </option>
-                                                    <option value="">سالم  </option>
+                                                    <select name="" class="form-control" id=">
+                                                    <option value=">محمود </option>
+                                                    <option value=">ايهاب </option>
+                                                    <option value=">خالد  </option>
+                                                    <option value=">محمد  </option>
+                                                    <option value=">سالم  </option>
                                 
                                                 </select>
                                                 </div>
@@ -528,7 +528,7 @@
                                                     <label for="email"> نسبة كود الخصم :</label>
                                                     <!-- <input type="text" class="form-control percentage" value="%" id="email"> -->
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder="">
+                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder=">
                                                         <div class="form-control-position">
                                                             %
                                                         </div>
@@ -542,7 +542,7 @@
                                                 <div class="form-group">
                                                     <label for="email"> فايدة استخدام الكود     :</label>
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder="">
+                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder=">
                                                         <div class="form-control-position">
                                                             %
                                                         </div>
@@ -554,7 +554,7 @@
                                                 <div class="form-group">
                                                     <label for="email"> نسبة كودك  :</label>
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder="">
+                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder=">
                                                         <div class="form-control-position">
                                                             %
                                                         </div>
@@ -568,7 +568,7 @@
                                                 <div class="form-group">
                                                     <label for="email"> نسبة المشهور     :</label>
                                                     <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder="">
+                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder=">
                                                         <div class="form-control-position">
                                                             %
                                                         </div>
@@ -622,7 +622,7 @@
                         <div class="form-group">
                             <img src="{{ asset('uploads/product_images/default.png') }}"
                                 style="width: 100px" class="img-thumbnail image-preview"
-                                alt="">
+                                alt=">
                         </div>
                        <div class="row">
                         <div class="form-group col-md-6">
@@ -690,10 +690,10 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
-                                <div class="align-self-center">
+                                <div class="align-self-center" style="margin-right:10%">
                                     <i class="icon-wallet text-white font-large-2 float-right"></i>
                                 </div>
-                                <div class="media-body text-white text-right">
+                                <div class="media-body text-white text-right" style="margin-left: 33px;">
                                     <h3 class="text-white">2500</h3>
                                     <span> اجمالي المحفظة   </span>
                                 </div>
@@ -707,10 +707,10 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
-                                <div class="align-self-center">
+                                <div class="align-self-center" style="margin-right:10%">
                                     <i class="icon-check text-white font-large-2 float-right"></i>
                                 </div>
-                                <div class="media-body text-white text-right">
+                                <div class="media-body text-white text-right" style="margin-left: 33px;">
                                     <h3 class="text-white">500</h3>
                                     <span>  ما تم تحويله   </span>
                                 </div>
@@ -724,10 +724,10 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
-                                <div class="align-self-center">
+                                <div class="align-self-center" style="margin-right:10%">
                                     <i class="icon-compass text-white font-large-2 float-right"></i>
                                 </div>
-                                <div class="media-body text-white text-right">
+                                <div class="media-body text-white text-right" style="margin-left: 33px;">
                                     <h3 class="text-white">500</h3>
                                     <span>   المبالغ المعلقة    </span>
                                 </div>
@@ -758,7 +758,7 @@
                                     <label for="userinput2">@lang('المتجر')</label>
                                     <select name="nationality_id" id="" class="form-control">
 
-                                        <option value="">@lang('اختر المتجر')</option>
+                                        <option value=">@lang('اختر المتجر')</option>
                                         @foreach (App\Models\Stores::get() as $item)
                                             <option value="{{ $item->id }}">
                                                 {{ $item->title }}</option>
@@ -1182,7 +1182,7 @@
                             <div class="form-group">
                                 <label>اسم المنصة :</label>
                                 <select name="addmore[` + i + `][name_socal]" class="form-control">
-                                    <option value="">اختر المنصة</option>
+                                    <option value=">اختر المنصة</option>
                                     @foreach (App\Models\SoicalType::get() as $item)
                                     <option value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
