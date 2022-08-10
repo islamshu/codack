@@ -749,7 +749,8 @@
                                 <li><a data-action="close"><i class="ft-x"></i></a></li>
                             </ul>
                         </div>
-                    </div>   <form >
+                    </div>  
+                     <form style="margin-right: 4%" >
 
                         <div class="row">
                             <div class="col-md-3">
