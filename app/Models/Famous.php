@@ -33,4 +33,8 @@ class Famous extends Authenticatable
     {
         return $this->hasOne(FamousBank::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
