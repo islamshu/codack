@@ -135,6 +135,18 @@
 
               </ul>
           </li>
+          <li class="nav-item has-sub ">
+            <a href="#">
+                <i class="fa fa-sort"></i>
+                <span class="menu-title">طلبات التحويل</span></a>
+            <ul class="menu-content" style="">
+                <li class="is-shown"><a class="menu-item" href="{{ route('my_order_money') }}">طلبات التحويل </a>
+                </li>
+
+
+            </ul>
+        </li>
+          
        
         <li class="nav-item has-sub ">
             <a href="#">

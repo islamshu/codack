@@ -1130,15 +1130,15 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                    // var table = $('#stores').DataTable();
 
-                
-                    swal(
-                        '',
-                       data['message'],
-                        'success'
-                    );
-                    location.reload(true);
+                    swal(data['message'], {
+                    buttons: false,
+                    timer: 3000,
+                    icon: "success"
+                });
+                setTimeout(function() {
+                    window.location.reload();
+                }, 3000);
 
 
 

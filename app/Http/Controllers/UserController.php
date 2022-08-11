@@ -10,6 +10,7 @@ use App\Models\Famous;
 use App\Models\FamousBank;
 use App\Models\FamousSoial;
 use App\Models\FamousType;
+use App\Models\MoneyOrder;
 use App\Models\SoicalType;
 use App\Models\User;
 use App\Notifications\ApproveChange;
@@ -68,9 +69,36 @@ class UserController extends Controller
     }
     public function send_bank_data(Request $request)
     {
+        $money = new MoneyOrder();
+        $money->famous_id = auth()->user()->famous->id;
+        $money->amount = 1000;
+        $money->save();
         $famous = FamousBank::where('famous_id', auth()->user()->famous->id)->first();
         if ($famous) {
-            return response()->json(['status' => true, 'message' => 'تم ارسال طلب التحويل بنجاح']);
+            if($famous->bank_name != $request->bank_name || $famous->account_nam!= $request->account_name || $famous->account_nubmer != $request->account_number ){
+                if(Changbank::where('famous_id', auth()->user()->famous->id)->where('status',2)->first()){
+                    return response()->json(['status' => true, 'message' => 'تم ارسال طلب التحويل ولكن طلب تغير بيانات البنكية غير متاح (لديك طلب سابق بانتظار الموافقة)']);
+                }
+                $bank = new Changbank();
+                $bank->bank_name = $request->bank_name;
+                $bank->account_name = $request->account_name;
+                $bank->account_number = $request->account_number;
+                $bank->famous_id = auth()->user()->famous->id;
+                $bank->save();
+                $admin = User::role('Admin')->first();
+                $data = [
+                    'id' => $bank->id,
+                    'name' => $bank->famous->name,
+                    'url' => route('changes.edit', $bank->id),
+                    'time'=>$bank->created_at
+                ];
+                $admin->notify(new ChangeData($data));
+                return response()->json(['status' => true, 'message' => 'تم ارسال طلب التحويل وتم ارسال طلب تغير بيانات البنك']);
+            }else{
+                return response()->json(['status' => true, 'message' => 'تم ارسال طلب التحويل بنجاح']);
+
+            }
+            
         } else {
             $famouss = new FamousBank();
             $famouss->famous_id = auth()->user()->famous->id;
@@ -179,6 +207,10 @@ class UserController extends Controller
     public function my_order_edit()
     {
         return view('dashboard.user.order_edit')->with('changes', Changbank::where('famous_id',auth()->user()->famous->id)->get())->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+    }
+    public function my_order_money()
+    {
+        return view('dashboard.user.order_mony')->with('changes', MoneyOrder::where('famous_id',auth()->user()->famous->id)->get())->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
     }
     public function edit_bank_profile()
     {

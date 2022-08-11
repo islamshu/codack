@@ -72,7 +72,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::post('update_my_profile', 'App\Http\Controllers\UserController@update_my_profile')->name('update_my_profile');
     Route::get('edit_bank_profile', 'App\Http\Controllers\UserController@edit_bank_profile')->name('edit_bank_profile');
     Route::post('update_back_info', 'App\Http\Controllers\UserController@update_back_info')->name('update_back_info');
+    Route::get('my_order_money', 'App\Http\Controllers\UserController@my_order_money')->name('my_order_money');
 
+    
     Route::get('show_notification/{id}','App\Http\Controllers\HomeController@notification')->name('show.notification');
     Route::get('read_all_notofication','App\Http\Controllers\HomeController@read_all_notofication')->name('read_all_notofication');
 
@@ -86,7 +88,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
 
 
 
-    Route::post('send_bank_data', 'App\Http\Controllers\UserController@send_bank_data')->name('send_bank_data');
     Route::get('edit_profile', 'App\Http\Controllers\UserController@edit_profile')->name('edit_profile');
     Route::get('order_for_edit_bankinfo', 'App\Http\Controllers\UserController@my_order_edit')->name('my_order_edit');
 
