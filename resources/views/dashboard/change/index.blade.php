@@ -50,7 +50,7 @@
 
 
                                                     <td>
-                                                       <a href="{{ route('changes.edit',$item->id) }}"><i
+                                                       <a href="{{ route('changes.edit',$item->id) }}" class="btn btn-info"><i
                                                         class="fa fa-edit"></i></a>
                                                         <form style="display: inline"
                                                             action="{{ route('soical.destroy', $item->id) }}"
