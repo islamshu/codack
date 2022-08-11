@@ -32,24 +32,7 @@
 
               </ul>
           </li>
-          <li class="nav-item has-sub ">
-            <a href="#">
-                <i class="fa fa-cog"></i>
-                <span class="menu-title">الاعدادت</span></a>
-            <ul class="menu-content" style="">
-                
-                <li class="is-shown"><a class="menu-item" href="{{ route('generalinfo.index') }}">الاعدادات العامة  </a>
-                </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('country.index') }}">جميع الدول</a>
-                </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('famoustype.index') }}">جميع المجالات</a>
-                </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('soical.index') }}">جميع منصات السوشل ميديا</a>
-                </li>
-
-
-            </ul>
-        </li>
+          
         <li class="nav-item has-sub ">
             <a href="#">
                 <i class="fa fa-info-circle"></i>
@@ -83,6 +66,24 @@
 
               </ul>
           </li>
+          <li class="nav-item has-sub ">
+            <a href="#">
+                <i class="fa fa-cog"></i>
+                <span class="menu-title">الاعدادت</span></a>
+            <ul class="menu-content" style="">
+                
+                <li class="is-shown"><a class="menu-item" href="{{ route('generalinfo.index') }}">الاعدادات العامة  </a>
+                </li>
+                <li class="is-shown"><a class="menu-item" href="{{ route('country.index') }}">جميع الدول</a>
+                </li>
+                <li class="is-shown"><a class="menu-item" href="{{ route('famoustype.index') }}">جميع المجالات</a>
+                </li>
+                <li class="is-shown"><a class="menu-item" href="{{ route('soical.index') }}">جميع منصات السوشل ميديا</a>
+                </li>
+
+
+            </ul>
+        </li>
           
       </ul>
       @endif
@@ -106,23 +107,7 @@
 
             </ul>
         </li>
-        <li class="nav-item has-sub ">
-            <a href="#">
-                <i class="fa fa-cog"></i>
-                <span class="menu-title">الاعدادت</span></a>
-            <ul class="menu-content" style="">
-                
-                </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('country.index') }}">جميع الدول</a>
-                </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('famoustype.index') }}">جميع المجالات</a>
-                </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('soical.index') }}">جميع منصات السوشل ميديا</a>
-                </li>
-
-
-            </ul>
-        </li>
+        
           <li class="nav-item has-sub ">
               <a href="#">
                   <i class="fa fa-archive"></i>
@@ -154,6 +139,23 @@
                 <span class="menu-title">اكواد الخصم</span></a>
             <ul class="menu-content" style="">
                 <li class="is-shown"><a class="menu-item" href="{{ route('codes.index') }}">جميع اكواد الخصم</a>
+                </li>
+
+
+            </ul>
+        </li>
+        <li class="nav-item has-sub ">
+            <a href="#">
+                <i class="fa fa-cog"></i>
+                <span class="menu-title">الاعدادت</span></a>
+            <ul class="menu-content" style="">
+                
+                </li>
+                <li class="is-shown"><a class="menu-item" href="{{ route('country.index') }}">جميع الدول</a>
+                </li>
+                <li class="is-shown"><a class="menu-item" href="{{ route('famoustype.index') }}">جميع المجالات</a>
+                </li>
+                <li class="is-shown"><a class="menu-item" href="{{ route('soical.index') }}">جميع منصات السوشل ميديا</a>
                 </li>
 
 
