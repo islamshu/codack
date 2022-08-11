@@ -177,7 +177,8 @@ class FamousController extends Controller
         $famous->instagram = $request->instagram;
         $famous->snapchat = $request->snapchat;
     //     $role = Role::where('name','Famous')->first();
-        $user = User::where('phone',$famous->phone)->first();
+        $user = $famous->user;
+            
         $user->otp = rand(1111,9999);
         $user->phone = $request->phone;
         $user->save();

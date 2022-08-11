@@ -115,8 +115,7 @@ class UserController extends Controller
         $famous->tiktok = $request->tiktok;
         $famous->instagram = $request->instagram;
         $famous->snapchat = $request->snapchat;
-        dd($famous->user);
-        $user = User::where('phone',$famous->phone)->first();
+        $user = $famous->user;
         
         $user->otp = rand(1111,9999);
         $user->phone = $request->phone;
