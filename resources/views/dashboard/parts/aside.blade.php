@@ -98,6 +98,20 @@
         </li>
         <li class="nav-item has-sub ">
             <a href="#">
+                <i class="fa -fa-user"></i>
+                <span class="menu-title">حسابي  </span></a>
+            <ul class="menu-content" style="">
+                <li class="is-shown"><a class="menu-item" href="{{ route('edit_profile') }}">تعديل الملف الشخصي </a>
+                </li>
+                <li class="is-shown"><a class="menu-item" href="{{ route('edit_bank_profile') }}">تعديل بيانات البنك  </a>
+                </li>
+
+
+
+            </ul>
+        </li>
+        <li class="nav-item has-sub ">
+            <a href="#">
                 <i class="fa fa-user-circle"></i>
                 <span class="menu-title">المتاجر</span></a>
             <ul class="menu-content" style="">
@@ -119,20 +133,7 @@
 
               </ul>
           </li>
-          <li class="nav-item has-sub ">
-            <a href="#">
-                <i class="fa fa-cog"></i>
-                <span class="menu-title">حسابي  </span></a>
-            <ul class="menu-content" style="">
-                <li class="is-shown"><a class="menu-item" href="{{ route('edit_profile') }}">تعديل الملف الشخصي </a>
-                </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('edit_bank_profile') }}">تعديل بيانات البنك  </a>
-                </li>
-
-
-
-            </ul>
-        </li>
+       
         <li class="nav-item has-sub ">
             <a href="#">
                 <i class="fa fa-bookmark"></i>
