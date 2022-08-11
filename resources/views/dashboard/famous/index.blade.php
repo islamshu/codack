@@ -402,6 +402,68 @@
         </div>
 
     </div>
+    <div class="modal" id="myModalsocail">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title"> اضف جديد </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body ">
+                    <div id="form-errors" class="text-center"></div>
+                    <div id="success" class="text-center"></div>
+                    <form id="sendsocail">
+                        @csrf
+
+                        <div class="form-group">
+                            <label data-error="wrong" data-success="right" for="form3">ايقونة المنصة  (30*30) <span
+                                    class="required">*</span></label>
+                            <input type="file" id="imagestore" required name="icon" class="form-control image">
+                        </div>
+                        <div class="form-group">
+                            <img src="{{ asset('uploads/product_images/default.png') }}" style="width: 100px"
+                                class="img-thumbnail image-preview" alt="">
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="email"> اسم المنصة بالعربية : <span class="required">*</span></label>
+                                <input type="text" name="title_ar" required class="form-control"
+                                    value="{{ old('title_ar') }}" id="title_ar">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="email"> اسم المنصة بالانجليزية: <span class="required">*</span></label>
+                                <input type="text" name="title_en" required class="form-control"
+                                    value="{{ old('title_en') }}" id="title_en">
+                            </div>
+
+                            
+                          
+
+
+                            
+                        </div>
+
+
+                        <button class="btn btn-info" type="submit">اضافة </i></button>
+                    </form>
+
+                </div>
+
+
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
     <div class="modal" id="myModalscope">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -544,6 +606,54 @@
                 },
             });
         });
+
+        $('#sendsocail').on('submit', function(e) {
+            e.preventDefault();
+            var frm = $('#sendsocail');
+            var formData = new FormData(frm[0]);
+            formData.append('file', $('#imagestore')[0].files[0]);
+
+            var data = $(this).serialize();
+
+            $.ajax({
+                url: "{{ route('store_socail_for_famous') }}",
+                type: "post",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    // var table = $('#stores').DataTable();
+
+                    
+
+
+                    document.getElementById("sendsocail").reset();
+                    $('.sosialselect').append('<option value="' + data.id +
+                        '">' + data.title + '</option>');
+                        $('#myModalsocail').modal('hide');
+                     
+                    swal(
+                        '',
+                        ' تم الاضافة بنجاح ',
+                        'success'
+                    );
+                    $('#myModal').modal('show');
+
+
+                },
+                error: function(data) {
+                    var errors = data.responseJSON;
+                    var errors = data.responseJSON;
+                    errorsHtml = '<div class="alert alert-danger"><ul>';
+                    $.each(errors.errors, function(k, v) {
+                        errorsHtml += '<li>' + v + '</li>';
+                    });
+                    errorsHtml += '</ul></di>';
+                    $('#form-errors').html(errorsHtml);
+                },
+            });
+        });
+        
         $('#sendmemessage').on('submit', function(e) {
             e.preventDefault();
             var frm = $('#sendmemessage');
@@ -591,8 +701,8 @@
         $('#addcountry').click(function() {
             $('#myModal').modal('hide');
             $('#myModalcountry').modal('show');
-
         });
+        
         $('#addscope').click(function() {
             $('#myModal').modal('hide');
             $('#myModalscope').modal('show');
@@ -696,10 +806,10 @@
                     <span class="test">
                     <div class="card-body" >
                         <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>اسم المنصة :</label>
-                                <select name="addmore[` + i + `][name_socal]" class="form-control">
+                                <select name="addmore[` + i + `][name_socal]" class="form-control sosialselect">
                                     <option value="">اختر المنصة</option>
                                     @foreach ($soicals as $item)
                                     <option value="{{ $item->id }}">{{ $item->title }}</option>
@@ -707,6 +817,9 @@
                                 </select>
 
                             </div>
+                        </div>
+                        <div class="col-md-2 mt-2 col-sm-2 form-group ">
+                                <button type="button" class="btn btn-info add_sss" > <i class="fa fa-plus"></i></button>
                         </div>
                        
                         <div class="col-md-6">
@@ -751,6 +864,11 @@
                 $(this).parent('span').remove();
             });
         });
+        
+        $(document).on("click",".add_sss",function(){
+            $('#myModal').modal('hide');
+            $('#myModalsocail').modal('show');
+    });
     </script>
    <script>
     function autocomplete(inp, arr, fullarr) {

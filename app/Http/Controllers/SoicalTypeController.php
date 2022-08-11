@@ -35,6 +35,28 @@ class SoicalTypeController extends Controller
         $count = SoicalType::count() ;
         return view('dashboard.soical._soical')->with('soical',$soical)->with('key',$count);
     }
+    public function store_socail_for_famous(Request $request)
+    {
+        $request->validate([
+            'title_ar'=>'required',
+            'title_en'=>'required',
+            'icon'=>'required|dimensions:min_width=30,min_height=30'
+            
+        ]);
+        $soical = new SoicalType();
+        $soical->title = ['ar'=>$request->title_ar,'en'=>$request->title_en];
+        $soical->icon = $request->icon->store('soical');
+
+        $soical->save();
+        $count = SoicalType::count() ;
+
+        if(get_lang()=='ar'){
+            $title = $request->title_ar;
+        }else{
+            $title = $request->title_en;
+        }
+        return response()->json(['id'=>$soical->id,'title'=>$title]);    }
+
 
     public function update_soical(Request $request,$id){
         $request->validate([

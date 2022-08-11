@@ -61,6 +61,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::post('get_form_soical', 'App\Http\Controllers\SoicalTypeController@get_form_soical')->name('get_form_soical');
     Route::get('get_country_code', 'App\Http\Controllers\FamousController@get_country_code')->name('get_country_code');
     Route::post('store_country_for_famous', 'App\Http\Controllers\CountryController@store_country_for_famous')->name('store_country_for_famous');
+    Route::post('store_socail_for_famous', 'App\Http\Controllers\SoicalTypeController@store_socail_for_famous')->name('store_socail_for_famous');
+
     Route::post('store_scope_for_famous', 'App\Http\Controllers\FamousTypeController@store_scope_for_famous')->name('store_scope_for_famous');
     Route::get('logout', 'App\Http\Controllers\UserController@logout')->name('logout');
    
