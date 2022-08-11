@@ -115,7 +115,6 @@ class UserController extends Controller
         $famous->tiktok = $request->tiktok;
         $famous->instagram = $request->instagram;
         $famous->snapchat = $request->snapchat;
-        $famous->save();
         $role = Role::where('name', 'Famous')->first();
         $user = User::where('phone', $request->phone)->first();
         if (!$user) {
