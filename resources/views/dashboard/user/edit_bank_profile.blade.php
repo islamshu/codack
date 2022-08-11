@@ -71,7 +71,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email"> رقم الحساب الجديد       :</label>
-                                                    <input type="number" class="form-control" required value="{{old('account_name')}}" name="account_name" >
+                                                    <input type="number" class="form-control"  required value="{{old('account_name')}}" name="account_name" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

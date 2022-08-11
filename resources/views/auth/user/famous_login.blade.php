@@ -71,8 +71,8 @@
                                         <form class="form-horizontal form-simple" id="send_phone">
                                             @csrf
                                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                                <input type="number" class="form-control form-control-lg input-lg"
-                                                    name="phone" id="user-name" placeholder="ادخل رقم الهاتف"
+                                                <input type="text" class="form-control form-control-lg input-lg"
+                                                    name="phone"  id="user-name" placeholder="ادخل رقم الهاتف"
                                                     required>
                                                 <div class="form-control-position">
                                                     <i class="ft-user"></i>

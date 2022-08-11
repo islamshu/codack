@@ -60,7 +60,7 @@
                                         <div class="form-group  col-md-6">
                                             <label for="email"> رقم الهاتف :</label>
                                             <fieldset class="form-group position-relative">
-                                                <input type="number" value="{{ $famous->phone }}" name="phone" required class="form-control form-control-lg input-lg"
+                                                <input type="text" value="{{ $famous->phone }}"  name="phone" maxlength="10" onkeypress=" return isNumber(event)" minlength="10" required class="form-control form-control-lg input-lg"
                                                     id="iconLeft3">
                                                 <div class="form-control-position phoneicon" style="margin-top: 7px;">
                                                     <h5>{{ @$famous->country->code }}</h5>
