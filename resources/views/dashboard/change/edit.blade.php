@@ -58,6 +58,8 @@
                                     <form action="{{ route('update_back_info_by_admin') }}" method="post">
                                         @csrf
                                         <div class="row">
+                                            <input type="hidden" name="id" value="{{ $change->id }}">
+
                                             <input type="hidden" name="famous_id" value="{{ $change->famous_id }}">
     
                                              

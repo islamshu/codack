@@ -159,12 +159,14 @@ class UserController extends Controller
     public function update_back_info_by_admin(Request $request)
     {
         $id = $request->famous_id;
+        $change = Changbank::find($request->id);
         $bank = FamousBank::where('famous_id', $id)->first();
         $bank->bank_name = $request->bank_name;
         $bank->account_name = $request->account_name;
         $bank->account_nubmer = $request->account_number;
-        $bank->status == 1;
         $bank->save();
+        $change->status = 1;
+        $change->save();
         $famous = Famous::find($id)->user_id;
         $admin = User::find($famous);
         $data = [
