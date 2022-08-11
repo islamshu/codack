@@ -31,13 +31,7 @@ Route::group(['middleware' => ['role:Admin'], 'prefix' => 'dashboard'], function
     
 
 
-    Route::get('/', function () {
-        return view('dashboard.index');
-    })->name('admin-dashboard');
-    // Route::resource('users','UserController');
-    Route::get('home', function () {
-        return view('dashboard.index');
-    })->name('home');
+    
 });
 Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     // Route::resource('roles','RoleController');
@@ -81,6 +75,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::get('read_all_notofication','App\Http\Controllers\HomeController@read_all_notofication')->name('read_all_notofication');
 
 
+    // Route::resource('users','UserController');
+    Route::get('home', function () {
+        return view('dashboard.index');
+    })->name('home');
 
 
 

@@ -137,7 +137,7 @@
           <li class="nav-item has-sub ">
             <a href="#">
                 <i class="fa fa-cog"></i>
-                <span class="menu-title">اعدادات الملف الشخصي</span></a>
+                <span class="menu-title">حسابي  </span></a>
             <ul class="menu-content" style="">
                 <li class="is-shown"><a class="menu-item" href="{{ route('edit_profile') }}">تعديل الملف الشخصي </a>
                 </li>
