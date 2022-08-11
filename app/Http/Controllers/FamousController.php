@@ -84,7 +84,6 @@ class FamousController extends Controller
         $famous->tiktok = $request->tiktok;
         $famous->instagram = $request->instagram;
         $famous->snapchat = $request->snapchat;
-        $famous->save();
         $role = Role::where('name','Famous')->first();
         $user = User::where('phone',$request->phone)->first();
         if(!$user){
@@ -97,7 +96,6 @@ class FamousController extends Controller
         $user->assignRole([$role->id]);
         $famous->user_id = $user->id;
     }
-    dd($user);
         $famous->save();
        
 
