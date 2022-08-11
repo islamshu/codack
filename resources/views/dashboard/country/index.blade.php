@@ -82,6 +82,7 @@
                                                     <td>{{ $item->code }}</td>
 
                                                     <td>
+                                                        @if(auth()->user()->hasRole('Admin'))
                                                         <button class="btn btn-info" data-toggle="modal"
                                                             data-target="#myModal4" onclick="make('{{ $item->id }}')"><i
                                                                 class="fa fa-edit"></i></button>
@@ -92,6 +93,9 @@
                                                             <button type="submit" class="btn btn-danger"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @else 
+                                                        _
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
