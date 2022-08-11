@@ -192,7 +192,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="email"> البريد الاكتروني : <span class="required">*</span></label>
-                                        <input type="text" name="email" required class="form-control"
+                                        <input type="email" name="email" required class="form-control"
                                             value="{{ old('email') }}" id="email">
                                     </div>
                                     <div class="form-group col-md-6">
