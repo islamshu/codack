@@ -97,8 +97,7 @@ class FamousController extends Controller
         $user->assignRole([$role->id]);
         $famous->user_id = $user->id;
     }
-        $famous->user_id = $user->id;
-
+    dd($user);
         $famous->save();
        
 
