@@ -98,7 +98,7 @@
         </li>
         <li class="nav-item has-sub ">
             <a href="#">
-                <i class="fa -fa-user"></i>
+                <i class="fa fa-user"></i>
                 <span class="menu-title">حسابي  </span></a>
             <ul class="menu-content" style="">
                 <li class="is-shown"><a class="menu-item" href="{{ route('edit_profile') }}">تعديل الملف الشخصي </a>
