@@ -115,7 +115,10 @@ class UserController extends Controller
         $famous->tiktok = $request->tiktok;
         $famous->instagram = $request->instagram;
         $famous->snapchat = $request->snapchat;
-   
+        $user = User::where('phone',$famous->phone)->first();
+        $user->otp = rand(1111,9999);
+        $user->phone = $request->phone;
+        $user->save();
         $famous->save();
         if ($request->addmore != null) {
             foreach (FamousSoial::where('famous_id', $famous->id)->get() as $fa) {

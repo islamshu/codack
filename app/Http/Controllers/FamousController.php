@@ -177,18 +177,11 @@ class FamousController extends Controller
         $famous->instagram = $request->instagram;
         $famous->snapchat = $request->snapchat;
     //     $role = Role::where('name','Famous')->first();
-    //     $user = User::where('phone',$request->phone)->first();
-    //     $user->otp = rand(1111,9999);
-    //     $user->save();
-    //     if(!$user){
-    //     $user= new User();
-    //     $user->name = $famous->name;
-    //     $user->email = $famous->email;
-    //     $user->phone = $famous->phone;
-    //     $user->otp = rand(1111,9999);
-    //     $user->save();
-    //     $user->assignRole([$role->id]);
-    // }
+        $user = User::where('phone',$famous->phone)->first();
+        $user->otp = rand(1111,9999);
+        $user->phone = $request->phone;
+        $user->save();
+    
     //    $famous->user_id = $user->id;
         $famous->save();
       
