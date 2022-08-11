@@ -171,7 +171,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>اسم المنصة :</label>
-                                                            <select name="addmore[{{ $key }}][name_socal]" class="form-control">
+                                                            <select name="addmore[{{ $key }}][name_socal]" class="form-control sosialselect">
                                                                 <option value="">اختر المنصة</option>
                                                                 @foreach ($soicals as $itemm)
                                                                 <option value="{{ $itemm->id }}" @if($item->social_title == $itemm->id ) selected @endif>{{ $itemm->title }}</option>
