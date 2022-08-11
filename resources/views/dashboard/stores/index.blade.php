@@ -38,31 +38,16 @@
 
                                         </div>
                                         <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="userinput2">نسبة خصم التاجر (من)</label>
-                                                <fieldset class="form-group position-relative">
-                                                    <input type="number" max="100" min="5" value="{{ @$request->famous_discount_from }}" name="famous_discount_from"  class="form-control form-control-lg input-lg"
-                                                        id="iconLeft3">
-                                                    <div class="form-control-position phoneicon" style="margin-top: 7px;">
-                                                        <h5>%</h5>
-                
-                                                    </div>
-                                                </fieldset>
+                                        
+                                            <label for="userinput2">@lang('نسبة التاجر')</label>
+
+                                            <div class="min-max-slider" data-legendnum="2" style="direction: ltr">
+                                                <label for="min">من</label>
+                                                <input id="min" class="min" name="min" type="range" step="1" min="0" max="100" />
+                                                <label for="max">الى</label>
+                                                <input id="max" class="max" name="max" type="range" step="1" min="0" max="100" />
                                             </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="userinput2">نسبة خصم التاجر (الى)</label>
-                                                <fieldset class="form-group position-relative">
-                                                    <input type="number" max="100" min="5" value="{{ @$request->famous_discount_to }}" name="famous_discount_to"  class="form-control form-control-lg input-lg"
-                                                        id="iconLeft3">
-                                                    <div class="form-control-position phoneicon" style="margin-top: 7px;">
-                                                        <h5>%</h5>
-                
-                                                    </div>
-                                                </fieldset>
-                                            </div>
-                                        </div>
+                                    </div>
                                         <div class="col-md-3 mt-1 pt-1">
                                             <button type="submit" class="btn btn-info"><i class="fa fa-filter"
                                                     aria-hidden="true"></i></button>

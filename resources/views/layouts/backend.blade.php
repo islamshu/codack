@@ -19,6 +19,7 @@
         rel="stylesheet">
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css-rtl/vendors.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/sliderstyler.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css-rtl/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css-rtl/custom-rtl.css') }}">
@@ -121,7 +122,10 @@
     <script src="{{ asset('backend/js/scripts/tables/datatables/datatable-basic.js') }}"></script>
     <script src="{{ asset('backend/vendors/js/tables/datatable/datatables.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backend/js/scripts/tables/datatables/datatable-advanced.js') }}" type="text/javascript">
-    </script>
+ </script>
+   
+            <script src="{{ asset('backend/slidersc.js') }}" type="text/javascript"> </script>
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
