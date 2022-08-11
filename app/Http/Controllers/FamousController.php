@@ -95,8 +95,10 @@ class FamousController extends Controller
         $user->otp = rand(1111,9999);
         $user->save();
         $user->assignRole([$role->id]);
+        $famous->user_id = $user->id;
     }
-       $famous->user_id = $user->id;
+        $famous->user_id = $user->id;
+
         $famous->save();
        
 
