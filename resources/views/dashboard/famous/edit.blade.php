@@ -61,8 +61,9 @@
                                             <fieldset class="form-group position-relative">
                                                 <input type="text" value="{{ $famous->phone }}"  required class="form-control form-control-lg input-lg"
                                                     id="iconLeft3"  name="phone" maxlength="10" onkeypress=" return isNumber(event)" minlength="10">
-                                                <div class="form-control-position phoneicon" style="margin-top: 7px;">
-                                                    <h5>{{ @$famous->country->code }}</h5>
+                                                <div class="form-control-position phoneicon" style="margin-top: 4px;width: 65px;display: flex">
+                                                    <h5>{{ @$famous->country->code }}<img src="{{ asset('uploads/'.$famous->country->flag) }}" width="30" height="20" alt="" style="margin-top: 4px;"></h5>
+
             
                                                 </div>
                                             </fieldset>
