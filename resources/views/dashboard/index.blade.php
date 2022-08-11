@@ -867,7 +867,7 @@
                             </div>
                             <div class="col-md-3">
                                         
-                                <label for="userinput2">@lang('نسبة التاجر')</label>
+                                <label for="userinput2">نسبة الخصم</label>
 
                                 <div class="min-max-slider" data-legendnum="2" style="direction: ltr">
                                     <label for="min">من</label>
