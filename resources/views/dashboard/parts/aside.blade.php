@@ -105,7 +105,7 @@
                 </li>
                 <li class="is-shown"><a class="menu-item" href="{{ route('edit_bank_profile') }}">تعديل بيانات البنك  </a>
                 </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('order_for_edit_bankinfo') }}">طلبات تغير بيانات البنك    </a>
+                <li class="is-shown"><a class="menu-item" href="{{ route('my_order_edit') }}">طلبات تغير بيانات البنك    </a>
                 </li>
 
 
