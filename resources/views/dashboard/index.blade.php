@@ -143,7 +143,7 @@
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title"> اضف مشهور </h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" class="close closemodal" data-dismiss="modal">&times;</button>
                         </div>
         
                         <!-- Modal body -->
@@ -183,7 +183,7 @@
                                     <div class="form-group  col-md-6">
                                         <label for="email"> رقم الهاتف :</label>
                                         <fieldset class="form-group position-relative">
-                                            <input type="number" name="phone" required class="form-control form-control-lg input-lg"
+                                            <input type="text" maxlength="10" onkeypress=" return isNumber(event)" minlength="10" name="phone" required class="form-control form-control-lg input-lg"
                                                 id="iconLeft3">
                                             <div class="form-control-position phoneicon" style="margin-top: 4px;width: 65px;display: flex">
                                                 +
@@ -319,7 +319,7 @@
         
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                            <button type="button" class="btn btn-danger closemodal" data-dismiss="modal">اغلاق</button>
                         </div>
         
                     </div>
@@ -1326,6 +1326,9 @@
                     $('#form-errors').html(errorsHtml);
                 },
             });
+        });
+        $('.closemodal').click(function() {
+            document.getElementById("sendmemessage").reset();
         });
        
 
