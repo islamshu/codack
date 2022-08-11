@@ -1156,7 +1156,7 @@
 
 
         
-        $('#country_id').change(function() {
+         $('#country_id').change(function() {
             $.ajax({
                 url: "{{ route('get_country_code') }}",
                 type: "get",
@@ -1166,7 +1166,11 @@
 
                 success: function(data) {
                     // var table = $('#stores').DataTable();
-                    let code = '<h5>' + data.code + '</h5>';
+                    let img ="{{ asset('uploads/') }}" + '/'+ data.flag;
+                    let image = '  <img src="'+img+'" width="30" height="20" alt="" style="margin-top: 4px;">';
+                  
+
+                    let code = '<h5>' + data.code + image + '</h5>';
                     // $("#phone").val(code);
                     $(".phoneicon").empty();
                     $(".phoneicon").append(code);
