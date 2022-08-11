@@ -4,7 +4,7 @@
         <div class="content-body">
             <section id="configuration">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-12">
+                    {{-- <div class="col-xl-3 col-lg-6 col-12">
                         <div class="card bg-info">
                             <div class="card-content">
                                 <div class="card-body">
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
@@ -71,7 +71,7 @@
                             </div>
                             <form>
 
-                                <div class="row">
+                                <div class="row" style="margin-right: 2%">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="userinput2">@lang('المتجر')</label>
