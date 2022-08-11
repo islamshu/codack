@@ -194,7 +194,7 @@ class UserController extends Controller
     }
     public function update_back_info(Request $request)
     {
-        $bank = Changbank::where('famous_id', auth()->user()->famous->id)->first();
+        $bank = Changbank::where('famous_id', auth()->user()->famous->id)->where('status',2)->first();
         if ($bank) {
             return redirect()->back()->with(['error' => 'لقد تم ارسال طلب مسبقا بانتظار الموافقة من قبل الادارة']);
         } else {
