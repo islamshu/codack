@@ -84,13 +84,13 @@ class UserController extends Controller
 
     public function update_my_profile(Request $request)
     {
-        $famous = Famous::find(auth('famous')->id());
+        $famous = Famous::find(auth()->user()->famous->id);
 
         $request->validate([
             'name' => 'required',
             'country_id' => 'required',
-            'phone' => 'required|unique:famouses,phone,' . auth('famous')->id(),
-            'email' => 'email|required|unique:famouses,email,' . auth('famous')->id(),
+            'phone' => 'required|unique:famouses,phone,' . auth()->user()->famous->id,
+            'email' => 'email|required|unique:famouses,email,' . auth()->user()->famous->id,
             'professional_license_number' => 'required',
             'is_famous' => 'required',
             'famoustype_id' => 'required',
@@ -179,11 +179,11 @@ class UserController extends Controller
 
     public function edit_profile()
     {
-        return view('dashboard.user.edit')->with('famous', Famous::find(auth('famous')->id()))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+        return view('dashboard.user.edit')->with('famous', Famous::find(auth()->user()->famous->id))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
     }
     public function edit_bank_profile()
     {
-        return view('dashboard.user.edit_bank_profile')->with('famous', Famous::find(auth('famous')->id()))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+        return view('dashboard.user.edit_bank_profile')->with('famous', Famous::find(auth()->user()->famous->id))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
     }
     public function update_back_info(Request $request)
     {
