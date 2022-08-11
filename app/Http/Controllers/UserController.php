@@ -163,6 +163,7 @@ class UserController extends Controller
         $bank->bank_name = $request->bank_name;
         $bank->account_name = $request->account_name;
         $bank->account_nubmer = $request->account_number;
+        $bank->status == 1;
         $bank->save();
         $famous = Famous::find($id)->user_id;
         $admin = User::find($famous);
@@ -173,13 +174,17 @@ class UserController extends Controller
             'time'=>$bank->created_at
         ];
         $admin->notify(new ApproveChange($data));
-        $bb = Changbank::where('famous_id', $id)->first()->delete();
+        // $bb = Changbank::where('famous_id', $id)->first()->delete();
         return redirect()->route('changes.index')->with(['success' => 'تم تغير بيانات بنجاح']);
     }
 
     public function edit_profile()
     {
         return view('dashboard.user.edit')->with('famous', Famous::find(auth()->user()->famous->id))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+    }
+    public function my_order_edit()
+    {
+        return view('dashboard.user.order_edit')->with('changes', Changbank::where('famous_id',auth()->user()->famous->id)->get())->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
     }
     public function edit_bank_profile()
     {

@@ -6,7 +6,28 @@ use App\Models\General;
 use App\Social;
 use App\User;
 
+function get_account_status($stauts){
+    if($stauts == 0){
+        return 'مرفوض';
+    }elseif($stauts == 1){
+        return 'مقبول';
 
+    }elseif($stauts == 2){
+        return 'معلق ';
+
+    }
+}
+function get_account_status_color($stauts){
+    if($stauts == 0){
+        return 'danger';
+    }elseif($stauts == 1){
+        return 'success';
+
+    }elseif($stauts == 2){
+        return 'warning';
+
+    }
+}
 function get_lang(){
     return app()->getLocale();
 

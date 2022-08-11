@@ -35,6 +35,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>اسم المشهور   </th>
+                                                <th>الحالة</th>
                                                 <th>الاجراءات</th>
 
                                             </tr>
@@ -45,6 +46,8 @@
                                                     <td>{{ $key + 1 }}</td>
                                                     
                                                     <td>{{ $item->famous->name }} </td>
+                                                    <td><button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button></td>
+
 
                                                     <td>
                                                        <a href="{{ route('changes.edit',$item->id) }}"><i
@@ -76,74 +79,5 @@
     
 @endsection
 @section('script')
-    <script>
-        $('#sendmemessage').on('submit', function(e) {
-            e.preventDefault();
-            var frm = $('#sendmemessage');
-            var formData = new FormData(frm[0]);
-            formData.append('file', $('#imagestore')[0].files[0]);
-
-            var data = $(this).serialize();
-
-            $.ajax({
-                url: "{{ route('soical.store') }}",
-                type: "post",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(data) {
-                    // var table = $('#stores').DataTable();
-
-                    var t = $('#storestable').DataTable();
-                    const tr = $(data);
-                    t.row.add(tr).draw(false);
-
-
-                    document.getElementById("sendmemessage").reset();
-                    $('#myModal').modal('hide')
-                    swal(
-                        '',
-                        ' تم الاضافة بنجاح ',
-                        'success'
-                    )
-
-
-                },
-                error: function(data) {
-                    var errors = data.responseJSON;
-                    var errors = data.responseJSON;
-                    errorsHtml = '<div class="alert alert-danger"><ul>';
-                    $.each(errors.errors, function(k, v) {
-                        errorsHtml += '<li>' + v + '</li>';
-                    });
-                    errorsHtml += '</ul></di>';
-                    $('#form-errors').html(errorsHtml);
-                },
-            });
-        });
-
-
-        function make(id) {
-            $("#myModal4").show();
-
-            // $('#staticBackdrop').modal();
-            $('.c-preloader').show();
-
-            $.ajax({
-                type: 'post',
-                url: "{{ route('get_form_soical') }}",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    'id': id
-                },
-                beforeSend: function() {},
-                success: function(data) {
-                    $('#company_edit').html(data);
-
-
-                }
-            });
-
-        }
-    </script>
+  
 @endsection
