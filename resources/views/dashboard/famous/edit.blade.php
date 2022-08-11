@@ -167,18 +167,22 @@
                                             <span class="test">
                                                 <div class="card-body" >
                                                     <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>اسم المنصة :</label>
-                                                            <select name="addmore[{{ $key }}][name_socal]" class="form-control">
-                                                                <option value="">اختر المنصة</option>
-                                                                @foreach ($soicals as $itemm)
-                                                                <option value="{{ $itemm->id }}" @if($item->social_title == $itemm->id ) selected @endif>{{ $itemm->title }}</option>
-                                                                @endforeach
-                                                            </select>
-                            
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>اسم المنصة :</label>
+                                                                <select name="addmore[{{ $key }}][name_socal]" class="form-control">
+                                                                    <option value="">اختر المنصة</option>
+                                                                    @foreach ($soicals as $itemm)
+                                                                    <option value="{{ $itemm->id }}" @if($item->social_title == $itemm->id ) selected @endif>{{ $itemm->title }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                        <div class="col-md-2 mt-2 col-sm-2 form-group ">
+                                                            <button type="button" class="btn btn-info add_sss" > <i class="fa fa-plus"></i></button>
+                                                         </div>
+                                                    
                                                    
                                                     <div class="col-md-6">
                                                         <div class="form-group">
