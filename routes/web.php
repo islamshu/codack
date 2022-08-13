@@ -28,6 +28,10 @@ Route::group(['middleware' => ['role:Admin'], 'prefix' => 'dashboard'], function
     Route::get('changes', 'App\Http\Controllers\UserController@changes')->name('changes.index');
     Route::put('changes/{id}', 'App\Http\Controllers\UserController@update_changes')->name('changes.update');
     Route::get('changes/{id}/edit', 'App\Http\Controllers\UserController@edit_changes')->name('changes.edit');
+    Route::get('my_order_admin', 'App\Http\Controllers\UserController@my_order_admin')->name('my_order_admin');
+    Route::get('show_order_money/{id}', 'App\Http\Controllers\UserController@show_order_money')->name('show_order_money');
+    Route::post('status_ok_order', 'App\Http\Controllers\UserController@status_ok_order')->name('status_ok_order');
+
     
 
 
@@ -73,8 +77,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::get('edit_bank_profile', 'App\Http\Controllers\UserController@edit_bank_profile')->name('edit_bank_profile');
     Route::post('update_back_info', 'App\Http\Controllers\UserController@update_back_info')->name('update_back_info');
     Route::get('my_order_money', 'App\Http\Controllers\UserController@my_order_money')->name('my_order_money');
-    Route::get('my_order_admin', 'App\Http\Controllers\UserController@my_order_admin')->name('my_order_admin');
-
+   
     
     Route::get('show_notification/{id}','App\Http\Controllers\HomeController@notification')->name('show.notification');
     Route::get('read_all_notofication','App\Http\Controllers\HomeController@read_all_notofication')->name('read_all_notofication');

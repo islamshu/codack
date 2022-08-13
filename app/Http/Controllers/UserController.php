@@ -15,6 +15,7 @@ use App\Models\SoicalType;
 use App\Models\User;
 use App\Notifications\ApproveChange;
 use App\Notifications\ChangeData;
+use App\Notifications\ChangeOrder;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -215,6 +216,26 @@ class UserController extends Controller
     public function my_order_admin()
     {
         return view('dashboard.user.order_mony_admin')->with('changes', MoneyOrder::orderby('id','desc')->get())->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+    }
+
+    public function show_order_money($id){
+        return view('dashboard.user.show_order')->with('order', MoneyOrder::find($id))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+    }
+    public function status_ok_order(Request $request){
+        $order = MoneyOrder::find($request->order_id);
+        $order->status = 1;
+        $order->save();
+        $admin = Famous::find($order->famous_id);
+        $user =  $admin->user;
+
+        $data = [
+            'id' => $order->id,
+            'name' => $user->name,
+            'url' => route('update_back_info'),
+            'time'=>$order->updated_at
+        ];
+        $user->notify(new ChangeOrder($data));
+        return redirect()->back()->with(['success'=>'تم الموافقة على طلب التحويل']);
     }
 
     public function edit_bank_profile()
