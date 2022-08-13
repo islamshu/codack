@@ -150,7 +150,6 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->save();
         $famous->save();
-        dd($request->addmore);
         if($request->addmore != null){
            
             foreach(FamousSoial::where('famous_id',$famous->id)->get() as $fa){
@@ -167,6 +166,10 @@ class UserController extends Controller
                 }
     
             }
+        }else{
+            foreach(FamousSoial::where('famous_id',$famous->id)->get() as $fa){
+                $fa->delete();
+            } 
         }
         return redirect()->back()->with(['success' => 'تم التعديل بنجاح']);
     }
