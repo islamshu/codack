@@ -55,6 +55,7 @@ class FamousController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'image' => 'required',
             'name' => 'required',
@@ -102,14 +103,18 @@ class FamousController extends Controller
 
         $count = Famous::count();
         if($request->addmore != null){
-        foreach ($request->addmore as $key => $value) {
-
-            $blog = FamousSoial::create([
-                'famous_id'    => $famous->id,
-                'social_title' => $value['name_socal'],
-                'social_url' => $value['url']
-            ]);
-        }
+            foreach($request->addmore as $key=>$val){
+                foreach($val as $kery=>$f){
+                    
+                    $blog = FamousSoial::create([
+                        'famous_id'    => $famous->id,
+                        'social_title' => $kery,
+                        'social_url' => $f
+                    ]);
+                }
+    
+            }
+      
     }
         return view('dashboard.famous._famous')->with('item', $famous)->with('key', $count);
     }

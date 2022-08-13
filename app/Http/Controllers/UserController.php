@@ -237,6 +237,10 @@ class UserController extends Controller
         $user->notify(new ChangeOrder($data));
         return redirect()->back()->with(['success'=>'تم الموافقة على طلب التحويل']);
     }
+    public function get_soucal_info(Request $request){
+        $social = SoicalType::find($request->id);
+        return $social;
+    }
 
     public function edit_bank_profile()
     {

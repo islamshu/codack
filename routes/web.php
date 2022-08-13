@@ -77,7 +77,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::get('edit_bank_profile', 'App\Http\Controllers\UserController@edit_bank_profile')->name('edit_bank_profile');
     Route::post('update_back_info', 'App\Http\Controllers\UserController@update_back_info')->name('update_back_info');
     Route::get('my_order_money', 'App\Http\Controllers\UserController@my_order_money')->name('my_order_money');
-   
+    Route::get('get_soucal_info', 'App\Http\Controllers\UserController@get_soucal_info')->name('get_soucal_info');
+
+    
     
     Route::get('show_notification/{id}','App\Http\Controllers\HomeController@notification')->name('show.notification');
     Route::get('read_all_notofication','App\Http\Controllers\HomeController@read_all_notofication')->name('read_all_notofication');
