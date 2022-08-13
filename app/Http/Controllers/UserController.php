@@ -231,7 +231,7 @@ class UserController extends Controller
         $data = [
             'id' => $order->id,
             'name' => $user->name,
-            'url' => route('update_back_info'),
+            'url' => route('my_order_money'),
             'time'=>$order->updated_at
         ];
         $user->notify(new ChangeOrder($data));
