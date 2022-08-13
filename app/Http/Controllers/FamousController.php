@@ -195,6 +195,7 @@ class FamousController extends Controller
         
 
         if($request->addmore != null){
+           
             foreach(FamousSoial::where('famous_id',$famous->id)->get() as $fa){
                 $fa->delete();
             }
@@ -209,6 +210,10 @@ class FamousController extends Controller
                 }
     
             }
+        }else{
+            foreach(FamousSoial::where('famous_id',$famous->id)->get() as $fa){
+                $fa->delete();
+            } 
         }
         return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
         
