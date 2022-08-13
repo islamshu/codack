@@ -284,6 +284,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email"> <i class="fa fa-instagram fa-3x" style="color:orangered" aria-hidden="true"></i></label>
+                                    
                                     <input type="text" name="instagram" placeholder="www.instagram.com"
                                         class="form-control" id="instagram">
                                 </div>
@@ -566,12 +567,16 @@
                 let form =` <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email"> <img src="{{ asset('uploads/') }}` + icon + `" width="50" height="50" alt=""></label>
+                                <button class="btn btn-danger remove_button" style="margin-right: 67%;
+                                    margin-bottom: 17px;" ><i class="fa fa-trash "></i></button>
                                 <input type="text" name="` + nameinput + `" 
                                     class="form-control" id="instagram">
                             </div>
                         </div>` ;
                 q++;       
                 $('#soical_item').append(form);
+                
+              
  
                 console.log(form);               
     
@@ -588,6 +593,12 @@
                 $('#form-errors').html(errorsHtml);
             },
         });
+        var wrapperd = $('#soical_item');
+                $(wrapperd).on('click', '.remove_button', function(e) {
+                    e.preventDefault();
+                    $(this).parent('div').parent('div').remove();
+
+                });
             
     
     
