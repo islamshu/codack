@@ -150,8 +150,9 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->save();
         $famous->save();
+        dd($request->addmore);
         if($request->addmore != null){
-            dd($request->addmore);
+           
             foreach(FamousSoial::where('famous_id',$famous->id)->get() as $fa){
                 $fa->delete();
             }
