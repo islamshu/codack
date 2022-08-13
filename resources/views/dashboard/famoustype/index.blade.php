@@ -26,7 +26,7 @@
 
                                     <br>
                                     <a data-toggle="modal" data-target="#myModal" class="btn btn-info mb-2 ">
-                                        انشاء مجال جديد
+                                        اضافة مجال جديد
                                     </a>
 
                                     <table class="table table-striped table-bordered zero-configuration" id="storestable">
