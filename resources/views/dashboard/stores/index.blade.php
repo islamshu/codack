@@ -39,14 +39,14 @@
                                         </div>
                                         <div class="col-md-3">
                                         
-                                            <label for="userinput2">نسبة الخصم</label>
+                                            <label for="userinput2">حالة الاكواد الفعالة </label>
 
-                                            <div class="min-max-slider" data-legendnum="2" style="direction: ltr">
-                                                <label for="min">من</label>
-                                                <input id="min" class="min" name="min" type="range" step="1" min="0" max="100" />
-                                                <label for="max">الى</label>
-                                                <input id="max" class="max" name="max" type="range" step="1" min="0" max="100" />
-                                            </div>
+                                            <select name="status" class="form-control" id="">
+                                                <option value="" >الكل</option>
+                                                <option value="1" @if(@$request->status == 1) selected @endif>فعالة</option>
+                                                <option value="0"@if(@$request->status == 0) selected @endif>غير فعالة</option>
+
+                                            </select>
                                     </div>
                                         <div class="col-md-3 mt-1 pt-1">
                                             <button type="submit" class="btn btn-info"><i class="fa fa-filter"

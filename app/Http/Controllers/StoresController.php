@@ -15,20 +15,19 @@ class StoresController extends Controller
      */
     public function index(Request $request)
     {
-        // $stores = Stores::query()->has('codes');
-        // // $stores->when($request->store_id, function ($q) use ($request) {
-        // //     $q->where('id', $request->store_id);
-        // // });
-        // $stores->when($request->famous_discount_from != null || $request->famous_discount_to != null , function ($q) use ($request) {
-        //     $q->whereHas('codes', function ($q) use ($request) {
-        //         $q->where('discount_percentage',$request->famous_discount_to);
-        //         dd($q->get());
+        $stores = Stores::query()->has('codes');
+        $stores->when($request->store_id, function ($q) use ($request) {
+            $q->where('id', $request->store_id);
+        });
+        $stores->when($request->status != null , function ($q) use ($request) {
+            $q->whereHas('codes', function ($q) use ($request) {
+                $q->where('status',$request->status);
 
-        //     });
+            });
             
-        // });
+        });
 
-        $store = Stores::query()->orderby('id', 'desc')->get();
+        $store = $stores->orderby('id', 'desc')->get();
         // dd($store);
 
 

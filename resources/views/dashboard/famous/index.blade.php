@@ -29,28 +29,31 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="userinput2">@lang('المتجر')</label>
-                                                <select name="nationality_id" id="" class="form-control">
+                                                <label for="userinput2">@lang('المشاهير')</label>
+                                                <select name="famous_id" id="" class="form-control">
 
-                                                    <option value="">@lang('اختر المتجر')</option>
-                                                    @foreach ($stores as $item)
-                                                        <option value="{{ $item->id }}">
-                                                            {{ $item->title }}</option>
+                                                    <option value="">@lang('اختر المشهور')</option>
+                                                    @foreach (App\Models\Famous::get() as $item)
+                                                        <option value="{{ $item->id }}" @if($request->famous_id == $item->id) selected @endif>
+                                                            {{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
 
                                         </div>
                                         <div class="col-md-3">
-                                        
-                                                <label for="userinput2">نسبة الخصم</label>
+                                            <div class="form-group">
+                                                <label for="userinput2">@lang('الدول')</label>
+                                                <select name="country_id" id="" class="form-control">
 
-                                                <div class="min-max-slider" data-legendnum="2" style="direction: ltr">
-                                                    <label for="min">من</label>
-                                                    <input id="min" class="min" name="min" type="range" step="1" min="0" max="100" />
-                                                    <label for="max">الى</label>
-                                                    <input id="max" class="max" name="max" type="range" step="1" min="0" max="100" />
-                                                </div>
+                                                    <option value="">@lang('اختر دولة')</option>
+                                                    @foreach (App\Models\Country::get() as $item)
+                                                        <option value="{{ $item->id }}" @if($request->country_id == $item->id) selected @endif>
+                                                            {{ $item->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                                
                                         </div>
                                                                                     
                                         <div class="col-md-3 mt-1 pt-1">

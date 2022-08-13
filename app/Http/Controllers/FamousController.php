@@ -21,9 +21,18 @@ class FamousController extends Controller
      */
     public function index(Request $request)
     {
+        $stores = Famous::query();
+        $stores->when($request->famous_id, function ($q) use ($request) {
+            $q->where('id', $request->famous_id);
+        });
+        $stores->when($request->country_id, function ($q) use ($request) {
+            $q->where('country_id', $request->country_id);
+        });
+
+        $store = $stores->orderby('id', 'desc')->get();
         return view('dashboard.famous.index')
         ->with('stores',Stores::get())
-        ->with('famous', Famous::orderby('id', 'desc')->get())
+        ->with('famous', $store)
         ->with('countries', Country::get())
         ->with('typs', FamousType::get())
         ->with('soicals', SoicalType::get())
