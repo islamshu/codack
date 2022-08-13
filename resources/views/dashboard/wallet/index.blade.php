@@ -4,6 +4,58 @@
         <div class="content-body">
             <section id="configuration">
                 <div class="row">
+                    @if(auth()->user()->hasRole('Famous'))
+                    <div class="col-xl-3 col-lg-6 col-12">
+                        <div class="radies card bg-info">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="align-self-center" style="margin-right:10%">
+                                            <i class="icon-wallet text-white font-large-2 float-right"></i>
+                                        </div>
+                                        <div class="media-body text-white text-right" style="margin-left: 33px;">
+                                            <h3 class="text-white">2500</h3>
+                                            <span> اجمالي المحفظة   </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12">
+                        <div class="radies card bg-success">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="align-self-center" style="margin-right:10%">
+                                            <i class="icon-check text-white font-large-2 float-right"></i>
+                                        </div>
+                                        <div class="media-body text-white text-right" style="margin-left: 33px;">
+                                            <h3 class="text-white">500</h3>
+                                            <span>  ما تم تحويله   </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12">
+                        <div class="radies card bg-warning">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="align-self-center" style="margin-right:10%">
+                                            <i class="icon-compass text-white font-large-2 float-right"></i>
+                                        </div>
+                                        <div class="media-body text-white text-right" style="margin-left: 33px;">
+                                            <h3 class="text-white">500</h3>
+                                            <span>   المبالغ المعلقة    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {{-- <div class="col-xl-3 col-lg-6 col-12">
                         <div class="card bg-info">
                             <div class="card-content">
@@ -55,6 +107,7 @@
                             </div>
                         </div>
                     </div> --}}
+                    @endif
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
