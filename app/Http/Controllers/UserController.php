@@ -151,6 +151,7 @@ class UserController extends Controller
         $user->save();
         $famous->save();
         if($request->addmore != null){
+            dd($request->addmore);
             foreach(FamousSoial::where('famous_id',$famous->id)->get() as $fa){
                 $fa->delete();
             }
