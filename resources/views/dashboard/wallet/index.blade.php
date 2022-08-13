@@ -198,7 +198,7 @@
                             <th scope="col">المبلغ</th>
                             <th scope="col">المتجر</th>
                             <th scope="col">المشهور</th>
-                            <th scope="col">تاريخ الطلب</th>
+                            <th scope="col">التاريخ </th>
                           </tr>
                         </thead>
                         <tbody>

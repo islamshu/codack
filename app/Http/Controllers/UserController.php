@@ -212,6 +212,11 @@ class UserController extends Controller
     {
         return view('dashboard.user.order_mony')->with('changes', MoneyOrder::where('famous_id',auth()->user()->famous->id)->get())->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
     }
+    public function my_order_admin()
+    {
+        return view('dashboard.user.order_mony_admin')->with('changes', MoneyOrder::orderby('id','desc')->get())->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+    }
+
     public function edit_bank_profile()
     {
         return view('dashboard.user.edit_bank_profile')->with('famous', Famous::find(auth()->user()->famous->id))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
