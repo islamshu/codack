@@ -158,67 +158,53 @@
                                                     id="snapchat">
                                             </div>
                                         </div>
+                                    
+                                    @if($famous->soicals != null)
+                                    @foreach ($famous->soicals as $key=> $item)
+                                    @php
+                                        $so = App\Models\SoicalType::find($item->social_title);
+                                    @endphp
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email"> <img src="{{ asset('uploads/'.$so->icon) }}" width="50" height="50" alt=""></label>
+                                            <button class="btn btn-danger remove_buttonb" type="button" style="margin-right: 67%;
+                                                margin-bottom: 17px;" ><i class="fa fa-trash "></i></button>
+                                            <input type="text" name="addmore[{{ $key }}][{{ $so->id }}]"  value="{{ $item->social_url }}"
+                                                class="form-control" id="instagram">
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                    @endif
                                     </div>
             
             
-                                    @if ($famous->soicals != null)
-                                        <div id="partent">
-                                            @foreach ($famous->soicals as $key => $item)
-                                            <span class="test">
-                                                <div class="card-body" >
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>اسم المنصة :</label>
-                                                                <select name="addmore[{{ $key }}][name_socal]" class="form-control sosialselect">
-                                                                    <option value="">اختر المنصة</option>
-                                                                    @foreach ($soicals as $itemm)
-                                                                    <option value="{{ $itemm->id }}" @if($item->social_title == $itemm->id ) selected @endif>{{ $itemm->title }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2 mt-2 col-sm-2 form-group ">
-                                                            <button type="button" class="btn btn-info add_sss" > <i class="fa fa-plus"></i></button>
-                                                         </div>
-                                                    
-                                                   
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>الرابط :</label>
-                                                            <input type="text"
-                                                                class="form-control "
-                                                                id="url" name="addmore[{{ $key }}][url]" value="{{ $item->social_url }}" required />
-                            
-                                                        </div>
-                                                    </div>
-                                                  
-                                                    
-                                                </div>
-                            
-                            
-                            
-                                                </div>
-                                                <div class="col-md-2">
-                                                        <button type="button" class="remove_button btn btn-danger " title="Remove field"><i class="fa fa-trash"></i></button>
-                                                </div>
-                                                </span>
-                                            @endforeach
+                                    <h4 class="form-section"><i class="la la-add"></i>اضف المزيد من حسابات السوشل ميديا  </h4>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>اسم المنصة :</label>
+                                                <select id="get_soical_media" class="form-control sosialselect">
+                                                    <option value="">اختر المنصة</option>
+                                                    @foreach ($soicals as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                                    @endforeach
+                                                </select>
+                
+                                            </div>
                                         </div>
-                                    @endif
-                                            <div id="extra">
-            
-            
-            
-            
-            
-                                            </div>
+                                        <div class="col-md-2 mt-2 col-sm-2 form-group ">
+                                            <button type="button" class="btn btn-info add_sss" > <i class="fa fa-plus"></i></button>
+                                    </div>
+                                    </div>
+                                    <div id="soical_item" class="row">
+
+
+
+
+
+                                    </div>
                                         
-                                                <div>
-                                                <button type="button" name="add"
-                                                class="btn btn-success add_row for-more mt-2">اضف المزيد من حسابات السوشل ميديا</button>
-                                            </div>
+                                             
             
             
             
@@ -424,6 +410,92 @@
     </div>
 @endsection
 @section('script')
+<script>
+    $('.remove_buttonb').click(function(){
+        $(this).parent('div').parent('div').remove();
+    });
+    $( document ).ready(function() {
+        var q = "{{ $famous->soicals->count() }}";
+        $('#get_soical_media').change(function() {
+        
+        addRoaw($(this).val());
+    
+    
+    
+        function addRoaw(id) {
+         
+            $.ajax({
+            url: "{{ route('get_soucal_info') }}",
+            type: "get",
+            data: {
+                id: id,
+            },
+    
+            success: function(data) {
+             
+                var icon =   '/'+data['icon']; 
+                var title = data['id'];
+                var nameinput = 'addmore['+q+']['+title+']';
+                let form =` <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email"> <img src="{{ asset('uploads/') }}` + icon + `" width="50" height="50" alt=""></label>
+                                <button class="btn btn-danger remove_button" style="margin-right: 67%;
+                                    margin-bottom: 17px;" ><i class="fa fa-trash "></i></button>
+                                <input type="text" name="` + nameinput + `" 
+                                    class="form-control" id="instagram">
+                            </div>
+                        </div>` ;
+                q++;       
+                $('#soical_item').append(form);
+                
+              
+ 
+                console.log(form);               
+    
+    
+            },
+            error: function(data) {
+                var errors = data.responseJSON;
+                var errors = data.responseJSON;
+                errorsHtml = '<div class="alert alert-danger"><ul>';
+                $.each(errors.errors, function(k, v) {
+                    errorsHtml += '<li>' + v + '</li>';
+                });
+                errorsHtml += '</ul></di>';
+                $('#form-errors').html(errorsHtml);
+            },
+        });
+        var wrapperd = $('#soical_item');
+                $(wrapperd).on('click', '.remove_button', function(e) {
+                    e.preventDefault();
+                    $(this).parent('div').parent('div').remove();
+
+                });
+               
+                
+            
+    
+    
+    
+          
+         
+    
+            // $(wrapper1).on('click', '.remove_button_old', function (e) {
+            //     alert('d');
+            //         e.preventDefault();
+            // $(this).parent('span').remove();
+    
+            // });
+        }
+        var wrapper1 = $('#partent');
+        $(wrapper1).on('click', '.remove_button_old', function(e) {
+            e.preventDefault();
+            $(this).parent('span').remove();
+        });
+    
+    });
+});
+</script>
     <script>
           $('#addfamoustpye').on('submit', function(e) {
             e.preventDefault();
