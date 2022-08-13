@@ -150,17 +150,20 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->save();
         $famous->save();
-        if ($request->addmore != null) {
-            foreach (FamousSoial::where('famous_id', $famous->id)->get() as $fa) {
+        if($request->addmore != null){
+            foreach(FamousSoial::where('famous_id',$famous->id)->get() as $fa){
                 $fa->delete();
             }
-            foreach ($request->addmore as $key => $value) {
-
-                $blog = FamousSoial::create([
-                    'famous_id'    => $famous->id,
-                    'social_title' => $value['name_socal'],
-                    'social_url' => $value['url']
-                ]);
+            foreach($request->addmore as $key=>$val){
+                foreach($val as $kery=>$f){
+                    
+                    $blog = FamousSoial::create([
+                        'famous_id'    => $famous->id,
+                        'social_title' => $kery,
+                        'social_url' => $f
+                    ]);
+                }
+    
             }
         }
         return redirect()->back()->with(['success' => 'تم التعديل بنجاح']);

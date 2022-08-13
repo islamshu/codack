@@ -569,7 +569,7 @@
                                 <label for="email"> <img src="{{ asset('uploads/') }}` + icon + `" width="50" height="50" alt=""></label>
                                 <button class="btn btn-danger remove_button" style="margin-right: 67%;
                                     margin-bottom: 17px;" ><i class="fa fa-trash "></i></button>
-                                <input type="text" name="` + nameinput + `" 
+                                <input type="text" required name="` + nameinput + `" 
                                     class="form-control" id="instagram">
                             </div>
                         </div>` ;
