@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="col-md-3">
                                         
-                                            <label for="userinput2">حالة الاكواد الفعالة </label>
+                                            <label for="userinput2">حالة الاكواد  </label>
 
                                             <select name="status" class="form-control" id="">
                                                 <option value="" >الكل</option>

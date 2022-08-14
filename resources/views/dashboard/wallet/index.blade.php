@@ -144,9 +144,9 @@
 
                                                 <div class="min-max-slider" data-legendnum="2" style="direction: ltr">
                                                     <label for="min">من</label>
-                                                    <input id="min" class="min" name="min" type="range" step="1" min="0" max="2000" />
+                                                    <input id="min" class="min" name="min" type="range" step="1" min="0" max="15000" />
                                                     <label for="max">الى</label>
-                                                    <input id="max" class="max" name="max" type="range" step="1" min="0" max="2000" />
+                                                    <input id="max" class="max" name="max" type="range" step="1" min="0" max="15000" />
                                                 </div>
                                     </div>
                                    
