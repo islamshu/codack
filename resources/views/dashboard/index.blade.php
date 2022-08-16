@@ -884,15 +884,26 @@
                             </div>
                             <div class="col-md-3">
                                         
-                                <label for="userinput2">نسبة الخصم</label>
+                                <label for="userinput2">المبلغ المعلق </label>
 
                                 <div class="min-max-slider" data-legendnum="2" style="direction: ltr">
                                     <label for="min">من</label>
-                                    <input id="min" class="min" name="min" type="range" step="1" min="0" max="100" />
+                                    <input id="min" class="min" name="min" type="range" step="1" min="0" max="15000" />
                                     <label for="max">الى</label>
-                                    <input id="max" class="max" name="max" type="range" step="1" min="0" max="100" />
+                                    <input id="max" class="max" name="max" type="range" step="1" min="0" max="15000" />
                                 </div>
                         </div>
+                        <div class="col-md-3">
+                                        
+                            <label for="userinput2">المبلغ المتبقي </label>
+
+                            <div class="min-max-slider" data-legendnum="2" style="direction: ltr">
+                                <label for="min">من</label>
+                                <input id="min" class="min" name="min" type="range" step="1" min="0" max="15000" />
+                                <label for="max">الى</label>
+                                <input id="max" class="max" name="max" type="range" step="1" min="0" max="15000" />
+                            </div>
+                    </div>
                             <div class="col-md-3 mt-1 pt-1">
                                 <button type="submit" class="btn btn-info"><i class="fa fa-filter"
                                         aria-hidden="true"></i></button>
