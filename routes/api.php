@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// Route::group(['namespace' => 'Api'], function () {
+    Route::get('/chack_code', [HomeController::class, 'check']);
+    Route::get('/use_code', [HomeController::class, 'use_code']);
+    Route::get('get_all_copoun',[HomeController::class, 'get_all']);
+    
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+    // });
