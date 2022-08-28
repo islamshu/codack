@@ -31,6 +31,13 @@ Route::group(['middleware' => ['role:Admin'], 'prefix' => 'dashboard'], function
     Route::get('my_order_admin', 'App\Http\Controllers\UserController@my_order_admin')->name('my_order_admin');
     Route::get('show_order_money/{id}', 'App\Http\Controllers\UserController@show_order_money')->name('show_order_money');
     Route::post('status_ok_order', 'App\Http\Controllers\UserController@status_ok_order')->name('status_ok_order');
+    Route::resource('copouns', 'App\Http\Controllers\CouponController');
+    Route::get('update_copoun_status', 'App\Http\Controllers\CouponController@updateStatus')->name('copoun.update.status');
+    Route::post('get_form_copoun', 'App\Http\Controllers\CouponController@get_form_copoun')->name('get_form_copoun');
+    
+    Route::post('copoun/{id}/update', 'App\Http\Controllers\CouponController@update_copoun')->name('update_copoun');
+
+    
 
     
 
@@ -57,6 +64,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::post('get_form_stores', 'App\Http\Controllers\StoresController@get_form_stores')->name('get_form_stores');
     Route::post('get_form_country', 'App\Http\Controllers\CountryController@get_form_country')->name('get_form_country');
     Route::post('get_form_code', 'App\Http\Controllers\CodeController@get_form_code')->name('get_form_code');
+
+    
 
     
     Route::post('get_form_famoustype', 'App\Http\Controllers\FamousTypeController@get_form_famoustype')->name('get_form_famoustype');
