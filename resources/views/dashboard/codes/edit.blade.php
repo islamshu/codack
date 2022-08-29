@@ -72,7 +72,7 @@
                 <label for="email"> نسبة كودك  :</label>
                 <fieldset class="form-group position-relative">
 
-                    <input type="number" name="system_percentage"  value="{{ $code->system_percentage }}"required class="form-control form-control-lg input-lg"
+                    <input type="text" name="system_percentage"  value="{{ $code->system_percentage }}"required class="form-control form-control-lg input-lg"
                         id="iconLeft3">
                     <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                         %
@@ -87,7 +87,7 @@
                 <label for="email"> نسبة المشهور     :</label>
                 <fieldset class="form-group position-relative">
 
-                    <input type="number" name="famous_percentage" value="{{ $code->famous_percentage }}" required class="form-control form-control-lg input-lg"
+                    <input type="text" name="famous_percentage" value="{{ $code->famous_percentage }}" required class="form-control form-control-lg input-lg"
                         id="iconLeft3">
                     <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                         %
