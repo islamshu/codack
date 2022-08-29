@@ -42,7 +42,8 @@ class StoresController extends Controller
         $request->validate([
             'title_ar' => 'required',
             'title_en' => 'required',
-            'image' => 'required'
+            'image' => 'required',
+            'api_link'=>'required'
         ]);
         $store = new Stores();
         $store->title = ['ar' => $request->title_ar, 'en' => $request->title_en];
@@ -51,6 +52,7 @@ class StoresController extends Controller
         $store->website = $request->website;
         $store->android = $request->android;
         $store->ios = $request->ios;
+        $store->api_link=  $request->api_link;
         $store->added_by = auth()->id();
         $store->save();
         $count = Stores::count();
@@ -96,6 +98,7 @@ class StoresController extends Controller
         $request->validate([
             'title_ar' => 'required',
             'title_en' => 'required',
+            'api_link'=>'required'
         ]);
         $store = Stores::find($id);
         if ($request->image != null) {
@@ -105,6 +108,7 @@ class StoresController extends Controller
         $store->website = $request->website;
         $store->android = $request->android;
         $store->ios = $request->ios;
+        $store->api_link=  $request->api_link;
         $store->commercial_register = $request->commercial_register;
         $store->save();
         return $store;
@@ -114,6 +118,8 @@ class StoresController extends Controller
         $request->validate([
             'title_ar' => 'required',
             'title_en' => 'required',
+            'api_link'=>'required'
+
         ]);
         $store = Stores::find($id);
         if ($request->image != null) {
@@ -123,6 +129,8 @@ class StoresController extends Controller
         $store->website = $request->website;
         $store->android = $request->android;
         $store->ios = $request->ios;
+        $store->api_link=  $request->api_link;
+
         $store->commercial_register = $request->commercial_register;
         $store->save();
         return $store;

@@ -2,9 +2,11 @@
 
 use App\Client;
 use App\Company;
+use App\Models\Code;
 use App\Models\General;
 use App\Social;
 use App\User;
+use Illuminate\Support\Facades\Http;
 
 function get_account_status($stauts){
     if($stauts == 0){
@@ -16,6 +18,14 @@ function get_account_status($stauts){
         return 'معلق ';
 
     }
+}
+function get_total_code($id){
+    $code = Code::find($id);
+    $api = $code->store->api_link."?code=".$code->code;
+    $response = Http::get($api);
+    $data = $response->json()['data'];
+    $count = $data['count'];
+    return $count;
 }
 function get_account_status_color($stauts){
     if($stauts == 0){

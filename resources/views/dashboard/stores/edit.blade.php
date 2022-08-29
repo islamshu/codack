@@ -31,6 +31,11 @@
                     class="form-control" id="commercial_register">
             </div>
             <div class="form-group col-md-6">
+                <label for="commercial_register">رابط الربط للمتجر (API)    :<span class="required">*</span></label>
+                <input type="text"  name="api_link"
+                    value="{{ $store->api_link }}" class="form-control" id="api_link">
+            </div>
+            <div class="form-group col-md-6">
                 <label for="commercial_register">الموقع الاكتروني :</label>
                 <input type="text" name="website" value="{{ $store->website}}" class="form-control" id="website">
             </div>

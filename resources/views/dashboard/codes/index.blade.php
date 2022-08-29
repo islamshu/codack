@@ -58,7 +58,9 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td> {{ @$item->store->title }}</td>
-                                                <td> {{ $item->code }}</td>
+                                                
+                                                {{-- <td> {{ get_total_code($item->id) }}</td> --}}
+                                                <td>{{ $item->code }}</td>
                                                 <td>{{ @$item->famous->name }} </td>
                                                 <td>{{ $item->discount_percentage }}</td>
                                                 @if(auth()->user()->hasRole('Admin'))
