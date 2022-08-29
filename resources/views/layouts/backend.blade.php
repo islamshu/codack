@@ -233,8 +233,9 @@
     @if (get_lang() == 'ar')
         <script>
             $('table').DataTable({
-                // scrollX: true,
-                scrollX: true,
+                "initComplete": function (settings, json) {  
+    $("table").wrap("<div style='overflow:auto; width:100%;position:relative;'></div>");            
+  },          
                 "language": {
                     "sProcessing": "جارٍ التحميل...",
                     "sLengthMenu": "أظهر _MENU_ مدخلات",
