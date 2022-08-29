@@ -70,10 +70,10 @@
                                                 @if(auth()->user()->hasRole('Admin'))
 
                                                 <td> {{ $item->benefit_percentage }}</td>
-                                                <td> {{ $item->system_percentage }}</td>
-                                                <td>{{ $item->famous_percentage }} </td>
+                                                <td> {{(( $item->system_percentage *get_total_mount_code($item->id))/100)   }}</td>
+                                                <td>{{ (($item->famous_percentage *get_total_mount_code($item->id))/100) }} </td>
                                                 @else
-                                                <td>{{ $item->famous_percentage }} </td>
+                                                <td>{{ (($item->famous_percentage *get_total_mount_code($item->id))/100) }} </td>
                                                  @endif  
                                                  <td> {{ get_total_code($item->id) }}</td>
                                                  <td> {{ get_total_mount_code($item->id) }}</td>
