@@ -25,7 +25,7 @@ class HomeController extends BaseController
                 }else{
                     $count = $code ->use_count;
                     if($count <$code->num_use){
-                        $coderes =new CopounResource($coderes);
+                        $coderes =new CopounResource($code);
 
                         return $this->sendResponse($code,'You can use this code');
                     }else{
