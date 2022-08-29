@@ -49,6 +49,10 @@
                                             @else
                                             <th style="width: 10">نسبة المشهور</th>
                                             @endif
+                                            <th style="width: 10">عدد العمليات  </th>
+                                            <th style="width: 10">اجمالي الايرادات  </th>
+
+
                                             <th>الاجراءات</th>
 
                                         </tr>
@@ -71,6 +75,9 @@
                                                 @else
                                                 <td>{{ $item->famous_percentage }} </td>
                                                  @endif  
+                                                 <td> {{ get_total_code($item->id) }}</td>
+                                                 <td> {{ get_total_mount_code($item->id) }}</td>
+
 
                                                 <td>
 

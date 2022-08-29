@@ -27,6 +27,14 @@ function get_total_code($id){
     $count = $data['count'];
     return $count;
 }
+function get_total_mount_code($id){
+    $code = Code::find($id);
+    $api = $code->store->api_link."?code=".$code->code;
+    $response = Http::get($api);
+    $data = $response->json()['data'];
+    $total = $data['total_amount_use'];
+    return $total;
+}
 function get_account_status_color($stauts){
     if($stauts == 0){
         return 'danger';
