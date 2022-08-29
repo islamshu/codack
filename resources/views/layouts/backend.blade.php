@@ -234,7 +234,7 @@
         <script>
             $('table').DataTable({
                 // scrollX: true,
-
+                scrollX: true,
                 "language": {
                     "sProcessing": "جارٍ التحميل...",
                     "sLengthMenu": "أظهر _MENU_ مدخلات",

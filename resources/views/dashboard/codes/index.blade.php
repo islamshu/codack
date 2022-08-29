@@ -336,10 +336,14 @@
                 $(this).val(function(i, v) {
                     return v.replace('%', '') + '%';
                 });
-            });
+            }); 
+           
         });
+  
      
+
     </script>
+    
 
   
 @endsection
