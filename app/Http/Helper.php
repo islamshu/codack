@@ -25,7 +25,7 @@ function get_total_code($id){
     $response = Http::get($api);
     $data = $response->json()['data'];
     $count = $data['count'];
-    return 'tt';
+    return $count;
 }
 function get_total_mount_code($id){
     $code = Code::find($id);
@@ -33,7 +33,7 @@ function get_total_mount_code($id){
     $response = Http::get($api);
     $data = $response->json()['data'];
     $total = $data['total_amount_use'];
-    return 'ff';
+    return $total;
 }
 function get_account_status_color($stauts){
     if($stauts == 0){
