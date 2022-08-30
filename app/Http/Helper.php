@@ -42,6 +42,28 @@ function get_total_mount_code($id){
     $total = $data['total_amount_use'];
     return $total;
 }
+function get_total_system_code_api($id){
+    $code = Code::find($id);
+    $api = $code->store->api_link."?code=".$code->code;
+    $response = Http::get($api);
+    if($response->json()['status']['HTTP_code'] == 400){
+        return '_';
+    }
+    $data = $response->json()['data'];
+    $total = $data['total_amount_use'];
+    return ($total*$code->system_percentage)/100;
+}
+function get_total_famous_code_api($id){
+    $code = Code::find($id);
+    $api = $code->store->api_link."?code=".$code->code;
+    $response = Http::get($api);
+    if($response->json()['status']['HTTP_code'] == 400){
+        return '_';
+    }
+    $data = $response->json()['data'];
+    $total = $data['total_amount_use'];
+    return ($total*$code->famous_percentage)/100;
+}
 function get_account_status_color($stauts){
     if($stauts == 0){
         return 'danger';

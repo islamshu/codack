@@ -71,26 +71,14 @@
 
                                                 <td> {{ $item->benefit_percentage }}</td>
                                                 <td> 
-                                                    @if(get_total_mount_code($item->id) != '_')
-                                                    {{(( $item->system_percentage *get_total_mount_code($item->id))/100)   }}
-                                                @else _ @endif</td>
+                                                    {{ get_total_system_code_api($item->id) }}
+                                                    </td>
                                                 <td>
-                                                    
-                                                    @if(get_total_mount_code($item->id) != '_')
-                                                    {{(( $item->famous_percentage *get_total_mount_code($item->id))/100)   }}
-                                                @else _ @endif
-                                                
-                                                
+                                                    {{ get_total_famous_code_api($item->id) }}
                                                 </td>
                                                 @else
                                                 <td>
-                                                    
-                                                    
-                                                    @if(get_total_mount_code($item->id) != '_')
-                                                    {{(( $item->famous_percentage *get_total_mount_code($item->id))/100)   }}
-                                                @else _ @endif
-                                                
-                            
+                                                    {{ get_total_famous_code_api($item->id) }}
                                                 </td>
                                                  @endif  
                                                  <td> {{ get_total_code($item->id) }}</td>
