@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Code;
 use App\Models\Famous;
 use App\Models\Stores;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ConnectException;
 
 class CodeController extends Controller
 {
@@ -60,9 +64,29 @@ class CodeController extends Controller
     {
         $store = Code::find($request->id);
         return view('dashboard.codes.edit')->with('code',$store)->with('famous',Famous::get())->with('stores',Stores::get());
+    }
+    public function check_code(Request $request){
+        $store = Stores::find($request->store);
+        $api = $store->api_link."?code=".$request->code;
+    try{                
+        $response =  Http::get($api);
+        if($response->json()['status']['HTTP_code'] == 400){
+            return response()->json(['status'=>'false','message'=>"هذا الكود خاطيء"]);
+        }else{
+            return response()->json(['status'=>'true','message'=>"تم التحقق من الكود "]);
+
+        }
 
     }
+    catch(\Exception $e) {
+        return response()->json(['status'=>'false','message'=>"هناك خطأ بالربط الخاص بالمتجر"]);
 
+    }
+    
+       
+    }
+    
+    
     /**
      * Display the specified resource.
      *

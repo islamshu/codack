@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::post('update_back_info', 'App\Http\Controllers\UserController@update_back_info')->name('update_back_info');
     Route::get('my_order_money', 'App\Http\Controllers\UserController@my_order_money')->name('my_order_money');
     Route::get('get_soucal_info', 'App\Http\Controllers\UserController@get_soucal_info')->name('get_soucal_info');
-
+    Route::get('check_code','App\Http\Controllers\CodeController@check_code')->name('check_code');
     
     
     Route::get('show_notification/{id}','App\Http\Controllers\HomeController@notification')->name('show.notification');

@@ -121,7 +121,7 @@
     
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">تعديل كود خصم </h4>
+                    <h4 class="modal-title">اضافة كود خصم </h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
     
@@ -133,8 +133,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email"> المتجر :</label>
-                                    <select name="store_id" required class="form-control" id="">
-                                        <option value="" selected disabled>احتر المتجر</option>
+                                    <select name="store_id" required class="form-control" id="select_store">
+                                        <option value="" selected disabled>اختر المتجر</option>
     
                                    @foreach ($stores as $item)
                                    <option value="{{ $item->id }}">{{ $item->title }} </option>
@@ -147,7 +147,9 @@
                                 <div class="form-group">
                                     <label for="email"> المشهور :</label>
                                     @if(auth()->user()->hasRole('Admin'))
-                                    <select name="famous_id" required class="form-control" id="">
+                               <select name="famous_id" required class="form-control" >
+                                <option value="" selected disabled>اختر المشهور </option>
+
                                         @foreach ($famous as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }} </option>
                                         @endforeach
@@ -163,7 +165,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email"> اسم كود الخصم  :</label>
-                                    <input type="text" required name="code"  class="form-control" id="email">
+                                    <input type="text" required name="code"  class="form-control" id="codechange">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -223,7 +225,7 @@
     
                         </div>
     
-                        <button type="submit" class="btn btn-default">اضافة</button>
+                        <button type="submit" disabled id="add_code" class="btn btn-info">اضافة</button>
                     </form>
     
                 </div>
@@ -296,6 +298,7 @@
                     )
 
 
+
                 },
                 error: function(data) {
                     var errors = data.responseJSON;
@@ -347,6 +350,58 @@
      
 
     </script>
+    @if(auth()->user()->hasRole('Admin'))
+    <script>
+        $('#select_store').change(function(){
+            $( "#codechange" ).val('');
+           $('#add_code').attr("disabled", true);
+
+        });
+        $( "#codechange" ).change(function() {
+          var store=  $('#select_store').val();
+          if(store == null){
+            $( "#codechange" ).val('');
+            swal(
+                        '',
+                        ' يرجى اختيار المتجر اولا   ',
+                        'error'
+                )
+          }
+          var code =  $( "#codechange" ).val();
+          $.ajax({
+                url: "{{ route('check_code') }}",
+                type: "get",
+                data: { store: store,code:code },
+          
+                success: function(data) {
+                 if(data.status == 'false'){
+                    swal(
+                        '',
+                        data.message,
+                        'error'
+                )
+                 }else if(data.status == 'true'){
+                    swal(
+                        '',
+                        data.message,
+                        'success'
+                    );
+                    $('#add_code').attr("disabled", false);
+
+                 }
+
+
+                },
+                error: function(data) {
+                    alert('aasqqqs');
+
+                },
+            });
+        });
+    </script>
+    @else
+    @endif
+
     
 
   
