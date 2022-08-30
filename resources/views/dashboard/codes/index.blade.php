@@ -43,14 +43,14 @@
                                             <th>اسم المشهور</th>
                                             <th>نسبة كود الخصم</th>
                                             @if(auth()->user()->hasRole('Admin'))
-                                            <th style="width: 10">فايدة اسخدام الكود</th>
-                                            <th style="width: 10">نسبة كودك</th>
-                                            <th style="width: 10">نسبة المشهور</th>
+                                            <th >فايدة اسخدام الكود</th>
+                                            <th >نسبة كودك</th>
+                                            <th >نسبة المشهور</th>
                                             @else
-                                            <th style="width: 10">نسبة المشهور</th>
+                                            <th >نسبة المشهور</th>
                                             @endif
-                                            <th style="width: 10">عدد العمليات  </th>
-                                            <th style="width: 10">اجمالي الايرادات  </th>
+                                            <th >عدد العمليات  </th>
+                                            <th >اجمالي الايرادات  </th>
 
 
                                             <th>الاجراءات</th>
