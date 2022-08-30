@@ -28,9 +28,7 @@
                                 </a>
 
                                 <table class="table table-striped table-bordered zero-configuration" id="storestable"
-                                    style=".table-responsive {
-                                max-width: :100;
-                            }">
+                                   >
                             
 
 
