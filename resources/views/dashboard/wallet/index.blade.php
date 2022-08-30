@@ -14,7 +14,7 @@
                                             <i class="icon-wallet text-white font-large-2 float-right"></i>
                                         </div>
                                         <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                            <h3 class="text-white">2500</h3>
+                                            <h3 class="text-white">{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_famous')  }}</h3>
                                             <span> اجمالي المحفظة   </span>
                                         </div>
                                     </div>
@@ -31,7 +31,7 @@
                                             <i class="icon-check text-white font-large-2 float-right"></i>
                                         </div>
                                         <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                            <h3 class="text-white">500</h3>
+                                            <h3 class="text-white">0</h3>
                                             <span>  ما تم تحويله   </span>
                                         </div>
                                     </div>
@@ -48,7 +48,7 @@
                                             <i class="icon-compass text-white font-large-2 float-right"></i>
                                         </div>
                                         <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                            <h3 class="text-white">500</h3>
+                                            <h3 class="text-white">0</h3>
                                             <span>   المبالغ المعلقة    </span>
                                         </div>
                                     </div>

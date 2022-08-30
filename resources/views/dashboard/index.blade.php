@@ -633,25 +633,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                    @foreach (App\Models\Code::orderBy('id','desc')->get() as $item)
+                                    <tr>
+                                        <td>{{ $item->store->title }} </td>
+                                        <td>{{ @$item->code  }}</td>
+                                        <td>{{ @$item->famous->name }}</td>
+                                        <td>{{ @$item->discount_percentage }}</td>
+                                        <td>{{ @$item->benefit_percentage }}</td>
+                                        <td>{{ @$item->system_percentage }}</td>
+                                        <td>{{ @$item->famous_percentage }}</td>
+                                    </tr> 
+                                    @endforeach
                                
-                                <tr>
-                                    <td>متجر قيس</td>
-                                    <td>QQQ</td>
-                                    <td>محمود </td>
-                                    <td>50%</td>
-                                    <td>25%</td>
-                                    <td>-50%</td>
-                                    <td>-50%</td>
-                                </tr>
-                                <tr>
-                                    <td>متجر اناس </td>
-                                    <td>AAA</td>
-                                    <td>ايهاب </td>
-                                    <td>50%</td>
-                                    <td>25%</td>
-                                    <td>-50%</td>
-                                    <td>-50%</td>
-                                </tr>
+                               
                               
                                 
 
@@ -809,7 +803,7 @@
                                     <i class="icon-wallet text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                    <h3 class="text-white">2500</h3>
+                                    <h3 class="text-white">{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_famous') }}</h3>
                                     <span> اجمالي المحفظة   </span>
                                 </div>
                             </div>
@@ -826,7 +820,7 @@
                                     <i class="icon-check text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                    <h3 class="text-white">500</h3>
+                                    <h3 class="text-white">0</h3>
                                     <span>  ما تم تحويله   </span>
                                 </div>
                             </div>
@@ -843,7 +837,7 @@
                                     <i class="icon-compass text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                    <h3 class="text-white">500</h3>
+                                    <h3 class="text-white">0</h3>
                                     <span>   المبالغ المعلقة    </span>
                                 </div>
                             </div>
@@ -941,21 +935,26 @@
                                 </thead>
                                 <tbody >
                                     <tr>
-                                        <td>1 </td>
-                                        <td>متجر قيس</td>
-                                        <td>islam shu </td>
-                                        <td>QQQ</td>
-                                        <td>2500 </td>
-                                        <td>500</td>
-                                        <td>500</td>
-                                        <td>1500</td>
-                                        <td>
-                                            
-                                            <a data-toggle="modal" data-target="#myModal20" class="btn btn-info"><i class="fa fa-cog" aria-hidden="true"></i>
+                                        @foreach (App\Models\Code::where('famous_id',auth()->user()->famous->id)->orderby('id','desc')->get() as $key=> $item)
+                                        <tr>
+                                            <td>{{ $key }}</td>
+                                            <td>{{ @$item->store->title }}</td>
+                                            <td>{{ @$item->famous->name }}</td>
+                                            <td>{{ $item->code }}</td>
+                                            <td>{{ get_total_mount_code($item->id) }} </td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>
                                                 
-                                            </a>
-                                        </td>
+                                                <a data-toggle="modal" data-target="#myModal20" class="btn btn-info"><i class="fa fa-cog" aria-hidden="true"></i>
+                                                    
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     </tr>
+                                    
 
                                 </tbody>
 

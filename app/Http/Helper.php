@@ -60,8 +60,14 @@ function get_total_famous_code_api($id){
     if($response->json()['status']['HTTP_code'] == 400){
         return '_';
     }
+
     $data = $response->json()['data'];
+    $code->total = $data['total_amount_use'];
     $total = $data['total_amount_use'];
+    $code->total_famous = ($total*$code->famous_percentage)/100;
+    $code->total_system = ($total*$code->system_percentage)/100;
+    $code->save();
+
     return ($total*$code->famous_percentage)/100;
 }
 function get_account_status_color($stauts){
