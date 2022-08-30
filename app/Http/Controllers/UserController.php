@@ -12,6 +12,7 @@ use App\Models\FamousSoial;
 use App\Models\FamousType;
 use App\Models\MoneyOrder;
 use App\Models\SoicalType;
+use App\Models\Stores;
 use App\Models\User;
 use App\Notifications\ApproveChange;
 use App\Notifications\ChangeData;
@@ -281,6 +282,16 @@ class UserController extends Controller
 
     public function wallet()
     {
+    //     if(! auth()->user()->hasRole('Admin')){
+
+    //     $stores = Stores::has('codes')->with('codes',function ($q)  {
+    //         $q->where('famous_id',auth()->user()->famous->id);
+    //     });
+    // }
+        
+            
+    //     $stores=   $stores->orderBy('id','desc')->get();
+    
         return view('dashboard.wallet.index');
     }
 
