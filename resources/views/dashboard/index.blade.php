@@ -49,7 +49,7 @@
                                     <i class="fa fa-eercast text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                    <h3 class="text-white">156</h3>
+                                    <h3 class="text-white">{{ App\Models\Code::count() }}</h3>
                                     <span>اجمالي اكواد الخصم </span>
                                 </div>
                             </div>
