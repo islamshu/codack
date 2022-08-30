@@ -70,10 +70,28 @@
                                                 @if(auth()->user()->hasRole('Admin'))
 
                                                 <td> {{ $item->benefit_percentage }}</td>
-                                                <td> {{(( $item->system_percentage *get_total_mount_code($item->id))/100)   }}</td>
-                                                <td>{{ (($item->famous_percentage *get_total_mount_code($item->id))/100) }} </td>
+                                                <td> 
+                                                    @if(get_total_mount_code($item->id) != '_')
+                                                    {{(( $item->system_percentage *get_total_mount_code($item->id))/100)   }}
+                                                @else _ @endif</td>
+                                                <td>
+                                                    
+                                                    @if(get_total_mount_code($item->id) != '_')
+                                                    {{(( $item->famous_percentage *get_total_mount_code($item->id))/100)   }}
+                                                @else _ @endif
+                                                
+                                                
+                                                </td>
                                                 @else
-                                                <td>{{ (($item->famous_percentage *get_total_mount_code($item->id))/100) }} </td>
+                                                <td>
+                                                    
+                                                    
+                                                    @if(get_total_mount_code($item->id) != '_')
+                                                    {{(( $item->famous_percentage *get_total_mount_code($item->id))/100)   }}
+                                                @else _ @endif
+                                                
+                            
+                                                </td>
                                                  @endif  
                                                  <td> {{ get_total_code($item->id) }}</td>
                                                  <td> {{ get_total_mount_code($item->id) }}</td>
@@ -114,13 +132,13 @@
     <div class="modal" id="myModal3">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-
+    
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">تعديل كود خصم </h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-
+    
                 <!-- Modal body -->
                 <div class="modal-body ">
                     <form id="sendform">
@@ -131,7 +149,7 @@
                                     <label for="email"> المتجر :</label>
                                     <select name="store_id" required class="form-control" id="">
                                         <option value="" selected disabled>احتر المتجر</option>
-
+    
                                    @foreach ($stores as $item)
                                    <option value="{{ $item->id }}">{{ $item->title }} </option>
                                    @endforeach
@@ -166,7 +184,7 @@
                                 <div class="form-group">
                                     <label for="email"> نسبة كود الخصم :</label>
                                     <fieldset class="form-group position-relative">
-                                        <input type="number" name="discount_percentage" required class="form-control form-control-lg input-lg"
+                                        <input type="text" name="discount_percentage" required class="form-control form-control-lg input-lg"
                                             id="iconLeft3">
                                         <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                                             %
@@ -180,7 +198,7 @@
                                 <div class="form-group">
                                     <label for="email"> فايدة استخدام الكود     :</label>
                                     <fieldset class="form-group position-relative">
-                                        <input type="number" name="benefit_percentage" required class="form-control form-control-lg input-lg"
+                                        <input type="text" name="benefit_percentage" required class="form-control form-control-lg input-lg"
                                             id="iconLeft3">
                                         <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                                             %
@@ -192,8 +210,8 @@
                                 <div class="form-group">
                                     <label for="email"> نسبة كودك  :</label>
                                     <fieldset class="form-group position-relative">
-
-                                        <input type="number" name="system_percentage" required class="form-control form-control-lg input-lg"
+    
+                                        <input type="text" name="system_percentage" required class="form-control form-control-lg input-lg"
                                             id="iconLeft3">
                                         <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                                             %
@@ -207,8 +225,8 @@
                                 <div class="form-group">
                                     <label for="email"> نسبة المشهور     :</label>
                                     <fieldset class="form-group position-relative">
-
-                                        <input type="number" name="famous_percentage" required class="form-control form-control-lg input-lg"
+    
+                                        <input type="text" name="famous_percentage" required class="form-control form-control-lg input-lg"
                                             id="iconLeft3">
                                         <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                                             %
@@ -216,23 +234,23 @@
                                     </fieldset>
                                 </div>
                             </div>
-
+    
                         </div>
-
+    
                         <button type="submit" class="btn btn-default">اضافة</button>
                     </form>
-
+    
                 </div>
-
-
+    
+    
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
                 </div>
-
+    
             </div>
         </div>
-
+    
     </div>
     <div class="modal fase " id="myModal4" data-backdrop="static" data-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">

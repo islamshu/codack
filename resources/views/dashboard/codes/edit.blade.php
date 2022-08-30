@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label for="email"> نسبة كود الخصم :</label>
                 <fieldset class="form-group position-relative">
-                    <input type="number" name="discount_percentage" value="{{ $code->discount_percentage }}" required class="form-control form-control-lg input-lg"
+                    <input type="text" name="discount_percentage" value="{{ $code->discount_percentage }}" required class="form-control form-control-lg input-lg"
                         id="iconLeft3">
                     <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                         %
@@ -59,7 +59,7 @@
             <div class="form-group">
                 <label for="email"> فايدة استخدام الكود     :</label>
                 <fieldset class="form-group position-relative">
-                    <input type="number" name="benefit_percentage" value="{{ $code->benefit_percentage }}" required class="form-control form-control-lg input-lg"
+                    <input type="text" name="benefit_percentage" value="{{ $code->benefit_percentage }}" required class="form-control form-control-lg input-lg"
                         id="iconLeft3">
                     <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                         %
