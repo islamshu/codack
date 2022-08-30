@@ -24,7 +24,7 @@ function get_total_code($id){
     $api = $code->store->api_link."?code=".$code->code;
     $response = Http::get($api);
     if($response->json()['status']['HTTP_code'] == 400){
-        return _;
+        return '_';
     }
     $data = $response->json()['data'];
     $count = $data['count'];
@@ -36,7 +36,7 @@ function get_total_mount_code($id){
     $api = $code->store->api_link."?code=".$code->code;
     $response = Http::get($api);
     if($response->json()['status']['HTTP_code'] == 400){
-        return _;
+        return '_';
     }
     $data = $response->json()['data'];
     $total = $data['total_amount_use'];
