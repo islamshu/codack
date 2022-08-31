@@ -44,7 +44,7 @@
                                             <select name="status" class="form-control" id="">
                                                 <option value="" >الكل</option>
                                                 <option value="1" @if(@$request->status == 1) selected @endif>فعالة</option>
-                                                <option value="0"@if(@$request->status == 0) selected @endif>غير فعالة</option>
+                                                <option value="0"@if(@$request->status == 0 && $request->status!= null ) selected @endif>غير فعالة</option>
 
                                             </select>
                                     </div>
