@@ -173,7 +173,7 @@
                                     <label for="email"> نسبة كود الخصم :</label>
                                     <fieldset class="form-group position-relative">
                                         <input type="text" name="discount_percentage" required
-                                            class="form-control form-control-lg input-lg" disabled id="discount_code">
+                                            class="form-control form-control-lg input-lg" value="" readonly id="discount_code">
                                         <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                                             %
                                         </div>
