@@ -397,7 +397,6 @@
 
                 },
                 error: function(data) {
-                    alert('aasqqqs');
 
                 },
             });
