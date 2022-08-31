@@ -15,7 +15,7 @@ class StoresController extends Controller
      */
     public function index(Request $request)
     {
-        $stores = Stores::query()->has('codes');
+        $stores = Stores::query();
         $stores->when($request->store_id, function ($q) use ($request) {
             $q->where('id', $request->store_id);
         });
