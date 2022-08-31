@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Changbank;
+use App\Models\Code;
 use App\Models\Country;
 use App\Models\Famous;
 use App\Models\FamousBank;
@@ -282,17 +283,19 @@ class UserController extends Controller
 
     public function wallet()
     {
-    //     if(! auth()->user()->hasRole('Admin')){
+        if( auth()->user()->hasRole('Admin')){
+            $codes = Code::orderBy('id','desc')->get();
+        
+    }else{
+        $codes = Code::where('famous_id',auth()->user()->famous->id)->orderBy('id','desc')->get();
 
-    //     $stores = Stores::has('codes')->with('codes',function ($q)  {
-    //         $q->where('famous_id',auth()->user()->famous->id);
-    //     });
-    // }
+    }
         
             
-    //     $stores=   $stores->orderBy('id','desc')->get();
+       
+        
     
-        return view('dashboard.wallet.index');
+        return view('dashboard.wallet.index')->with('codes',$codes);
     }
 
     public function index(Request $request)

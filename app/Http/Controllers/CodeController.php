@@ -73,7 +73,8 @@ class CodeController extends Controller
         if($response->json()['status']['HTTP_code'] == 400){
             return response()->json(['status'=>'false','message'=>"هذا الكود خاطيء"]);
         }else{
-            return response()->json(['status'=>'true','message'=>"تم التحقق من الكود "]);
+            $code = $response->json()['data']['discount'];
+            return response()->json(['status'=>'true','discount'=>$code,'message'=>"تم التحقق من الكود "]);
 
         }
 

@@ -186,14 +186,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($codes as $key=> $item)
+                                                
                                             <tr>
-                                                <td>1 </td>
-                                                <td>متجر قيس</td>
+                                                <td>{{ $key +1 }} </td>
+                                                <td>{{ @$item->store->title }} </td>
                                                 @if(auth()->user()->hasRole('Admin'))
-                                                <td>islam </td>
+                                                <td>{{ @$item->famous->name }} </td>
                                                 @endif
-                                                <td>1300 </td>
-                                                <td>QQQ</td>
+
+                                                <td>{{ get_total_mount_code($item->id) }} </td>
+                                                <td>{{ @$item->code }}</td>
 
                                                 <td>
                                                     <a data-toggle="modal" data-target="#myModal3" class="btn btn-info"><i
@@ -202,6 +205,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
+                                            @endforeach
 
                                         </tbody>
 
