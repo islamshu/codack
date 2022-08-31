@@ -68,7 +68,7 @@
 
               </ul>
           </li>
-          <li class="nav-item has-sub ">
+          {{-- <li class="nav-item has-sub ">
             <a href="#">
                 <i class="fa fa-bookmark"></i>
                 <span class="menu-title">الكوبنات </span></a>
@@ -78,7 +78,7 @@
 
 
             </ul>
-        </li>
+        </li> --}}
          
           <li class="nav-item has-sub ">
             <a href="#">
