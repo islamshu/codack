@@ -181,7 +181,7 @@
                             <div class=" form-group col-md-4 col-sm-4">
                                 <label for="email"> الدولة : <span class="required">*</span></label>
                                 <select name="country_id" id="country_id" class="form-control">
-                                    <option value="" disabled>اختر دولة</option>
+                                    <option value="" selected disabled>اختر دولة</option>
                                     @foreach ($countries as $item)
                                         <option value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
