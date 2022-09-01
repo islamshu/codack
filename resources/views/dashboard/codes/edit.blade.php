@@ -206,7 +206,7 @@
                     $('#add_code_edit').attr("disabled", true);
                     $('#discount_code_edit').val('');
                     $('#start_at_edit').val('');
-                    $('#end_at').val('');
+                    $('#end_at_edit').val('');
 
                 } else if (data.status == 'true') {
                     swal(
@@ -217,7 +217,7 @@
                     $('#add_code_edit').attr("disabled", false);
                     $('#discount_code_edit').val(data.discount);
                     $('#start_at_edit').val(data.start_at);
-                    $('#end_at').val(data.end_at);
+                    $('#end_at_edit').val(data.end_at);
 
                 }
 
