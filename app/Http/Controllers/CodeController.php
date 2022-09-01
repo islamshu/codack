@@ -132,6 +132,8 @@ class CodeController extends Controller
         $country->benefit_percentage = str_replace('%','',$request->benefit_percentage);
         $country->system_percentage =str_replace('%','',$request->system_percentage);
         $country->famous_percentage = str_replace('%','',$request->famous_percentage);
+        $country->start_at = $request->start_at;
+        $country->end_at = $request->end_at;
         $country->save();
         return $country;
     }

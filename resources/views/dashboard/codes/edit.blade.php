@@ -8,7 +8,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="email"> المتجر :</label>
-                <select name="store_id" required class="form-control" id="">
+                <select name="store_id" required class="form-control" id="select_store_edit">
                     <option value="" selected disabled>احتر المتجر</option>
 
                @foreach ($stores as $item)
@@ -38,15 +38,15 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="email"> اسم كود الخصم  :</label>
-                <input type="text" required name="code" value="{{ $code->code }}"  class="form-control" id="email">
+                <input type="text" required name="code" value="{{ $code->code }}" class="form-control" id="codechange_edit">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="email"> نسبة كود الخصم :</label>
                 <fieldset class="form-group position-relative">
-                    <input type="text" name="discount_percentage" value="{{ $code->discount_percentage }}" required class="form-control form-control-lg input-lg"
-                        id="iconLeft3">
+                    <input type="text" name="discount_percentage" readonly value="{{ $code->discount_percentage }}" required class="form-control form-control-lg input-lg"
+                        id="discount_code_edit">
                     <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                         %
                     </div>
@@ -97,10 +97,37 @@
         </div>
 
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email"> تاريخ البداية  :</label>
+                <fieldset class="form-group position-relative">
 
-    <button type="submit" class="btn btn-default">تعديل</button>
+                    <input type="date" readonly name="start_at" value="{{ $code->start_at }}" required
+                        class="form-control form-control-lg input-lg" id="start_at_edit">
+                    
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email"> تاريخ النهاية  :</label>
+                <fieldset class="form-group position-relative">
+
+                    <input type="date" readonly name="end_at" value="{{ $code->end_at }}" required
+                        class="form-control form-control-lg input-lg" id="end_at_edit">
+                    
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+
+    <button type="submit" id="add_code_edit" class="btn btn-info">تعديل</button>
 </form>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script>
      $('#sendformd').on('submit', function(e) {
         e.preventDefault();
@@ -131,12 +158,6 @@
                 setTimeout(function() {
                     window.location.reload();
                 }, 1000);
-
-
-
-
-
-
             },
             error: function(data) {
                 var errors = data.responseJSON;
@@ -149,7 +170,62 @@
                 $('#form-errors').html(errorsHtml);
             },
         });
+    });
+    $('#select_store_edit').change(function() {
+        $("#codechange_edit").val('');
+        $("#start_at_edit").val('');
+        $("#end_at_edit").val('');
+        $("#discount_code_edit").val('');
+        $('#add_code_edit').attr("disabled", true);
+    });
+    $("#codechange_edit").change(function() {
+        var store = $('#select_store_edit').val();
+        if (store == null) {
+            $("#codechange_edit").val('');
+            swal(
+                '',
+                ' يرجى اختيار المتجر اولا   ',
+                'error'
+            )
+        }
+        var code = $("#codechange_edit").val();
+        $.ajax({
+            url: "{{ route('check_code') }}",
+            type: "get",
+            data: {
+                store: store,
+                code: code
+            },
+            success: function(data) {
+                if (data.status == 'false') {
+                    swal(
+                        '',
+                        data.message,
+                        'error'
+                    );
+                    $('#add_code_edit').attr("disabled", true);
+                    $('#discount_code_edit').val('');
+                    $('#start_at_edit').val('');
+                    $('#end_at').val('');
+
+                } else if (data.status == 'true') {
+                    swal(
+                        '',
+                        data.message,
+                        'success'
+                    );
+                    $('#add_code_edit').attr("disabled", false);
+                    $('#discount_code_edit').val(data.discount);
+                    $('#start_at_edit').val(data.start_at);
+                    $('#end_at').val(data.end_at);
+
+                }
 
 
+            },
+            error: function(data) {
+
+            },
+        });
     });
 </script>
