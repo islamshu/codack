@@ -55,6 +55,8 @@ class CodeController extends Controller
         $country->benefit_percentage = str_replace('%','',$request->benefit_percentage);
         $country->system_percentage =str_replace('%','',$request->system_percentage);
         $country->famous_percentage = str_replace('%','',$request->famous_percentage);
+        $country->start_at = $request->start_at;
+        $country->end_at = $request->end_at;
         $country->user_id = auth()->id();
         $country->save();
         $count = Code::count() ;
@@ -74,7 +76,10 @@ class CodeController extends Controller
             return response()->json(['status'=>'false','message'=>"هذا الكود خاطيء"]);
         }else{
             $code = $response->json()['data']['discount'];
-            return response()->json(['status'=>'true','discount'=>$code,'message'=>"تم التحقق من الكود "]);
+            $start_at = date('Y-m-d', strtotime($response->json()['data']['start_date']));
+            $end_at = date('Y-m-d', strtotime($response->json()['data']['end_date']));
+
+            return response()->json(['status'=>'true','discount'=>$code,'start_at'=>$start_at,'end_at'=>$end_at,'message'=>"تم التحقق من الكود "]);
 
         }
 

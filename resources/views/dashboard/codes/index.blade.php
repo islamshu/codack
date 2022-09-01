@@ -227,6 +227,31 @@
                             </div>
 
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email"> تاريخ البداية  :</label>
+                                    <fieldset class="form-group position-relative">
+
+                                        <input type="date" readonly name="start_at" required
+                                            class="form-control form-control-lg input-lg" id="start_at">
+                                        
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email"> تاريخ النهاية  :</label>
+                                    <fieldset class="form-group position-relative">
+
+                                        <input type="date" readonly name="end_at" required
+                                            class="form-control form-control-lg input-lg" id="end_at">
+                                        
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                        </div>
 
                         <button type="submit" disabled id="add_code" class="btn btn-info">اضافة</button>
                     </form>
@@ -354,6 +379,11 @@
     <script>
         $('#select_store').change(function() {
             $("#codechange").val('');
+            $("#start_at").val('');
+            $("#end_at").val('');
+
+            $("#discount_code").val('');
+
             $('#add_code').attr("disabled", true);
 
         });
@@ -391,6 +421,8 @@
                         );
                         $('#add_code').attr("disabled", false);
                         $('#discount_code').val(data.discount);
+                        $('#start_at').val(data.start_at);
+                        $('#end_at').val(data.end_at);
 
                     }
 

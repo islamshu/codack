@@ -6,6 +6,7 @@ use App\Models\Code;
 use App\Models\General;
 use App\Social;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
 function get_account_status($stauts){
@@ -63,12 +64,23 @@ function get_total_famous_code_api($id){
 
     $data = $response->json()['data'];
     $code->total = $data['total_amount_use'];
+    $code->start_at = date('Y-m-d', strtotime($data['start_date']));
+    $code->end_at   =   date('Y-m-d', strtotime($data['end_date']));
     $total = $data['total_amount_use'];
     $code->total_famous = ($total*$code->famous_percentage)/100;
     $code->total_system = ($total*$code->system_percentage)/100;
     $code->save();
 
     return ($total*$code->famous_percentage)/100;
+}
+function active_code_count(){
+    $code = Code::where('start_at' ,'<=', Carbon::now()->format('Y-m-d'))->where('end_at' ,'>=', Carbon::now()->format('Y-m-d'))->count();
+    return $code;
+}
+function deactive_code_count(){
+    $code = Code::where('start_at' ,'<=', Carbon::now()->format('Y-m-d'))->where('end_at' ,'>=', Carbon::now()->format('Y-m-d'))->count();
+   $total = Code::count();
+    return $total- $code;
 }
 function get_account_status_color($stauts){
     if($stauts == 0){

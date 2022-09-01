@@ -66,7 +66,7 @@
                                     <i class="fa fa-play text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                    <h3 class="text-white">{{ App\Models\Code::count() }}</h3>
+                                    <h3 class="text-white">{{ active_code_count() }}</h3>
                                     <span>  اكواد  الفعالة</span>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                     <i class="fa fa-pause text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                    <h3 class="text-white">0</h3>
+                                    <h3 class="text-white">{{ deactive_code_count() }}</h3>
                                     <span>  اكواد  الغير فعالة</span>
                                 </div>
                             </div>
