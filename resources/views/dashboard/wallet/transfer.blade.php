@@ -1,6 +1,7 @@
 <div class="modal-body ">
     <form @if($error == 'success') id="send_bank" @endif>
         @csrf
+        <input type="hidden" name="code" value="{{ $code->id }}">
 
         <div class="row">
             <div class="col-md-6">

@@ -148,7 +148,6 @@ class CodeController extends Controller
     {
         $code = Code::find($request->id);
         $total = $code->total_famous - ($code->total_trans + $code->total_pending);
-        $total = 4000;
         if($total >= get_general_value('min_wallet') ){
             $error = 'success';
         }else{

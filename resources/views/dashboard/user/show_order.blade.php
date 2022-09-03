@@ -60,6 +60,9 @@
                                             <form action="{{ route('status_ok_order') }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                                <input type="hidden" name="code_id" value="{{ $order->code_id }}">
+                                                <input type="hidden" name="amount" value="{{$order->amount }}">
+
                                         <button   class="btn btn-info delete-confirm"  type="submit" >تأكيد موافقة التحويل  </i></button>
                                     </form>   
                                     </div>

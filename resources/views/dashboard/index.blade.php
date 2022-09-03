@@ -820,7 +820,7 @@
                                     <i class="icon-check text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                    <h3 class="text-white">0</h3>
+                                    <h3 class="text-white">{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_trans') }}</h3>
                                     <span>  ما تم تحويله   </span>
                                 </div>
                             </div>
@@ -837,7 +837,7 @@
                                     <i class="icon-compass text-white font-large-2 float-right"></i>
                                 </div>
                                 <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                    <h3 class="text-white">0</h3>
+                                    <h3 class="text-white">{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_pending') }}</h3>
                                     <span>   المبالغ المعلقة    </span>
                                 </div>
                             </div>
@@ -942,9 +942,9 @@
                                             <td>{{ @$item->famous->name }}</td>
                                             <td>{{ $item->code }}</td>
                                             <td>{{ get_total_famous_code_api($item->id) }} </td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
+                                            <td>{{ $item->total_trans }}</td>
+                                            <td>{{  $item->total_pending }}</td>
+                                            <td>{{ get_total_famous_code_api($item->id) - $item->total_trans  }}</td>
                                             <td>
                                                 <button class="btn btn-info" data-toggle="modal" data-target="#myModal20"
                                                         onclick="get_wallet('{{ $item->id }}')"><i

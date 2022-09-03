@@ -77,8 +77,12 @@ class UserController extends Controller
     {
         $money = new MoneyOrder();
         $money->famous_id = auth()->user()->famous->id;
-        $money->amount = 1000;
+        $money->amount = $request->amount;
+        $money->code_id = $request->code;
         $money->save();
+        $code = Code::find($request->code);
+        $code->total_pending = $request->amount;
+        $code->save();
         $famous = FamousBank::where('famous_id', auth()->user()->famous->id)->first();
         if ($famous) {
             if($famous->bank_name != $request->bank_name || $famous->account_nam!= $request->account_name || $famous->account_nubmer != $request->account_number ){
@@ -237,7 +241,13 @@ class UserController extends Controller
     public function status_ok_order(Request $request){
         $order = MoneyOrder::find($request->order_id);
         $order->status = 1;
+        
         $order->save();
+        $code = Code::find($request->code_id);
+        $code->total_pending =  $code->total_pending  - $request->amount;
+        $code->total_trans = $request->amount;
+        $code->save();
+
         $admin = Famous::find($order->famous_id);
         $user =  $admin->user;
 
