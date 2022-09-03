@@ -157,6 +157,37 @@ class CodeController extends Controller
 
         return view('dashboard.wallet.transfer')->with('code',$code)->with('total',$total)->with('error',$error);
     }
+    public  function get_wallet_order(Request $request) 
+    {
+        $code = Code::find($request->id);
+        $store = $code->store->title;
+        $famous = $code->famous->name;
+
+        $api = $code->store->api_link."?code=".$code->code;
+    try{                
+        $response =  Http::get($api);
+        if($response->json()['status']['HTTP_code'] == 400){
+            $orders = null;
+            return view('dashboard.wallet.orders')->with('orders',$orders)->with('code',$code)->with('store',$store)->with('famous',$famous);
+        }else{
+            $orders = $response->json()['data']['orders'];
+            $array = array();
+            foreach($orders as $or){
+                array_push($array,$or);
+            }
+            return view('dashboard.wallet.orders')->with('orders',$array)->with('code',$code)->with('store',$store)->with('famous',$famous);
+
+
+            
+
+        }
+
+    }
+    catch(\Exception $e) {
+        return view('dashboard.wallet.orders')->with('orders',null)->with('code',$code)->with('store',$store)->with('famous',$famous);
+
+    }
+    }
     public function destroy($id)
     {
         $code = Code::find($id);

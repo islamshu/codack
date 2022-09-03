@@ -199,10 +199,13 @@
                                                 <td>{{ @$item->code }}</td>
 
                                                 <td>
-                                                    <a data-toggle="modal" data-target="#myModal3" class="btn btn-info"><i
+                                                    {{-- <a data-toggle="modal" data-target="#myModal3" class="btn btn-info"><i
                                                             class="fa fa-eye" aria-hidden="true"></i>
 
-                                                    </a>
+                                                    </a> --}}
+                                                    <button class="btn btn-info" data-toggle="modal" data-target="#myModal3"
+                                                        onclick="get_info('{{ $item->id }}')"><i
+                                                            class="fa fa-eye"></i></button>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -222,7 +225,7 @@
     </div>
 
     <div class="modal" id="myModal3">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
 
                 <!-- Modal Header -->
@@ -232,33 +235,22 @@
                 </div>
 
                 <!-- Modal body -->
-                <div class="modal-body ">
+                <div class="modal-body" style="max-height: 500px;overflow: auto" >
                     <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">المبلغ</th>
-                            <th scope="col">المتجر</th>
-                            <th scope="col">المشهور</th>
-                            <th scope="col">التاريخ </th>
+                            <th >#</th>
+                            <th  >المتجر</th>
+                            <th style="  width: 31% !important" >المشهور</th>
+                            <th  style="width: 1% !important">المبلغ</th>
+                            <th  style="width: 1% !important">الخصم من الكود</th>
+                            <th >التاريخ </th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>1000</td>
-                            <td>متجر قيس</td>
-                            <td>islam </td>
-
-                            <td>09-08-2022</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>300</td>
-                            <td>متجر قيس</td>
-                            <td>islam </td>
-                            <td>07-08-2022</td>
-                          </tr>
+                        <tbody id="company_edit">
+                            
+                         
+                       
                           
                         </tbody>
                       </table>
@@ -286,5 +278,29 @@
                 'error'
             )
         });
+        function get_info(id) {
+
+
+            $("#myModal13").show();
+
+            // $('#staticBackdrop').modal();
+            $('.c-preloader').show();
+
+            $.ajax({
+                type: 'post',
+                url: "{{ route('get_wallet_order') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'id': id
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    $('#company_edit').html(data);
+
+
+                }
+            });
+
+            }
     </script>
 @endsection
