@@ -51,7 +51,7 @@ class UserController extends Controller
 
 
             auth()->login($user, true);
-            Cookie::queue('user_type', "famous", 360);
+            Cookie::queue('user_type', "famous", 1400);
 
             return response()->json(['status' => true, 'redirecturl' => route('famous-dashboard')]);
         } else {
@@ -67,7 +67,7 @@ class UserController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            Cookie::queue('user_type', "Admin", 360);
+            Cookie::queue('user_type', "Admin", 1400);
             return redirect('/dashboard/home');
         } else {
             return redirect()->back()->with(['error' => 'البيانات غير متطابقة مع سجلاتنا']);
