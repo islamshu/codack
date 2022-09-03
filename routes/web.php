@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::post('get_form_stores', 'App\Http\Controllers\StoresController@get_form_stores')->name('get_form_stores');
     Route::post('get_form_country', 'App\Http\Controllers\CountryController@get_form_country')->name('get_form_country');
     Route::post('get_form_code', 'App\Http\Controllers\CodeController@get_form_code')->name('get_form_code');
-
+    Route::post('get_waalet_transfare','App\Http\Controllers\CodeController@wallet_transfare')->name('get_waalet_transfare');
     
 
     

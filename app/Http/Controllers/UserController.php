@@ -21,6 +21,7 @@ use App\Notifications\ChangeOrder;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use Cookie;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -50,6 +51,7 @@ class UserController extends Controller
 
 
             auth()->login($user, true);
+            Cookie::queue('user_type', "famous", 360);
 
             return response()->json(['status' => true, 'redirecturl' => route('famous-dashboard')]);
         } else {
@@ -65,6 +67,7 @@ class UserController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
+            Cookie::queue('user_type', "Admin", 360);
             return redirect('/dashboard/home');
         } else {
             return redirect()->back()->with(['error' => 'البيانات غير متطابقة مع سجلاتنا']);
@@ -310,6 +313,7 @@ class UserController extends Controller
             auth()->logout();
             return redirect()->route('admin_login');
         } else {
+            auth()->logout();
             return redirect()->route('famous_login');
         }
     }

@@ -941,13 +941,15 @@
                                             <td>{{ @$item->store->title }}</td>
                                             <td>{{ @$item->famous->name }}</td>
                                             <td>{{ $item->code }}</td>
-                                            <td>{{ get_total_mount_code($item->id) }} </td>
+                                            <td>{{ get_total_famous_code_api($item->id) }} </td>
                                             <td>0</td>
                                             <td>0</td>
                                             <td>0</td>
                                             <td>
-                                                
-                                                <a data-toggle="modal" data-target="#myModal20" class="btn btn-info"><i class="fa fa-cog" aria-hidden="true"></i>
+                                                <button class="btn btn-info" data-toggle="modal" data-target="#myModal20"
+                                                        onclick="get_wallet('{{ $item->id }}')"><i
+                                                            class="fa fa-eye"></i></button>
+                                                {{-- <a data-toggle="modal"    onclick="make('{{ $item->id }}')" data-target="#myModal20" class="btn btn-info"><i class="fa fa-cog" aria-hidden="true"></i> --}}
                                                     
                                                 </a>
                                             </td>
@@ -978,43 +980,11 @@
             </div>
 
             <!-- Modal body -->
-            <div class="modal-body ">
-                <form id="send_bank">
-                    @csrf
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email"> قيمة التحويل    :</label>
-                                <input type="number" value="1500" readonly min="1000" class="form-control" name="amount">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email">  اسم البنك  :</label>
-                                <input type="text" class="form-control" value="{{@ auth()->user()->famous->bank->bank_name }}" required name="bank_name" id="email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email"> رقم الحساب       :</label>
-                                <input type="number" class="form-control" required value="{{@ auth()->user()->famous->bank->account_nubmer }}" name="account_number" id="email">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email">   الاسم بالبنك  :</label>
-                                <input type="text" class="form-control" required value="{{@ auth()->user()->famous->bank->account_name }}" name="account_name" id="email">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <button type="submit" class="btn btn-default">ارسال</button>
-                </form>
-
+           
+            <div  class="modal-body " id="company_edit"> 
+                <div class="c-preloader text-center p-3">
+                    <i class="las la-spinner la-spin la-3x"></i>
+                </div>
             </div>
 
 
@@ -1115,14 +1085,7 @@
 });
 </script>
 <script>
-         $(document).on('click', '#error', function(e) {
-        var price = {{ get_general_value('min_wallet') }};
-        swal(
-            'خطأ!',
-            'لا يمكن سحب مبلغ اقل من ' + price + '  ريال',
-            'error'
-        )
-    });
+  
     $('#select_is_famous').change(function() {
             let selval = $('#select_is_famous').val();
            if(selval== 2){
@@ -1543,6 +1506,30 @@
 
             $('#myModalsocail').modal('show')
     });
+    function get_wallet(id) {
+
+
+            $("#myModal20").show();
+
+            // $('#staticBackdrop').modal();
+            $('.c-preloader').show();
+
+            $.ajax({
+                type: 'post',
+                url: "{{ route('get_waalet_transfare') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'id': id
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    $('#company_edit').html(data);
+
+
+                }
+            });
+
+        }
        
 
     </script>

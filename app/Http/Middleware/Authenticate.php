@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Auth;
+use Cookie;
 
 class Authenticate extends Middleware
 {
@@ -14,8 +16,18 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            // return route('admin_login');
+        if(Auth::check()){
+            return $next($request);
+        }else{
+          if(Cookie::get('user_type') == 'Admin'){
+            return '/admin-login';
+          }else{
+            return '/login'; // for users
+
+          }
+
+
         }
+
     }
 }

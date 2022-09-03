@@ -43,6 +43,7 @@ function get_total_mount_code($id){
     $total = $data['total_amount_use'];
     return $total;
 }
+
 function get_total_system_code_api($id){
     $code = Code::find($id);
     $api = $code->store->api_link."?code=".$code->code;

@@ -144,6 +144,20 @@ class CodeController extends Controller
      * @param  \App\Models\Code  $code
      * @return \Illuminate\Http\Response
      */
+    public function wallet_transfare(Request $request)
+    {
+        $code = Code::find($request->id);
+        $total = $code->total_famous - ($code->total_trans + $code->total_pending);
+        $total = 4000;
+        if($total >= get_general_value('min_wallet') ){
+            $error = 'success';
+        }else{
+            $error = 'error';
+  
+        }
+
+        return view('dashboard.wallet.transfer')->with('code',$code)->with('total',$total)->with('error',$error);
+    }
     public function destroy($id)
     {
         $code = Code::find($id);
