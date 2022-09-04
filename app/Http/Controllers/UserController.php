@@ -37,12 +37,20 @@ class UserController extends Controller
     public function famous_login_post(Request $request)
     {
         $user = User::where('phone', $request->phone)->first();
+        $famous = $user->famous;
+        if($famous){
+
+        
         if ($user) {
             $meesage = 'رمز التحقق هو ' . $user->otp;
+            
             return response()->json(['status' => true, 'message' => $meesage, 'phone' => $request->phone]);
         } else {
             return response()->json(['status' => false, 'message' => 'لم يتم العثور على رقم الهاتف']);
         }
+    }else {
+        return response()->json(['status' => false, 'message' => 'لم يتم العثور على رقم الهاتف']);
+    }
     }
     public function check_otp(Request $request)
     {
