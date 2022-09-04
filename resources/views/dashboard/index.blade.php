@@ -336,7 +336,7 @@
         
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger closemodal" data-dismiss="modal">اغلاق</button>
+                            <button type="button" class="btn btn-danger delete-confirm closemodal" data-dismiss="modal">اغلاق</button>
                         </div>
         
                     </div>
@@ -403,7 +403,7 @@
         
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                            <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
                         </div>
         
                     </div>
@@ -457,7 +457,7 @@
         
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                            <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
                         </div>
         
                     </div>
@@ -539,7 +539,7 @@
             
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                            <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
                         </div>
             
                     </div>
@@ -601,7 +601,7 @@
             
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                            <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
                         </div>
             
                     </div>
@@ -774,7 +774,7 @@
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                                    <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
                                 </div>
 
                             </div>
@@ -990,7 +990,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
             </div>
 
         </div>
@@ -1029,7 +1029,7 @@
                 let form =` <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email"> <img src="{{ asset('uploads/') }}` + icon + `" width="50" height="50" alt=""></label>
-                                <button class="btn btn-danger remove_button" style="margin-right: 67%;
+                                <button class="btn btn-danger delete-confirm remove_button" style="margin-right: 67%;
                                     margin-bottom: 17px;" ><i class="fa fa-trash "></i></button>
                                 <input type="text" required name="` + nameinput + `" 
                                     class="form-control" id="instagram">
@@ -1430,7 +1430,7 @@
 
                     </div>
                     <div class="col-md-2">
-                            <button type="button" class="remove_button btn btn-danger " title="Remove field"><i class="fa fa-trash"></i></button>
+                            <button type="button" class="remove_button btn btn-danger delete-confirm " title="Remove field"><i class="fa fa-trash"></i></button>
                     </div>
                     </span>
                     `;

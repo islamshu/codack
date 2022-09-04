@@ -260,7 +260,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                    <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
                 </div>
 
             </div>

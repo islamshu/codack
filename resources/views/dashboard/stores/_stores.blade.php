@@ -12,7 +12,7 @@
         onclick="make('{{ $store->id }}')"><i class="fa fa-edit"></i></button>
         <form style="display: inline" action="{{ route('stores.destroy',$store->id) }}" method="post">
             @method('delete') @csrf
-            <button type="submit"  class="btn btn-danger"><i
+            <button type="submit"  class="btn btn-danger delete-confirm"><i
                     class="fa fa-trash"></i></button>
         </form>
         @else

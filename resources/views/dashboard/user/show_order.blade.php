@@ -63,7 +63,7 @@
                                                 <input type="hidden" name="code_id" value="{{ $order->code_id }}">
                                                 <input type="hidden" name="amount" value="{{$order->amount }}">
 
-                                        <button   class="btn btn-info delete-confirm"  type="submit" >تأكيد موافقة التحويل  </i></button>
+                                        <button   class="btn btn-info confirm-back"  type="submit" >تأكيد موافقة التحويل  </i></button>
                                     </form>   
                                     </div>
                                     </div>
@@ -96,7 +96,7 @@
 
             }
         });
-        $('.delete-confirm').click(function(event) {
+        $('.confirm-back').click(function(event) {
             var form = $(this).closest("form");
             var name = $(this).data("name");
             event.preventDefault();

@@ -90,7 +90,7 @@
                                                     <form style="display: inline"
                                                         action="{{ route('codes.destroy', $item->id) }}" method="post">
                                                         @method('delete') @csrf
-                                                        <button type="submit" class="btn btn-danger"><i
+                                                        <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                 class="fa fa-trash"></i></button>
                                                     </form>
                                                 </td>
@@ -261,7 +261,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">اغلاق</button>
+                    <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
                 </div>
 
             </div>

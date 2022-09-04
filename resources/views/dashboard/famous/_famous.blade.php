@@ -12,7 +12,7 @@
             action="{{ route('famous.destroy', $item->id) }}"
             method="post">
             @method('delete') @csrf
-            <button type="submit" class="btn btn-danger"><i
+            <button type="submit" class="btn btn-danger delete-confirm"><i
                     class="fa fa-trash"></i></button>
         </form>
     </td>
