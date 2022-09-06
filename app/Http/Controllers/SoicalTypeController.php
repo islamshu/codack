@@ -35,6 +35,7 @@ class SoicalTypeController extends Controller
         $count = SoicalType::count() ;
         return view('dashboard.soical._soical')->with('soical',$soical)->with('key',$count);
     }
+   
     public function store_socail_for_famous(Request $request)
     {
         $request->validate([

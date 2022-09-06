@@ -70,7 +70,7 @@ class FamousController extends Controller
             'name' => 'required',
             'country_id' => 'required',
             'phone' => 'required|unique:famouses,phone|unique:users,phone',
-            'email' => 'email|required|unique:famouses,email|unique:users,phone',
+            'email' => 'email|required|unique:famouses,email|unique:users,email',
             'professional_license_number' => 'required',
             'is_famous' => 'required',
             'famoustype_id' => 'required',
