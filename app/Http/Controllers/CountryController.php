@@ -73,7 +73,6 @@ class CountryController extends Controller
     {
         $store = Country::find($request->id);
         return view('dashboard.country.edit')->with('country',$store);
-
     }
     public function update_country(Request $request,$id){
         $request->validate([
@@ -98,6 +97,5 @@ class CountryController extends Controller
         $country = Country::find($id);
         $country->delete();
         return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
-
     }
 }

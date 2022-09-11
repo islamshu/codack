@@ -71,13 +71,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email"> رقم الحساب الجديد       :</label>
-                                                    <input type="number" class="form-control"  required value="{{old('account_name')}}" name="account_name" >
+                                                    <input type="number" class="form-control"  required value="{{old('account_number')}}" name="account_number" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="email">    اسم صاحب الحساب    :</label>
-                                                    <input type="text" class="form-control" required value="{{old('account_number')}}" name="account_number">
+                                                    <input type="text" class="form-control" required value="{{old('account_name')}}" name="account_name">
                                                 </div>
                                             </div>
                                         </div>

@@ -504,6 +504,11 @@
                                     <input type="text" name="title_en" required class="form-control" value="{{ old('title_en') }}"
                                         id="title_en">
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label for="commercial_register">رابط الربط للمتجر (API)    :<span class="required">*</span></label>
+                                    <input type="text"  name="api_link"
+                                        value="{{ old('api_link') }}" class="form-control" id="api_link">
+                                </div>
                            
                                 <div class="form-group col-md-6">
                                     <label for="commercial_register">رقم السجل التجاري:</label>
@@ -532,6 +537,7 @@
         
                                 <button class="btn btn-info" type="submit">اضافة </i></button>
                             </form>
+
             
                         </div>
             
