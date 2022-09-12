@@ -52,7 +52,7 @@ function get_total_system_code_api($id){
         return '_';
     }
     $data = $response->json()['data'];
-    $total = $code->store->benift;
+    $total =get_total_benefit($id);;
 
     return ($total*$code->system_percentage)/100;
 }
@@ -89,7 +89,7 @@ function get_total_famous_code_api($id){
     $code->start_at = date('Y-m-d', strtotime($data['start_date']));
     $code->end_at   =   date('Y-m-d', strtotime($data['end_date']));
     $total = get_total_benefit($id);
-    
+
     
     $code->benefit_percentage = $code->store->benift;
     $code->total_famous = ($total*$code->famous_percentage)/100;
