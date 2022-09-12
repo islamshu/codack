@@ -187,6 +187,13 @@
                             <input type="text"  name="api_link"
                                 value="{{ old('api_link') }}" class="form-control" id="api_link">
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="benift">   فائدة استخدام الكود    :<span class="required">*</span></label>
+                            <input type="text"  name="benift"
+                                value="{{ old('benift') }}" class="form-control" id="benift">
+                        </div>
+
+                        
                    
                         <div class="form-group col-md-6">
                             <label for="commercial_register">رقم السجل التجاري:</label>

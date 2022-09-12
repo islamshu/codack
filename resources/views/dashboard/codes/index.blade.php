@@ -181,27 +181,16 @@
                                 </div>
                             </div>
                         </div>
+                      <input type="hidden" name="benefit_percentage" value="0">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email"> فايدة استخدام الكود :</label>
-                                    <fieldset class="form-group position-relative">
-                                        <input type="text" name="benefit_percentage" required
-                                            class="form-control form-control-lg input-lg" id="iconLeft3">
-                                        <div class="form-control-position phoneicon"
-                                            style="margin-top: -3px;display: flex">
-                                            %
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
+                            
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email"> نسبة كودك :</label>
                                     <fieldset class="form-group position-relative">
 
-                                        <input type="text" name="system_percentage" required
-                                            class="form-control form-control-lg input-lg" id="iconLeft3">
+                                        <input type="number" max="100" min="0" readonly name="system_percentage" required
+                                            class="form-control form-control-lg input-lg" id="system_percentage">
                                         <div class="form-control-position phoneicon"
                                             style="margin-top: -3px;display: flex">
                                             %
@@ -209,15 +198,14 @@
                                     </fieldset>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
+                     
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email"> نسبة المشهور :</label>
                                     <fieldset class="form-group position-relative">
 
-                                        <input type="text" name="famous_percentage" required
-                                            class="form-control form-control-lg input-lg" id="iconLeft3">
+                                        <input type="number" max="100" min="0"  name="famous_percentage" required
+                                            class="form-control form-control-lg input-lg" id="famous_percentage">
                                         <div class="form-control-position phoneicon"
                                             style="margin-top: -3px;display: flex">
                                             %
@@ -295,6 +283,10 @@
 @endsection
 @section('script')
     <script>
+        $('#famous_percentage').change(function(){
+            var numb_code = 100- $(this).val();
+            $('#system_percentage').val(numb_code);
+        });
         $('#sendform').on('submit', function(e) {
             e.preventDefault();
 

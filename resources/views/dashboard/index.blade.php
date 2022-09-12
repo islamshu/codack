@@ -509,6 +509,11 @@
                                     <input type="text"  name="api_link"
                                         value="{{ old('api_link') }}" class="form-control" id="api_link">
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label for="benift">   فائدة استخدام الكود    :<span class="required">*</span></label>
+                                    <input type="text"  name="benift"
+                                        value="{{ old('benift') }}" class="form-control" id="benift">
+                                </div>
                            
                                 <div class="form-group col-md-6">
                                     <label for="commercial_register">رقم السجل التجاري:</label>
@@ -645,7 +650,7 @@
                                         <td>{{ @$item->code  }}</td>
                                         <td>{{ @$item->famous->name }}</td>
                                         <td>{{ @$item->discount_percentage }}</td>
-                                        <td>{{ @$item->benefit_percentage }}</td>
+                                        <td>{{ @$item->store->benift }}</td>
                                         <td>{{ @$item->system_percentage }}</td>
                                         <td>{{ @$item->famous_percentage }}</td>
                                     </tr> 

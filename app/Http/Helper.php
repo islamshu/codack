@@ -52,8 +52,29 @@ function get_total_system_code_api($id){
         return '_';
     }
     $data = $response->json()['data'];
-    $total = $data['total_amount_use'];
+    $total = $code->store->benift;
+
     return ($total*$code->system_percentage)/100;
+}
+function get_total_benefit($id){
+    $code = Code::find($id);
+    $api = $code->store->api_link."?code=".$code->code;
+    $response = Http::get($api);
+    if($response->json()['status']['HTTP_code'] == 400){
+        return '_';
+    }
+
+    $data = $response->json()['data'];
+    $code->total = $data['total_amount_use'];
+    $code->start_at = date('Y-m-d', strtotime($data['start_date']));
+    $code->end_at   =   date('Y-m-d', strtotime($data['end_date']));
+    $total = $data['total_amount_use'];
+    $code->benefit_percentage = $code->store->benift;
+    $benift = ($code->store->benift *$total)/100;
+
+    $code->save();
+
+    return $benift;
 }
 function get_total_famous_code_api($id){
     $code = Code::find($id);
@@ -67,13 +88,15 @@ function get_total_famous_code_api($id){
     $code->total = $data['total_amount_use'];
     $code->start_at = date('Y-m-d', strtotime($data['start_date']));
     $code->end_at   =   date('Y-m-d', strtotime($data['end_date']));
-    $total = $data['total_amount_use'];
+    $total =     $total = $code->store->benift;
+    $code->benefit_percentage = $code->store->benift;
     $code->total_famous = ($total*$code->famous_percentage)/100;
     $code->total_system = ($total*$code->system_percentage)/100;
     $code->save();
 
     return ($total*$code->famous_percentage)/100;
 }
+
 function active_code_count(){
     $code = Code::where('start_at' ,'<=', Carbon::now()->format('Y-m-d'))->where('end_at' ,'>=', Carbon::now()->format('Y-m-d'))->count();
     return $code;

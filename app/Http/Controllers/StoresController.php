@@ -43,7 +43,8 @@ class StoresController extends Controller
             'title_ar' => 'required',
             'title_en' => 'required',
             'image' => 'required',
-            'api_link'=>'required'
+            'api_link'=>'required',
+            'benift'=>'required'
         ]);
         $store = new Stores();
         $store->title = ['ar' => $request->title_ar, 'en' => $request->title_en];
@@ -53,6 +54,7 @@ class StoresController extends Controller
         $store->android = $request->android;
         $store->ios = $request->ios;
         $store->api_link=  $request->api_link;
+        $store->benift=  $request->benift;
         $store->added_by = auth()->id();
         $store->save();
         $count = Stores::count();
@@ -98,7 +100,8 @@ class StoresController extends Controller
         $request->validate([
             'title_ar' => 'required',
             'title_en' => 'required',
-            'api_link'=>'required'
+            'api_link'=>'required',
+            'benift'=>'required'
         ]);
         $store = Stores::find($id);
         if ($request->image != null) {
@@ -109,6 +112,7 @@ class StoresController extends Controller
         $store->android = $request->android;
         $store->ios = $request->ios;
         $store->api_link=  $request->api_link;
+        $store->benift=  $request->benift;
         $store->commercial_register = $request->commercial_register;
         $store->save();
         return $store;
@@ -118,7 +122,8 @@ class StoresController extends Controller
         $request->validate([
             'title_ar' => 'required',
             'title_en' => 'required',
-            'api_link'=>'required'
+            'api_link'=>'required',
+            'benift'=>'required'
 
         ]);
         $store = Stores::find($id);
@@ -130,7 +135,7 @@ class StoresController extends Controller
         $store->android = $request->android;
         $store->ios = $request->ios;
         $store->api_link=  $request->api_link;
-
+        $store->benift=  $request->benift;
         $store->commercial_register = $request->commercial_register;
         $store->save();
         return $store;
