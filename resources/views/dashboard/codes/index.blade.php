@@ -65,7 +65,7 @@
                                                 <td>{{ @$item->famous->name }} </td>
                                                 <td>{{ $item->discount_percentage }}</td>
                                                 @if (auth()->user()->hasRole('Admin'))
-                                                    <td> {{ get_total_benefit($item->id) }}</td>
+                                                    <td> {{ get_total_benefit($item->id) }} ريال</td>
                                                     <td>
                                                         {{ get_total_system_code_api($item->id) }}
                                                     </td>

@@ -650,7 +650,7 @@
                                         <td>{{ @$item->code  }}</td>
                                         <td>{{ @$item->famous->name }}</td>
                                         <td>{{ @$item->discount_percentage }}</td>
-                                        <td>{{ @$item->store->benift }}</td>
+                                        <td>{{ @$item->store->benift }} %</td>
                                         <td>{{ @$item->system_percentage }}</td>
                                         <td>{{ @$item->famous_percentage }}</td>
                                     </tr> 
