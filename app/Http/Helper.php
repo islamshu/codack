@@ -88,7 +88,9 @@ function get_total_famous_code_api($id){
     $code->total = $data['total_amount_use'];
     $code->start_at = date('Y-m-d', strtotime($data['start_date']));
     $code->end_at   =   date('Y-m-d', strtotime($data['end_date']));
-    $total =     $total = $code->store->benift;
+    $total = get_total_benefit($id);
+    
+    
     $code->benefit_percentage = $code->store->benift;
     $code->total_famous = ($total*$code->famous_percentage)/100;
     $code->total_system = ($total*$code->system_percentage)/100;
