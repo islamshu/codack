@@ -745,6 +745,22 @@
                                                 </div>
                                             </div>
                                           <input type="hidden" id="benefit" name="benefit_percentage" >
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="email"> فائدة استخدام الكود  :</label>
+                                                    <fieldset class="form-group position-relative">
+                    
+                                                        <input type="number" max="100" min="0" readonly
+                                                            class="form-control form-control-lg input-lg" id="penifet_new">
+                                                        <div class="form-control-position phoneicon"
+                                                            style="margin-top: -3px;display: flex">
+                                                            ريال
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                          </div>
                                             <div class="row">
                                                 
                                                 <div class="col-md-6">
@@ -1651,6 +1667,8 @@
             $("#codechange").val('');
             $("#start_at").val('');
             $("#end_at").val('');
+            $('#penifet_new').val('');
+            $('#benefit').val('');
 
             $("#discount_code").val('');
 
@@ -1694,7 +1712,7 @@
                         $('#start_at').val(data.start_at);
                         $('#end_at').val(data.end_at);
                         $('#benefit').val(data.beneif);
-
+                        $('#penifet_new').val(data.benift_new)
                     }
 
 

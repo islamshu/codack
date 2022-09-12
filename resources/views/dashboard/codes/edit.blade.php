@@ -56,6 +56,22 @@
     </div>
     <input type="hidden" id="benefit_edit" value="{{ $code->discount_percentage}}" name="benefit_percentage">
     <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email"> فائدة استخدام الكود  :</label>
+                <fieldset class="form-group position-relative">
+
+                    <input type="number" max="100" min="0" readonly
+                        class="form-control form-control-lg input-lg" value="{{ get_total_benefit($code->id) }}" id="penifet_new_edit">
+                    <div class="form-control-position phoneicon"
+                        style="margin-top: -3px;display: flex">
+                        ريال
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+      </div>
+    <div class="row">
        
         <div class="col-md-6">
             <div class="form-group">
@@ -169,6 +185,9 @@
         $("#start_at_edit").val('');
         $("#end_at_edit").val('');
         $("#discount_code_edit").val('');
+        $('penifet_new_edit').val('');
+        $('benefit_edit').val('');
+
         $('#add_code_edit').attr("disabled", true);
     });
     $("#codechange_edit").change(function() {
@@ -197,9 +216,12 @@
                         'error'
                     );
                     $('#add_code_edit').attr("disabled", true);
-                    $('#discount_code_edit').val('');
-                    $('#start_at_edit').val('');
-                    $('#end_at_edit').val('');
+                    $("#codechange_edit").val('');
+                    $("#start_at_edit").val('');
+                    $("#end_at_edit").val('');
+                    $("#discount_code_edit").val('');
+                    $('penifet_new_edit').val();
+                    $('benefit_edit').val();
 
                 } else if (data.status == 'true') {
                     swal(
@@ -212,6 +234,7 @@
                     $('#start_at_edit').val(data.start_at);
                     $('#end_at_edit').val(data.end_at);
                     $('#benefit_edit').val(data.beneif);
+                    $("#discount_code_edit").val(data.benift_new);
 
 
                 }

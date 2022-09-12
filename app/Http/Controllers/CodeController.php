@@ -70,8 +70,10 @@ class CodeController extends Controller
     public function check_code(Request $request){
         $store = Stores::find($request->store);
         $api = $store->api_link."?code=".$request->code;
+
     try{                
         $response =  Http::get($api);
+
         if($response->json()['status']['HTTP_code'] == 400){
             return response()->json(['status'=>'false','message'=>"هذا الكود خاطيء"]);
         }else{
@@ -79,8 +81,12 @@ class CodeController extends Controller
             $start_at = date('Y-m-d', strtotime($response->json()['data']['start_date']));
             $end_at = date('Y-m-d', strtotime($response->json()['data']['end_date']));
             $beneif = $store->benift;
+            $total =$response->json()['data']['total_amount_use'];
+            $benift_new = ($store->benift *$total)/100;
 
-            return response()->json(['status'=>'true','beneif'=>$beneif,'discount'=>$code,'start_at'=>$start_at,'end_at'=>$end_at,'message'=>"تم التحقق من الكود "]);
+
+
+            return response()->json(['status'=>'true','beneif'=>$beneif,'benift_new'=>$benift_new,'discount'=>$code,'start_at'=>$start_at,'end_at'=>$end_at,'message'=>"تم التحقق من الكود "]);
 
         }
 
