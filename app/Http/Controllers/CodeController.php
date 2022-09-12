@@ -78,8 +78,9 @@ class CodeController extends Controller
             $code = $response->json()['data']['discount'];
             $start_at = date('Y-m-d', strtotime($response->json()['data']['start_date']));
             $end_at = date('Y-m-d', strtotime($response->json()['data']['end_date']));
+            $beneif = $store->benift;
 
-            return response()->json(['status'=>'true','discount'=>$code,'start_at'=>$start_at,'end_at'=>$end_at,'message'=>"تم التحقق من الكود "]);
+            return response()->json(['status'=>'true','beneif'=>$beneif,'discount'=>$code,'start_at'=>$start_at,'end_at'=>$end_at,'message'=>"تم التحقق من الكود "]);
 
         }
 

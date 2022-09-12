@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    <input type="hidden" value="0" name="benefit_percentage">
+    <input type="hidden" id="benefit_edit" value="{{ $code->discount_percentage}}" name="benefit_percentage">
     <div class="row">
        
         <div class="col-md-6">
@@ -211,6 +211,8 @@
                     $('#discount_code_edit').val(data.discount);
                     $('#start_at_edit').val(data.start_at);
                     $('#end_at_edit').val(data.end_at);
+                    $('#benefit_edit').val(data.beneif);
+
 
                 }
 

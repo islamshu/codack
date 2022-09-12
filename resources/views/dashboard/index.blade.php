@@ -687,100 +687,127 @@
                                 <!-- Modal body -->
                                 <div class="modal-body ">
 
-                                    <form action="">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="email"> المتجر :</label>
-                                                    <select name="" class="form-control" id=">
-                                                    <option value=">متجر قيس</option>
-                                                    <option value=">متجر اناس</option>
-                                                    <option value=">متجر فور ايفر</option>
-                                
-                                                </select>
+                                    <div class="modal-body ">
+                                        <form id="sendform">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email"> المتجر :</label>
+                                                        <select name="store_id" required class="form-control" id="select_store">
+                                                            <option value="" selected disabled>اختر المتجر</option>
+                    
+                                                            @foreach (App\Models\Stores::get() as $item)
+                                                                <option value="{{ $item->id }}">{{ $item->title }} </option>
+                                                            @endforeach
+                    
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email"> المشهور :</label>
+                                                        @if (auth()->user()->hasRole('Admin'))
+                                                            <select name="famous_id" required class="form-control">
+                                                                <option value="" selected disabled>اختر المشهور </option>
+                    
+                                                                @foreach (App\Models\Famous::get() as $item)
+                                                                    <option value="{{ $item->id }}">{{ $item->name }} </option>
+                                                                @endforeach
+                                                            </select>
+                                                        @else
+                                                            <input type="hidden" name="famous_id" value="{{ auth()->user()->famous->id }}"
+                                                                readonly class="form-control" id="email">
+                                                            <input type="text" class="form-control" readonly
+                                                                value="{{ auth()->user()->famous->name }}" id="">
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="email"> المشهور :</label>
-                                                    <select name="" class="form-control" id=">
-                                                    <option value=">محمود </option>
-                                                    <option value=">ايهاب </option>
-                                                    <option value=">خالد  </option>
-                                                    <option value=">محمد  </option>
-                                                    <option value=">سالم  </option>
-                                
-                                                </select>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email"> اسم كود الخصم :</label>
+                                                        <input type="text" required name="code" class="form-control" id="codechange">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email"> نسبة كود الخصم :</label>
+                                                        <fieldset class="form-group position-relative">
+                                                            <input type="text" name="discount_percentage" required
+                                                                class="form-control form-control-lg input-lg" value="" readonly id="discount_code">
+                                                            <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
+                                                                %
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="email"> اسم كود الخصم  :</label>
-                                                    <input type="text" class="form-control" id="email">
+                                          <input type="hidden" id="benefit" name="benefit_percentage" >
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email"> نسبة كودك :</label>
+                                                        <fieldset class="form-group position-relative">
+                    
+                                                            <input type="number" max="100" min="0" readonly name="system_percentage" required
+                                                                class="form-control form-control-lg input-lg" id="system_percentage">
+                                                            <div class="form-control-position phoneicon"
+                                                                style="margin-top: -3px;display: flex">
+                                                                %
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
                                                 </div>
+                                         
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email"> نسبة المشهور :</label>
+                                                        <fieldset class="form-group position-relative">
+                    
+                                                            <input type="number" max="100" min="0"  name="famous_percentage" required
+                                                                class="form-control form-control-lg input-lg" id="famous_percentage">
+                                                            <div class="form-control-position phoneicon"
+                                                                style="margin-top: -3px;display: flex">
+                                                                %
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                    
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="email"> نسبة كود الخصم :</label>
-                                                    <!-- <input type="text" class="form-control percentage" value="%" id="email"> -->
-                                                    <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder="">
-                                                        <div class="form-control-position">
-                                                            %
-                                                        </div>
-
-                                                    </fieldset>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email"> تاريخ البداية  :</label>
+                                                        <fieldset class="form-group position-relative">
+                    
+                                                            <input type="date" readonly name="start_at" required
+                                                                class="form-control form-control-lg input-lg" id="start_at">
+                                                            
+                                                        </fieldset>
+                                                    </div>
                                                 </div>
-                                        </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email"> تاريخ النهاية  :</label>
+                                                        <fieldset class="form-group position-relative">
+                    
+                                                            <input type="date" readonly name="end_at" required
+                                                                class="form-control form-control-lg input-lg" id="end_at">
+                                                            
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                    
+                                            </div>
+                    
+                                            <button type="submit" disabled id="add_code" class="btn btn-info">اضافة</button>
+                                        </form>
+                    
                                     </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="email"> فايدة استخدام الكود     :</label>
-                                                    <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder="">
-                                                        <div class="form-control-position">
-                                                            %
-                                                        </div>
-
-                                                    </fieldset>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="email"> نسبة كودك  :</label>
-                                                    <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" placeholder="">
-                                                        <div class="form-control-position">
-                                                            %
-                                                        </div>
-
-                                                    </fieldset>
-                                                </div>
-                                          
-                                        </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="email"> نسبة المشهور     :</label>
-                                                    <fieldset class="form-group position-relative has-icon-left">
-                                                        <input step="5" max="100" min="5" type="number" class="form-control form-control-lg input-lg" id="iconLeft2" >
-                                                        <div class="form-control-position">
-                                                            %
-                                                        </div>
-
-                                                    </fieldset>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        
-
-                                        <button type="submit" class="btn btn-default">اضافة</button>
-                                    </form>
                                 </div>
 
                                 <!-- Modal footer -->
@@ -1543,6 +1570,140 @@
         }
        
 
+    </script>
+    <script>
+        $('#famous_percentage').change(function(){
+            var numb_code = 100- $(this).val();
+            $('#system_percentage').val(numb_code);
+        });
+        $('#sendform').on('submit', function(e) {
+            e.preventDefault();
+
+            var frm = $('#sendform');
+            var formData = new FormData(frm[0]);
+
+            var data = $(this).serialize();
+
+            $.ajax({
+                url: "{{ route('codes.store') }}",
+                type: "post",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    // var table = $('#stores').DataTable();
+
+                    var t = $('#storestable').DataTable();
+                    const tr = $(data);
+                    t.row.add(tr).draw(false);
+
+
+                    document.getElementById("sendform").reset();
+                    $('#myModal3').modal('hide')
+                    swal(
+                        '',
+                        ' تم الاضافة بنجاح ',
+                        'success'
+                    )
+
+
+
+                },
+                error: function(data) {
+                    var errors = data.responseJSON;
+                    var errors = data.responseJSON;
+                    errorsHtml = '<div class="alert alert-danger"><ul>';
+                    $.each(errors.errors, function(k, v) {
+                        errorsHtml += '<li>' + v + '</li>';
+                    });
+                    errorsHtml += '</ul></di>';
+                    $('#form-errors').html(errorsHtml);
+                },
+            });
+        });
+
+
+        function make(id) {
+            $("#myModal4").show();
+
+            // $('#staticBackdrop').modal();
+            $('.c-preloader').show();
+
+            $.ajax({
+                type: 'post',
+                url: "{{ route('get_form_code') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'id': id
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    $('#company_edit').html(data);
+
+
+                }
+            });
+
+        }
+    </script>
+       <script>
+        $('#select_store').change(function() {
+            $("#codechange").val('');
+            $("#start_at").val('');
+            $("#end_at").val('');
+
+            $("#discount_code").val('');
+
+            $('#add_code').attr("disabled", true);
+
+        });
+        $("#codechange").change(function() {
+            var store = $('#select_store').val();
+            if (store == null) {
+                $("#codechange").val('');
+                swal(
+                    '',
+                    ' يرجى اختيار المتجر اولا   ',
+                    'error'
+                )
+            }
+            var code = $("#codechange").val();
+            $.ajax({
+                url: "{{ route('check_code') }}",
+                type: "get",
+                data: {
+                    store: store,
+                    code: code
+                },
+
+                success: function(data) {
+                    if (data.status == 'false') {
+                        swal(
+                            '',
+                            data.message,
+                            'error'
+                        )
+                    } else if (data.status == 'true') {
+                        swal(
+                            '',
+                            data.message,
+                            'success'
+                        );
+                        $('#add_code').attr("disabled", false);
+                        $('#discount_code').val(data.discount);
+                        $('#start_at').val(data.start_at);
+                        $('#end_at').val(data.end_at);
+                        $('#benefit').val(data.beneif);
+
+                    }
+
+
+                },
+                error: function(data) {
+
+                },
+            });
+        });
     </script>
     
 @endsection

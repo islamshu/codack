@@ -37,8 +37,17 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="benift">   فائدة استخدام الكود    :<span class="required">*</span></label>
-                <input type="text"  name="benift"
-                    value="{{ $store->benift }}" class="form-control" id="benift">
+                
+                    <fieldset class="form-group position-relative">
+
+                            <input type="number"  name="benift"
+                            value="{{ $store->benift }}" class="form-control" id="benift">
+                            <div class="form-control-position phoneicon"
+                                style="margin-top: -3px;display: flex">
+                                %
+                            </div>
+                        </fieldset>
+                    
             </div>
             <div class="form-group col-md-6">
                 <label for="commercial_register">الموقع الاكتروني :</label>

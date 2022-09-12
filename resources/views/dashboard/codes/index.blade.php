@@ -65,7 +65,7 @@
                                                 <td>{{ @$item->famous->name }} </td>
                                                 <td>{{ $item->discount_percentage }}</td>
                                                 @if (auth()->user()->hasRole('Admin'))
-                                                    <td> {{ $item->benefit_percentage }}</td>
+                                                    <td> {{ get_total_benefit($item->id) }}</td>
                                                     <td>
                                                         {{ get_total_system_code_api($item->id) }}
                                                     </td>
@@ -181,7 +181,7 @@
                                 </div>
                             </div>
                         </div>
-                      <input type="hidden" name="benefit_percentage" value="0">
+                      <input type="hidden" id="benefit" name="benefit_percentage" >
                         <div class="row">
                             
                             <div class="col-md-6">
@@ -415,6 +415,7 @@
                         $('#discount_code').val(data.discount);
                         $('#start_at').val(data.start_at);
                         $('#end_at').val(data.end_at);
+                        $('#benefit').val(data.beneif);
 
                     }
 
