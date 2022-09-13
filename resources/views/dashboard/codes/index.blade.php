@@ -203,10 +203,10 @@
                             
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email"> نسبة كودك :</label>
+                                    <label for="email"> ايراد كودك:</label>
                                     <fieldset class="form-group position-relative">
 
-                                        <input type="number" max="100" min="0" readonly name="system_percentage" required
+                                        <input type="number" max="100" min="0"  name="system_percentage" required
                                             class="form-control form-control-lg input-lg" id="system_percentage">
                                         <div class="form-control-position phoneicon"
                                             style="margin-top: -3px;display: flex">
@@ -218,7 +218,7 @@
                      
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email"> نسبة المشهور :</label>
+                                    <label for="email"> ايراد المشهور:</label>
                                     <fieldset class="form-group position-relative">
 
                                         <input type="number" max="100" min="0"  name="famous_percentage" required
@@ -304,6 +304,12 @@
             var numb_code = 100- $(this).val();
             $('#system_percentage').val(numb_code);
         });
+        $('#system_percentage').change(function(){
+            var numb_code = 100- $(this).val();
+            $('#famous_percentage').val(numb_code);
+        });
+
+        
         $('#sendform').on('submit', function(e) {
             e.preventDefault();
 

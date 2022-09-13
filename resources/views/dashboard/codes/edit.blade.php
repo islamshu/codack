@@ -75,10 +75,10 @@
        
         <div class="col-md-6">
             <div class="form-group">
-                <label for="email"> نسبة كودك  :</label>
+                <label for="email"> ايراد كودك :</label>
                 <fieldset class="form-group position-relative">
 
-                    <input type="text" name="system_percentage" max="100" min="0"  readonly value="{{ $code->system_percentage }}"required class="form-control form-control-lg input-lg"
+                    <input type="text" name="system_percentage" max="100" min="0"   value="{{ $code->system_percentage }}"required class="form-control form-control-lg input-lg"
                         id="system_percentage_edit">
                     <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
                         %
@@ -89,7 +89,7 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="email"> نسبة المشهور     :</label>
+                <label for="email"> ايراد المشهور    :</label>
                 <fieldset class="form-group position-relative">
 
                     <input type="text" name="famous_percentage" max="100" min="0" value="{{ $code->famous_percentage }}" required class="form-control form-control-lg input-lg"
@@ -179,6 +179,14 @@
     $('#famous_percentage_edit').change(function(){
             var numb_code = 100- $(this).val();
             $('#system_percentage_edit').val(numb_code);
+        });
+        $('#system_percentage_edit').change(function(){
+            var numb_code = 100- $(this).val();
+            $('#famous_percentage_edit').val(numb_code);
+        });
+        $('#system_percentage').change(function(){
+            var numb_code = 100- $(this).val();
+            $('#famous_percentage').val(numb_code);
         });
     $('#select_store_edit').change(function() {
         $("#codechange_edit").val('');
