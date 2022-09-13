@@ -203,7 +203,7 @@
                             
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email"> ايراد كودك:</label>
+                                    <label for="email"> نسبة كودك:</label>
                                     <fieldset class="form-group position-relative">
 
                                         <input type="number" max="100" min="0"  name="system_percentage" required
@@ -218,7 +218,7 @@
                      
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email"> ايراد المشهور:</label>
+                                    <label for="email"> نسبة المشهور:</label>
                                     <fieldset class="form-group position-relative">
 
                                         <input type="number" max="100" min="0"  name="famous_percentage" required
@@ -326,8 +326,7 @@
                 contentType: false,
                 success: function(data) {
                     // var table = $('#stores').DataTable();
-                    alert(data);
-                    alert('ff');
+                
                     var t = $('#storestable').DataTable();
                     const tr = $(data);
                     t.row.add(tr).draw(false);
