@@ -46,7 +46,13 @@ class CodeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $exsitst = Code::where('famous_id',$request->famous_id)->where('code',$request->code)->where('store_id',$request->store_id)->first();
+        if($exsitst){
+            return response()->json(['message'=>"هذا الكود مستخدم من قبل"], 500);
+
+        }
+
         $country = new Code();
         $country->code =$request->code;
         $country->store_id =$request->store_id;
@@ -131,6 +137,11 @@ class CodeController extends Controller
      */
     public function update_code(Request $request)
     {
+        $exsitst = Code::where('famous_id',$request->famous_id)->where('code',$request->code)->where('store_id',$request->store_id)->first();
+        if($exsitst){
+            return response()->json(['message'=>"هذا الكود مستخدم من قبل"], 500);
+
+        }
         $country = Code::find($request->id);
         $country->code =$request->code;
         $country->store_id =$request->store_id;

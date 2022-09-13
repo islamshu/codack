@@ -326,7 +326,8 @@
                 contentType: false,
                 success: function(data) {
                     // var table = $('#stores').DataTable();
-
+                    alert(data);
+                    alert('ff');
                     var t = $('#storestable').DataTable();
                     const tr = $(data);
                     t.row.add(tr).draw(false);
@@ -344,14 +345,12 @@
 
                 },
                 error: function(data) {
-                    var errors = data.responseJSON;
-                    var errors = data.responseJSON;
-                    errorsHtml = '<div class="alert alert-danger"><ul>';
-                    $.each(errors.errors, function(k, v) {
-                        errorsHtml += '<li>' + v + '</li>';
-                    });
-                    errorsHtml += '</ul></di>';
-                    $('#form-errors').html(errorsHtml);
+                    
+                    swal(
+                        '',
+                        'لايمكن اضافة الكود للمشهور',
+                        'error'
+                    )
                 },
             });
         });

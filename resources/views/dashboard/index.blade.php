@@ -1630,14 +1630,11 @@
 
                 },
                 error: function(data) {
-                    var errors = data.responseJSON;
-                    var errors = data.responseJSON;
-                    errorsHtml = '<div class="alert alert-danger"><ul>';
-                    $.each(errors.errors, function(k, v) {
-                        errorsHtml += '<li>' + v + '</li>';
-                    });
-                    errorsHtml += '</ul></di>';
-                    $('#form-errors').html(errorsHtml);
+                    swal(
+                        '',
+                        'لايمكن اضافة الكود للمشهور',
+                        'error'
+                    )
                 },
             });
         });
