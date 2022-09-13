@@ -75,7 +75,10 @@
                                                 <th>أسم المتجر</th>
                                                 <th > اكواد  الفغالة</th>
                                                 <th> اكواد  المنتهية</th>
+                                                @if(auth()->user()->hasRole('Admin'))
+
                                                 <th >اضيفت بواسطة</th>
+                                                @endif
                                                 <th>الاجراءات</th>
                                     
                                             </tr>
@@ -88,7 +91,10 @@
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ App\Models\Code::where('store_id',$item->id)->where('status',1)->count() }} </td>
                                                     <td>{{ App\Models\Code::where('store_id',$item->id)->where('status',0)->count() }}</td>
+                                                    @if(auth()->user()->hasRole('Admin'))
+
                                                     <td>{{ @$item->user->hasRole('Admin') ?'الادارة' : @$item->user->name }}</td>
+                                                    @endif
                                                     <td>
                                                         @if(auth()->user()->hasRole('Admin'))
 
