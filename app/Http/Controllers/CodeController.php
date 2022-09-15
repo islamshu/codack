@@ -47,11 +47,11 @@ class CodeController extends Controller
         return true;
     }
     public function store_total(Request $request){
-        dd($request->all());
         $store = new AddTotal();
         $store->amount = $request->amount;
         $store->code_id = $request->code_id;
         $store->save();
+        dd($store);
         return true;
     }
 
