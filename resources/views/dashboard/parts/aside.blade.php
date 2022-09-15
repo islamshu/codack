@@ -72,6 +72,19 @@
 
               </ul>
           </li>
+          <li class="nav-item has-sub ">
+            <a href="#">
+                <i class="fa fa-bookmark"></i>
+                <span class="menu-title">هيستوري </span></a>
+            <ul class="menu-content" style="">
+                <li class="is-shown"><a class="menu-item" href="{{ route('history_for_total') }}">  جميع عملية الاضاف على العمليات يدويا</a>
+                </li>
+                <li class="is-shown"><a class="menu-item" href="{{ route('history_for_income') }}"> جميع عملية الاضاف على الايرادات يدويا </a>
+                </li>
+
+
+            </ul>
+        </li>
           {{-- <li class="nav-item has-sub ">
             <a href="#">
                 <i class="fa fa-bookmark"></i>

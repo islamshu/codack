@@ -39,8 +39,9 @@ Route::group(['middleware' => ['role:Admin'], 'prefix' => 'dashboard'], function
     Route::post('get_form_income', 'App\Http\Controllers\CodeController@get_form_income')->name('get_form_income');
     Route::post('store_income','App\Http\Controllers\CodeController@store_income')->name('store_income');
     Route::post('copoun/{id}/update', 'App\Http\Controllers\CouponController@update_copoun')->name('update_copoun');
+    Route::get('history_for_total','App\Http\Controllers\CodeController@history_for_total')->name('history_for_total');
+    Route::get('history_for_income','App\Http\Controllers\CodeController@history_for_income')->name('history_for_income');
 
-    
 
     
 

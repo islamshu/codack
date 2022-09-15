@@ -53,6 +53,15 @@ class CodeController extends Controller
         $store->save();
         return true;
     }
+    public function history_for_income(){
+        $codes = AddIncome::orderBy('id','desc')->get();
+        return view('dashboard.codes.total_income')->with('codes',$codes);
+    }
+    public function history_for_total(){
+        $codes = AddTotal::orderBy('id','desc')->get();
+        return view('dashboard.codes.total_income')->with('codes',$codes);
+    }
+    
 
     /**
      * Show the form for creating a new resource.
