@@ -33,25 +33,29 @@
               </ul>
           </li>
           
-        <li class="nav-item has-sub ">
+        {{-- <li class="nav-item has-sub ">
             <a href="#">
                 <i class="fa fa-info-circle"></i>
                 <span class="menu-title"> بيانات الحسابات البنكية للمشاهير </span></a>
             <ul class="menu-content" style="">
-                <li class="is-shown"><a class="menu-item" href="{{ route('changes.index') }}">طلبات التغير  </a>
+                <li class="is-shown"><a class="menu-item" href="{{ route('changes.index') }}">طلبات تعديل بيانات الحساب البنكي   </a>
                 </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('my_order_admin') }}">جميع طلبات التحويل </a>
+                <li class="is-shown"><a class="menu-item" href="{{ route('my_order_admin') }}">طلبات التحويل للحساب البنكي   </a>
                 </li>
 
 
             </ul>
-        </li>
+        </li> --}}
         <li class="nav-item has-sub ">
             <a href="#">
                 <i class="fa fa-archive"></i>
                 <span class="menu-title">المحفظة</span></a>
             <ul class="menu-content" style="">
-                <li class="is-shown"><a class="menu-item" href="{{ route('wallet') }}">المحفظة </a>
+                <li class="is-shown"><a class="menu-item" href="{{ route('wallet') }}">عمليات الايداع للمشاهير </a>
+                </li>
+                <li class="is-shown"><a class="menu-item" href="{{ route('changes.index') }}">طلبات تعديل بيانات الحساب البنكي   </a>
+                </li>
+                <li class="is-shown"><a class="menu-item" href="{{ route('my_order_admin') }}">طلبات التحويل للحساب البنكي   </a>
                 </li>
 
 
