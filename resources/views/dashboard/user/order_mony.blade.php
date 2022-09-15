@@ -67,7 +67,7 @@
                                                         @if($item->status ==1)
                                                     
                                                         <a href="{{ asset('uploads/'.$item->image) }}" target="_blank">
-                                                            <i class="fa fa-eye"></i>
+                                                           معاينة
                                                           </a>
                                                           @else
                                                           _ 

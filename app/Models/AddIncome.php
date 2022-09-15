@@ -9,5 +9,14 @@ class AddIncome extends Model
 {
     use HasFactory;
     protected $guareded=[];
+    /**
+     * Get the user that owns the AddIncome
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
 }

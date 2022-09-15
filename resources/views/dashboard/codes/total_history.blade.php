@@ -24,7 +24,6 @@
                                 @include('dashboard.parts._success')
 
                                
-
                                 <table class="table table-striped table-bordered zero-configuration" id="storestable">
 
 
@@ -37,6 +36,7 @@
                                             <th> القيمة المضافة</th>
                                             <th>اسم المشهور</th>
                                             <th>اسم المتجر</th>
+                                            <th>البريد الاكتروني لمن قام بالتعديل</th>
                                             <th> تاريخ الاضافة </th>
                                           
 
@@ -53,9 +53,10 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td> {{$code->code }}</td>
                                                 <td> {{$item->amount }}</td>
-                                                <td>{{ $code->famous->name }}</td>
-                                                <td>{{ $code->store->title }}</td>
+                                                <td>{{ @$code->famous->name }}</td>
+                                                <td>{{ @$code->store->title }}</td>
                                                 <td>{{ $item->created_at }}</td>
+                                                <td>{{ @$item->user->name }}</td>
 
                                              
                                             </tr>
