@@ -69,10 +69,19 @@
                                                 <td>{{ $item->discount_percentage }}</td>
 
                                                 <td>{{ @$item->famous->name }} </td>
-                                                <td> {{ get_total_code($item->id) + @$item->add_total->sum('amount') }}  &nbsp; &nbsp;<button class="btn btn-info"  data-toggle="modal" data-target="#myModal5"
-                                                    onclick="add_total('{{ $item->id }}')"><i class="fa fa-plus"></i></button></td>
-                                                <td> {{ get_total_mount_code($item->id) + @$item->add_income->sum('amount') }} &nbsp; <button class="btn btn-info"  data-toggle="modal" data-target="#myModal6"
-                                                    onclick="add_income('{{ $item->id }}')"><i class="fa fa-plus"></i></button></td>
+                                                <td> {{ get_total_code($item->id)}}  &nbsp; &nbsp;
+                                                    @if (auth()->user()->hasRole('Admin'))
+
+                                                    <button class="btn btn-info"  data-toggle="modal" data-target="#myModal5"
+                                                    onclick="add_total('{{ $item->id }}')"><i class="fa fa-plus"></i></button>
+                                                    @endif
+                                                </td>
+                                                <td> {{ get_total_mount_code($item->id) }} &nbsp; 
+                                                    @if (auth()->user()->hasRole('Admin'))
+                                                    <button class="btn btn-info"  data-toggle="modal" data-target="#myModal6"
+                                                    onclick="add_income('{{ $item->id }}')"><i class="fa fa-plus"></i></button>
+                                                    @endif
+                                                </td>
 
                                                 @if (auth()->user()->hasRole('Admin'))
                                                     <td> {{ get_total_benefit($item->id) }} ريال</td>
