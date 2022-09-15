@@ -57,13 +57,16 @@
                                         </div>
                                         </div>
                                         <div class="col-md-6" id="btnn" style="display: none">
-                                            <form action="{{ route('status_ok_order') }}" method="post">
+                                         <form action="{{ route('status_ok_order') }}" method="post" enctype="multipart/form-data">
                                                 @csrf
-                                                <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                                <input type="hidden"  name="order_id" value="{{ $order->id }}">
                                                 <input type="hidden" name="code_id" value="{{ $order->code_id }}">
                                                 <input type="hidden" name="amount" value="{{$order->amount }}">
+                                                <label for="">ارفض صورة التحويل</label>
+                                                <input type="file" id="fileupload" class="form-control" required name="image" >
+                                                <br>
+                                                <input type="submit" class="btn btn-info confirm-back" value="تأكيد موافقة التحويل ">
 
-                                        <button   class="btn btn-info confirm-back"  type="submit" >تأكيد موافقة التحويل  </i></button>
                                     </form>   
                                     </div>
                                     </div>
@@ -99,8 +102,22 @@
         $('.confirm-back').click(function(event) {
             var form = $(this).closest("form");
             var name = $(this).data("name");
+            var file = document.getElementById("fileupload");
+            var imageupload =1;
+            if(file.files.length == 0 ){
+                var imageupload =0;
+            }
             event.preventDefault();
-            swal({
+
+            if(imageupload == 0 ){
+                swal({
+                    title: `يجب ارفاق صورة التحويل`,
+                    icon: "error",
+                })
+                event.preventDefault();
+
+            }else{
+                swal({
                     title: `هل متأكد من الموافقة على التحويل  ؟`,
                     icon: "warning",
                     buttons: true,
@@ -111,6 +128,10 @@
                         form.submit();
                     }
                 });
+            }
+            
+
+            
         });
         
     </script>

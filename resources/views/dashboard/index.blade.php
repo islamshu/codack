@@ -1569,7 +1569,7 @@
             $('.c-preloader').show();
 
             $.ajax({
-                type: 'post',
+                type: 'get',
                 url: "{{ route('get_waalet_transfare') }}",
                 data: {
                     "_token": "{{ csrf_token() }}",

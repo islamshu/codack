@@ -1,4 +1,17 @@
 @extends('layouts.backend')
+@section('css')
+    <style>
+        .imageshow{
+    width:50px;
+    height:50px;
+}
+
+.imageshow:hover{
+    width:1000px;
+    height:700px;
+}
+</style>
+@endsection
 @section('content')
     <div class="content-wrapper">
         <div class="content-body">
@@ -45,7 +58,16 @@
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
                                                    <td>{{ $item->amount }}</td>
-                                                    <td><button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button></td>
+                                                    <td><button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button>
+                                                        @if($item->status ==1)
+                                                        صورة التحويل >>
+                                                    
+                                                        <a href="{{ asset('uploads/'.$item->image) }}" target="_blank">
+                                                            <img width="100" height="80" border="0" align="center"  src="{{ asset('uploads/'.$item->image) }}" alt=""/>
+                                                          </a>
+
+                                                    @endif
+                                                    </td>
                                                     <td>{{ $item->created_at->format('Y-m-d') }}</td>
 
                                                     

@@ -248,7 +248,9 @@ class UserController extends Controller
     }
     public function status_ok_order(Request $request){
         $order = MoneyOrder::find($request->order_id);
+      
         $order->status = 1;
+        $order->image =  $request->image->store('bank_transfer');
         
         $order->save();
         $code = Code::find($request->code_id);
