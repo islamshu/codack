@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class AddIncome extends Model
 {
     use HasFactory;
+    protected $guareded=[];
+
 }

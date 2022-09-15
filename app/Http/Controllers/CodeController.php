@@ -51,7 +51,6 @@ class CodeController extends Controller
         $store->amount = $request->amount;
         $store->code_id = $request->code_id;
         $store->save();
-        dd($store);
         return true;
     }
 

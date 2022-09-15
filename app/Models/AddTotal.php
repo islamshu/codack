@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class AddTotal extends Model
 {
     use HasFactory;
+    protected $guareded=[];
+
 }
