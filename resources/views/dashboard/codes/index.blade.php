@@ -37,17 +37,21 @@
                                             <th>#</th>
                                             <th> اسم المتجر</th>
                                             <th> اسم كود الخصم </th>
-                                            <th>اسم المشهور</th>
                                             <th>نسبة كود الخصم</th>
+                                            <th>اسم المشهور</th>
+                                            <th>عدد العمليات </th>
+                                            <th>اجمالي الايرادات </th>
+
+
                                             @if (auth()->user()->hasRole('Admin'))
                                                 <th>فايدة اسخدام الكود</th>
+                                                <th>الفايدة من المبيعات  </th>
+
                                                 <th>ايراد كودك</th>
                                                 <th>ايراد المشهور</th>
                                             @else
                                                 <th>ايراد المشهور</th>
                                             @endif
-                                            <th>عدد العمليات </th>
-                                            <th>اجمالي الايرادات </th>
 
 
                                             <th>الاجراءات</th>
@@ -62,10 +66,16 @@
 
                                                 {{-- <td> {{ get_total_code($item->id) }}</td> --}}
                                                 <td>{{ $item->code }}</td>
-                                                <td>{{ @$item->famous->name }} </td>
                                                 <td>{{ $item->discount_percentage }}</td>
+
+                                                <td>{{ @$item->famous->name }} </td>
+                                                <td> {{ get_total_code($item->id) }}</td>
+                                                <td> {{ get_total_mount_code($item->id) }}</td>
+
                                                 @if (auth()->user()->hasRole('Admin'))
                                                     <td> {{ get_total_benefit($item->id) }} ريال</td>
+                                                    <td> {{$item->benefit_percentage}}%</td>
+
                                                     <td>
                                                         {{ get_total_system_code_api($item->id) }}
                                                     </td>
@@ -77,8 +87,6 @@
                                                         {{ get_total_famous_code_api($item->id) }}
                                                     </td>
                                                 @endif
-                                                <td> {{ get_total_code($item->id) }}</td>
-                                                <td> {{ get_total_mount_code($item->id) }}</td>
 
 
                                                 <td>
