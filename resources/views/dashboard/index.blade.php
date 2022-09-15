@@ -998,7 +998,7 @@
                                             <td>{{ get_total_famous_code_api($item->id) }} </td>
                                             <td>{{ $item->total_trans }}</td>
                                             <td>{{  $item->total_pending }}</td>
-                                            <td>{{ get_total_famous_code_api($item->id) - $item->total_trans  }}</td>
+                                            <td>{{ get_total_famous_code_api($item->id) - $item->total_trans - $item->total_pending   }}</td>
                                             <td>
                                                 <button class="btn btn-info" data-toggle="modal" data-target="#myModal20"
                                                         onclick="get_wallet('{{ $item->id }}')"><i
