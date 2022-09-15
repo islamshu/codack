@@ -28,7 +28,7 @@ function get_total_code($id){
         return '_';
     }
     $data = $response->json()['data'];
-    $count = $data['count'];
+    $count = $data['count'] +@$code->add_total->sum('amount');
     return $count;
 
 }
@@ -40,7 +40,7 @@ function get_total_mount_code($id){
         return '_';
     }
     $data = $response->json()['data'];
-    $total = $data['total_amount_use'];
+    $total = $data['total_amount_use'] + @$code->add_income->sum('amount');
     return $total;
 }
 
@@ -65,10 +65,9 @@ function get_total_benefit($id){
     }
 
     $data = $response->json()['data'];
-    $code->total = $data['total_amount_use'];
     $code->start_at = date('Y-m-d', strtotime($data['start_date']));
     $code->end_at   =   date('Y-m-d', strtotime($data['end_date']));
-    $total = $data['total_amount_use'];
+    $total = $data['total_amount_use']+ @$code->add_income->sum('amount');
     $code->benefit_percentage = $code->store->benift;
     $benift = ($code->store->benift *$total)/100;
 
@@ -85,7 +84,7 @@ function get_total_famous_code_api($id){
     }
 
     $data = $response->json()['data'];
-    $code->total = $data['total_amount_use'];
+    $code->total = $data['total_amount_use']+@$code->add_income->sum('amount');
     $code->start_at = date('Y-m-d', strtotime($data['start_date']));
     $code->end_at   =   date('Y-m-d', strtotime($data['end_date']));
     $total = get_total_benefit($id);

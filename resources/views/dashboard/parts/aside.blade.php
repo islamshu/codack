@@ -74,15 +74,13 @@
           </li>
           <li class="nav-item has-sub ">
             <a href="#">
-                <i class="fa fa-bookmark"></i>
-                <span class="menu-title">هيستوري </span></a>
+                <i class="fa fa-calendar"></i>
+                <span class="menu-title">سجل العمليات </span></a>
             <ul class="menu-content" style="">
-                <li class="is-shown"><a class="menu-item" href="{{ route('history_for_total') }}">  جميع عملية الاضاف على العمليات يدويا</a>
+                <li class="is-shown"><a class="menu-item" href="{{ route('history_for_total') }}">  الاضافة على العمليات    </a>
                 </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('history_for_income') }}"> جميع عملية الاضاف على الايرادات يدويا </a>
+                <li class="is-shown"><a class="menu-item" href="{{ route('history_for_income') }}"> الاضافة على الايرادات</a>
                 </li>
-
-
             </ul>
         </li>
           {{-- <li class="nav-item has-sub ">
