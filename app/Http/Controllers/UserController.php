@@ -247,6 +247,11 @@ class UserController extends Controller
         return view('dashboard.user.show_order')->with('order', MoneyOrder::find($id))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
     }
     public function status_ok_order(Request $request){
+        $code = Code::find($request->code_id);
+        if(!$code){
+            return redirect()->back()->with(['error'=>'الكود التابع لهذا التحويل تم حذفه']);
+        }
+
         $order = MoneyOrder::find($request->order_id);
       
         $order->status = 1;
