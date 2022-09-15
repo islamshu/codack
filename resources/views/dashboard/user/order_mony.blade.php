@@ -50,6 +50,7 @@
                                                 <th>قيمة الطلب    </th>
                                                 <th>الحالة</th>
                                                 <th> التاريخ  </th>
+                                                <th>الاجراءات</th>
 
                                             </tr>
                                         </thead>
@@ -59,16 +60,20 @@
                                                     <td>{{ $key + 1 }}</td>
                                                    <td>{{ $item->amount }}</td>
                                                     <td><button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button>
+                                                     
+                                                    </td>
+                                                    <td>{{ $item->created_at->format('Y-m-d') }}</td>
+                                                    <td>
                                                         @if($item->status ==1)
-                                                        صورة التحويل >>
                                                     
                                                         <a href="{{ asset('uploads/'.$item->image) }}" target="_blank">
                                                             <img width="100" height="80" border="0" align="center"  src="{{ asset('uploads/'.$item->image) }}" alt=""/>
                                                           </a>
+                                                          @else
+                                                          _ 
 
                                                     @endif
                                                     </td>
-                                                    <td>{{ $item->created_at->format('Y-m-d') }}</td>
 
                                                     
                                                 </tr>
