@@ -34,7 +34,10 @@ Route::group(['middleware' => ['role:Admin'], 'prefix' => 'dashboard'], function
     Route::resource('copouns', 'App\Http\Controllers\CouponController');
     Route::get('update_copoun_status', 'App\Http\Controllers\CouponController@updateStatus')->name('copoun.update.status');
     Route::post('get_form_copoun', 'App\Http\Controllers\CouponController@get_form_copoun')->name('get_form_copoun');
-    
+    Route::post('get_form_total', 'App\Http\Controllers\CodeController@get_form_total')->name('get_form_total');
+    Route::post('store_total','App\Http\Controllers\CodeController@store_total')->name('store_total');
+    Route::post('get_form_income', 'App\Http\Controllers\CodeController@get_form_income')->name('get_form_income');
+    Route::post('store_income','App\Http\Controllers\CodeController@store_income')->name('store_income');
     Route::post('copoun/{id}/update', 'App\Http\Controllers\CouponController@update_copoun')->name('update_copoun');
 
     

@@ -69,8 +69,10 @@
                                                 <td>{{ $item->discount_percentage }}</td>
 
                                                 <td>{{ @$item->famous->name }} </td>
-                                                <td> {{ get_total_code($item->id) }}</td>
-                                                <td> {{ get_total_mount_code($item->id) }}</td>
+                                                <td> {{ get_total_code($item->id) + @$item->add_total->sum('amount') }}  &nbsp; &nbsp;<button class="btn btn-info"  data-toggle="modal" data-target="#myModal5"
+                                                    onclick="add_total('{{ $item->id }}')"><i class="fa fa-plus"></i></button></td>
+                                                <td> {{ get_total_mount_code($item->id) + @$item->add_income->sum('amount') }} &nbsp; <button class="btn btn-info"  data-toggle="modal" data-target="#myModal6"
+                                                    onclick="add_income('{{ $item->id }}')"><i class="fa fa-plus"></i></button></td>
 
                                                 @if (auth()->user()->hasRole('Admin'))
                                                     <td> {{ get_total_benefit($item->id) }} ريال</td>
@@ -305,6 +307,54 @@
             </div>
         </div>
     </div>
+    <div class="modal fase " id="myModal5" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="staticBackdropLabel">
+                        اضافة قيم للعمليات </h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="company_edit_total">
+                    <div class="c-preloader text-center p-3">
+                        <i class="las la-spinner la-spin la-3x"></i>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">اغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fase " id="myModal6" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="staticBackdropLabel">
+                        اضافة قيم للايرادات </h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="company_edit_income">
+                    <div class="c-preloader text-center p-3">
+                        <i class="las la-spinner la-spin la-3x"></i>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">اغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('script')
     <script>
@@ -384,6 +434,49 @@
                 }
             });
 
+        }
+        function add_total(id) {
+            $("#myModal5").show();
+
+            // $('#staticBackdrop').modal();
+            $('.c-preloader').show();
+
+            $.ajax({
+                type: 'post',
+                url: "{{ route('get_form_total') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'id': id
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    $('#company_edit_total').html(data);
+
+
+                }
+            });
+
+        }
+        function add_income(id){
+            $("#myModal6").show();
+
+// $('#staticBackdrop').modal();
+            $('.c-preloader').show();
+
+            $.ajax({
+                type: 'post',
+                url: "{{ route('get_form_income') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'id': id
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    $('#company_edit_income').html(data);
+
+
+                }
+            });
         }
     </script>
     <script>

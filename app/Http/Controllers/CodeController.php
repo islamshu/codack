@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AddIncome;
+use App\Models\AddTotal;
 use App\Models\Code;
 use App\Models\Famous;
 use App\Models\Stores;
@@ -27,6 +29,29 @@ class CodeController extends Controller
             $codes = Code::where('famous_id',  auth()->user()->famous->id)->orderBy('id','desc')->get();
         }
         return view('dashboard.codes.index')->with('codes',$codes)->with('famous',Famous::get())->with('stores',Stores::get());
+    }
+    public function get_form_total(Request $request){
+        $id = $request->id;
+        return view('dashboard.codes.add_total')->with('code',$id);
+    }
+    
+    public function get_form_income(Request $request){
+        $id = $request->id;
+        return view('dashboard.codes.add_income')->with('code',$id);
+    }
+    public function store_income(Request $request){
+        $store = new AddIncome();
+        $store->amount = $request->amount;
+        $store->code_id = $request->code_id;
+        $store->save();
+        return true;
+    }
+    public function store_total(Request $request){
+        $store = new AddTotal();
+        $store->amount = $request->amount;
+        $store->code_id = $request->code_id;
+        $store->save();
+        return true;
     }
 
     /**
