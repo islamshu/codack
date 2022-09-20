@@ -74,7 +74,7 @@
               </ul>
           </li>
           <li class="nav-item  ">
-            <a href="{{ route('history_for_total') }}">
+            <a href="{{ route('history_for_income') }}">
                 <i class="fa fa-calendar"></i>
                 <span class="menu-title">سجل العمليات </span></a>
           
