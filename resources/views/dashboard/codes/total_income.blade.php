@@ -34,7 +34,9 @@
                                         <tr>
                                             <th>#</th>
                                             <th> كود الخصم </th>
-                                            <th> القيمة المضافة</th>
+                                            <th>  القيمة المضافة على الاجمالي</th>
+                                            <th>  القيمة المضافة على العمليات</th>
+
                                             <th>اسم المشهور</th>
                                             <th>البريد الاكتروني لمن قام بالتعديل</th>
                                             <th> تاريخ الاضافة </th>
@@ -53,6 +55,8 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td> {{$code->code }}</td>
                                                 <td> {{$item->amount }}</td>
+                                                <td> {{$item->amount_total }}</td>
+
                                                 <td>{{ @$code->famous->name }}</td>
                                                 <td>{{ @$item->user->email }}</td>
 

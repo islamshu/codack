@@ -28,7 +28,7 @@ function get_total_code($id){
         return '_';
     }
     $data = $response->json()['data'];
-    $count = $data['count'] +@$code->add_total->sum('amount');
+    $count = $data['count'] +@$code->add_income->sum('amount_total');
     return $count;
 
 }
