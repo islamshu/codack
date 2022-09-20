@@ -51,13 +51,14 @@
                 <i class="fa fa-archive"></i>
                 <span class="menu-title">المحفظة</span></a>
             <ul class="menu-content" style="">
-                <li class="is-shown"><a class="menu-item" href="{{ route('wallet') }}">عمليات الايداع للمشاهير </a>
+               
+                <li class="is-shown"><a class="menu-item" href="{{ route('my_order_admin') }}">طلبات التحويل للحساب البنكي   </a>
                 </li>
                 <li class="is-shown"><a class="menu-item" href="{{ route('changes.index') }}">طلبات تعديل بيانات الحساب البنكي   </a>
                 </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('my_order_admin') }}">طلبات التحويل للحساب البنكي   </a>
+                <li class="is-shown"><a class="menu-item" href="{{ route('wallet') }}">عمليات الايداع للمشاهير </a>
                 </li>
-
+                
 
             </ul>
         </li>

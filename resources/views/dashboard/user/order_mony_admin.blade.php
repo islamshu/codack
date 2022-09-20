@@ -39,6 +39,7 @@
                                                 <th>قيمة الطلب    </th>
                                                 <th>الحالة</th>
                                                 <th> التاريخ  </th>
+                                                <th>معانية</th>
                                                 <th>الاجراءات</th>
 
                                             </tr>
@@ -51,6 +52,17 @@
                                                    <td>{{ $item->amount }}</td>
                                                     <td><button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button></td>
                                                     <td>{{ $item->created_at->format('Y-m-d') }}</td>
+                                                    <td>
+                                                        @if($item->status ==1)
+                                                    
+                                                        <a href="{{ asset('uploads/'.$item->image) }}" target="_blank">
+                                                           معاينة الحوالة
+                                                          </a>
+                                                          @else
+                                                          _ 
+
+                                                    @endif
+                                                    </td>
                                                     <td>
                                                         <a class="btn btn-info" href="{{ route('show_order_money',$item->id) }}"><i class="fa fa-eye"></i></a>
                                                     </td>
