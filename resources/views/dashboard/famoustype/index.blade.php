@@ -97,7 +97,7 @@
                 </div>
                 <div id="company_edit">
                     <div class="c-preloader text-center p-3">
-                        <i class="las la-spinner la-spin la-3x"></i>
+                        <i class="fa fa-spinner fa-spin fa-3x"></i>
                     </div>
                 </div>
                 <div class="modal-footer">

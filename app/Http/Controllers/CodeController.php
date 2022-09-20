@@ -43,7 +43,7 @@ class CodeController extends Controller
         $store = new AddIncome();
         $store->amount = $request->amount;
         $store->code_id = $request->code_id;
-        $store->amount_total = 0;
+        $store->amount_total = $request->amount_title;
 
         $store->user_id = auth()->id();
 

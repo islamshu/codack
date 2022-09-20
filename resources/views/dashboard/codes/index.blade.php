@@ -72,8 +72,8 @@
                                                 <td> {{ get_total_code($item->id)}}  &nbsp; &nbsp;
                                                     @if (auth()->user()->hasRole('Admin'))
 
-                                                    <button class="btn btn-info"  data-toggle="modal" data-target="#myModal5"
-                                                    onclick="add_total('{{ $item->id }}')"><i class="fa fa-plus"></i></button>
+                                                    <button class="btn btn-info"  data-toggle="modal" data-target="#myModal6"
+                                                    onclick="add_income('{{ $item->id }}')"><i class="fa fa-plus"></i></button>
                                                     @endif
                                                 </td>
                                                 <td> {{ get_total_mount_code($item->id) }} &nbsp; 
@@ -307,7 +307,7 @@
                 </div>
                 <div id="company_edit">
                     <div class="c-preloader text-center p-3">
-                        <i class="las la-spinner la-spin la-3x"></i>
+                        <i class="fa fa-spinner fa-spin fa-3x"></i>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -331,7 +331,7 @@
                 </div>
                 <div id="company_edit_total">
                     <div class="c-preloader text-center p-3">
-                        <i class="las la-spinner la-spin la-3x"></i>
+                        <i class="fa fa-spinner fa-spin fa-3x"></i>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -355,7 +355,7 @@
                 </div>
                 <div id="company_edit_income">
                     <div class="c-preloader text-center p-3">
-                        <i class="las la-spinner la-spin la-3x"></i>
+                        <i class="fa fa-spinner fa-spin fa-3x"></i>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -445,7 +445,7 @@
 
         }
         function add_total(id) {
-            $("#myModal5").show();
+            $("#myModal6").show();
 
             // $('#staticBackdrop').modal();
             $('.c-preloader').show();
