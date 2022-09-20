@@ -73,16 +73,11 @@
 
               </ul>
           </li>
-          <li class="nav-item has-sub ">
-            <a href="#">
+          <li class="nav-item  ">
+            <a href="{{ route('history_for_total') }}">
                 <i class="fa fa-calendar"></i>
                 <span class="menu-title">سجل العمليات </span></a>
-            <ul class="menu-content" style="">
-                <li class="is-shown"><a class="menu-item" href="{{ route('history_for_total') }}">  الاضافة على العمليات    </a>
-                </li>
-                <li class="is-shown"><a class="menu-item" href="{{ route('history_for_income') }}"> الاضافة على الايرادات</a>
-                </li>
-            </ul>
+          
         </li>
           {{-- <li class="nav-item has-sub ">
             <a href="#">
