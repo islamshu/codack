@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">تاريخ الاضافة على الايرادات </h4>
+                            <h4 class="card-title">  سجل العمليات</h4>
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
@@ -34,7 +34,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th> كود الخصم </th>
-                                            <th>  القيمة المضافة على الاجمالي</th>
+                                            <th>  القيمة المضافة على الايرادات</th>
                                             <th>  القيمة المضافة على العمليات</th>
 
                                             <th>اسم المشهور</th>

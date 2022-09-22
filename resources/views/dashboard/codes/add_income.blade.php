@@ -8,16 +8,17 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="email"> القيمة المراد اضافتها على الايرادات :</label>
-               <input type="number" required min="0" class="form-control" name="amount" id="">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
                 <label for="email"> القيمة المراد اضافتها على العمليات :</label>
                <input type="number" required min="0" class="form-control" name="amount_title" id="">
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email"> القيمة المراد اضافتها على الايرادات :</label>
+               <input type="number" required min="0" class="form-control" name="amount" id="">
+            </div>
+        </div>
+       
        
     </div>
    
