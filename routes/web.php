@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::get('wallet', 'App\Http\Controllers\UserController@wallet')->name('wallet');
    
     Route::get('/', function () {
-        return view('dashboard.index');
+        return view('dashboard.part_new.index');
     })->name('famous-dashboard');
     Route::resource('stores', 'App\Http\Controllers\StoresController');
     Route::resource('country', 'App\Http\Controllers\CountryController');

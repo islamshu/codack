@@ -30,4 +30,17 @@ $(function () {
       setLabels(ev.value);
     });
   setLabels($("#ex2").attr("data-value").split(","));
+
+
+
+    // $('.add').click(function(){
+    //     $('body').addClass('blur');
+    // })
+
+
+    $('.stop').click(function(e){
+        e.stopPropagation()
+        e.preventDefault()
+    })
+
 });

@@ -1,173 +1,137 @@
-@extends('layouts.backend')
+@extends('layouts.backend_new')
 @section('content')
-    <div class="content-wrapper">
-        <div class="content-body">
-            <section id="configuration">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">مجالات المشاهير</h4>
-                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                <div class="heading-elements">
-                                    <ul class="list-inline mb-0">
-                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+  
+<div class="row">
 
-                            <div class="card-content collapse show">
-                                <div class="card-body card-dashboard">
-                                    @include('dashboard.parts._error')
-                                    @include('dashboard.parts._success')
-
-                                    <br>
-                                    <a data-toggle="modal" data-target="#myModal" class="btn btn-info mb-2 ">
-                                        اضافة مجال جديد
-                                    </a>
-
-                                    <table class="table table-striped table-bordered zero-configuration" id="storestable">
-
-
-                                        <br>
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>عنوان المجال  </th>
-                                           
-                                                <th>الاجراءات</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody id="stores">
-                                            @foreach ($famoustype as $key => $item)
-                                                <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                 
-                                                    <td>{{ $item->title }} </td>
-
-                                                    <td>
-                                                        @if(auth()->user()->hasRole('Admin'))
-
-                                                        <button class="btn btn-info" data-toggle="modal"
-                                                            data-target="#myModal4" onclick="make('{{ $item->id }}')"><i
-                                                                class="fa fa-edit"></i></button>
-                                                        <form style="display: inline"
-                                                            action="{{ route('famoustype.destroy', $item->id) }}"
-                                                            method="post">
-                                                            @method('delete') @csrf
-                                                            <button type="submit" class="btn btn-danger delete-confirm"><i
-                                                                    class="fa fa-trash"></i></button>
-                                                        </form>
-                                                        @else 
-                                                        _
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                        </tbody>
-
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </div>
+    <div class="col-2">
+      <h2>مجالات المشهور  </h2>
+    </div>
+    <div class="col-2 p-0 ms-auto flex-column flex-center justify-content-between p-4">
+      <a class="btn btn-primary btn-lg w-100 add" data-bs-toggle="modal" data-bs-target="#addStore">
+        <img src="{{asset('new_dash/images/icons/add-vendor.png')}}" alt="" class="me-1" />
+        اضافة مجال
+      </a>
 
     </div>
-    <div class="modal fase " id="myModal4" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
 
-                    <h5 class="modal-title" id="staticBackdropLabel">
-                        تعديل بيانات المجال</h5>
 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div id="company_edit">
-                    <div class="c-preloader text-center p-3">
-                        <i class="fa fa-spinner fa-spin fa-3x"></i>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">اغلاق</button>
-                </div>
-            </div>
-        </div>
+  </div>
+  
+  <div class="content mt-5">
+    <div class="border-top border-secondary">
+        @include('dashboard.parts._error')
+        @include('dashboard.parts._success')
+        <table id="example" class="display compact" style="width:100%" id="storestable">
+
+
+            <br>
+            <thead>
+                <tr>
+                    <th class="text-right">#</th>
+                    <th class="text-right">اسم المجال  </th>
+                    <th class="text-right">الاجراءات</th>
+
+                </tr>
+            </thead>
+            <tbody id="stores">
+                @foreach ($famoustype as $key => $item)
+                    <tr>
+                        <td class="text-right">{{ $key + 1 }}</td>
+                 
+                        <td class="text-right">{{ $item->title }} </td>
+
+                        <td class="text-right">
+                            @if(auth()->user()->hasRole('Admin'))
+                            <button class="btn btn-inf" data-toggle="modal" data-target="#myModal4"
+                            onclick="make('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/edit.png')}}" class="pointer"
+                            alt=""></button>
+                            <form style="display: inline" action="{{ route('famoustype.destroy',$item->id) }}" method="post">
+                                @method('delete') @csrf
+                                <button type="submit"  class="btn  delete-confirm"><img src="{{asset('new_dash/images/icons/delete.png')}}" class="pointer"
+                                    alt=""></button>
+                            </form>
+                            @else 
+                            _
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+
+            </tbody>
+
+        </table>
     </div>
-    <div class="modal" id="myModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title"> اضف مجال جديد </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    
+  </div>
+  <div class="modal fade" id="addStore" tabindex="-1" aria-labelledby="addStoreLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addStoreLabel">
+            <img src="{{asset('new_dash/images/icons/vendors.png')}}" alt="" class="me-1"> إضافة مجال
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div id="form-errors" class="text-center"></div>
+            <div id="form-errors" class="text-center"></div>
+            <div id="success" class="text-center"></div>
+            <form id="sendmemessage">
+                @csrf
+                <div class="input-item">
+                    <label for="">اسم المجال بالعربي <span class="text-danger">*</span></label>
+                    <input type="text" name="title_ar" required class="form-control"
+                        value="{{ old('title_ar') }}" id="title_ar">
                 </div>
-
-                <!-- Modal body -->
-                <div class="modal-body ">
-                    <div id="form-errors" class="text-center"></div>
-                    <div id="success" class="text-center"></div>
-                    <form id="sendmemessage">
-                        @csrf
-
-                        
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="email"> اسم المجال بالعربية : <span class="required">*</span></label>
-                                <input type="text" name="title_ar" required class="form-control"
-                                    value="{{ old('title_ar') }}" id="title_ar">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="email"> اسم المجال بالانجليزية: <span class="required">*</span></label>
-                                <input type="text" name="title_en" required class="form-control"
-                                    value="{{ old('title_en') }}" id="title_en">
-                            </div>
-
-                            
-                           
-
-
-                            
-                        </div>
-
-
-                        <button class="btn btn-info" type="submit">اضافة </i></button>
-                    </form>
-
+            
+                <div class="input-item">
+                    <label for="">اسم المجال بالانجليزي<span class="text-danger">*</span></label>
+                    <input type="text" name="title_en" required class="form-control"
+                        value="{{ old('title_en') }}" id="title_en">
                 </div>
-
-
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
+            
+                
+              
+            
+                <div class="input-item">
+                    <button class="btn text-end add-store">+ اضافة منصة</button>
                 </div>
-
-            </div>
+            
+            </form>
         </div>
 
+      </div>
     </div>
+  </div>
+
+
+
+  <div class="modal fade" id="updateStore" class="modal-open" tabindex="-1" aria-labelledby="updateStoreLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateStoreLabel">
+            <img src="{{asset('new_dash/images/icons/vendors.png')}}" alt="" class="me-1"> تعديل متجر
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="company_edit">
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
 @endsection
+
 @section('script')
+
     <script>
         $('#sendmemessage').on('submit', function(e) {
             e.preventDefault();
             var frm = $('#sendmemessage');
             var formData = new FormData(frm[0]);
-
+            
             var data = $(this).serialize();
 
             $.ajax({
@@ -178,19 +142,22 @@
                 contentType: false,
                 success: function(data) {
                     // var table = $('#stores').DataTable();
-
+                   
                     var t = $('#storestable').DataTable();
                     const tr = $(data);
                     t.row.add(tr).draw(false);
-
-
-                    document.getElementById("sendmemessage").reset();
-                    $('#myModal').modal('hide')
-                    swal(
-                        '',
-                        ' تم الاضافة بنجاح ',
-                        'success'
-                    )
+                    
+                    
+                        document.getElementById("sendmemessage").reset();
+                        $('#myModal').modal('hide')
+                        swal(
+                            '',
+                            ' تم الاضافة بنجاح ',
+                            'success'
+                        )
+                        setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
 
 
                 },
@@ -206,13 +173,12 @@
                 },
             });
         });
-
-
+        
+        
         function make(id) {
-            $("#myModal4").show();
-
+            // $("#updateStore").show();
+            $('#updateStore').modal('show');
             // $('#staticBackdrop').modal();
-            $('.c-preloader').show();
 
             $.ajax({
                 type: 'post',
@@ -230,5 +196,6 @@
             });
 
         }
+      
     </script>
 @endsection

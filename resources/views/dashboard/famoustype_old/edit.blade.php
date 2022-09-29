@@ -1,39 +1,27 @@
 <div class="modal-body ">
     <div id="form-errors" class="text-center"></div>
     <div id="success" class="text-center"></div>
-  
     <form id="edit_form">
         @csrf
-        <div class="input-item">
-            <label for="">اسم المنصة بالعربي <span class="text-danger">*</span></label>
-            <input type="text" name="title_ar" required class="form-control"
-                value="{{ $soical->getTranslation('title', 'ar') }}" id="title_ar">
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="email"> اسم المجال بالعربية: <span class="required">*</span></label>
+                <input type="text" name="title_ar" required class="form-control"
+                    value="{{ $famous->getTranslation('title', 'ar') }}" id="title_ar">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email"> اسم المجال بالانجليزية: <span class="required">*</span></label>
+                <input type="text" name="title_en" required class="form-control"
+                    value="{{ $famous->getTranslation('title', 'en') }}" id="title_en">
+            </div>
+
+           
+         
         </div>
-    
-        <div class="input-item">
-            <label for="">اسم المنصة بالانجليزي<span class="text-danger">*</span></label>
-            <input type="text" name="title_en" required class="form-control"
-                value="{{ $soical->getTranslation('title', 'en') }}" id="title_en">
-        </div>
-    
-        
-        <div class="input-item">
-            <label for="file">أيفونة المنصة <span class="text-danger">*</span></label>
-    
-            <label class="custom-file-upload d-block form-control p-0"
-                style="height:46px; direction: ltr;">
-                <input type="file" id="imageedit"  name="icon" />
-                <span class="border h-100 upload-img">رفع صورة <img
-                        src="{{ asset('new_dash/images/icons/upload.png') }}" alt=""
-                        class="me-1"></span> <img src="{{ asset('uploads/'.$soical->icon) }}"
-                    alt="" class="me-1 ms-2 " width="20">
-            </label>
-        </div>
-    
-        <div class="input-item">
-            <button class="btn text-end add-store">+ تعديل المنصة</button>
-        </div>
-    
+
+
+        <button class="btn btn-info" type="submit">تعديل </i></button>
     </form>
 
 </div>
@@ -56,14 +44,12 @@ if (this.files && this.files[0]) {
         var token = "{{ csrf_token() }}";
 
         var formData = new FormData(frm[0]);
-        formData.append('file', $('#imageedit')[0].files[0]);
 
         var data = $(this).serialize();
         e.preventDefault();
 
-        var data = $(this).serialize();
         $.ajax({
-            url: "{{ route('update_soical', $soical->id) }}",
+            url: "{{ route('update_famoustype', $famous->id) }}",
             type: "post",
             data: formData,
             processData: false,

@@ -2,72 +2,72 @@
     <div id="form-errors" class="text-center"></div>
     <div id="success" class="text-center"></div>
     <form id="edit_form">
-        @csrf
-
-        <div class="form-group">
-            <label data-error="wrong" data-success="right" for="form3">شعار المتجر <span
-                    class="required">*</span></label>
-            <input type="file" id="imageedit"  name="image" class="form-control image">
+        @csrf <div class="input-item">
+            <label for="">اسم المتجر بالعربي <span class="text-danger">*</span></label>
+            <input type="text" name="title_ar" required class="form-control"
+                value="{{ $store->getTranslation('title', 'ar') }}" id="title_ar">
         </div>
-        <div class="form-group">
-            <img src="{{ asset('uploads/' . $store->image) }}" style="width: 100px" class="img-thumbnail image-preview"
-                alt="">
+    
+        <div class="input-item">
+            <label for="">اسم المتجر بالانجليزي<span class="text-danger">*</span></label>
+            <input type="text" name="title_en" required class="form-control"
+                value="{{ $store->getTranslation('title', 'en') }}" id="title_en">
         </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="email"> اسم المتجر بالعربية: <span class="required">*</span></label>
-                <input type="text" name="title_ar" required class="form-control"
-                    value="{{ $store->getTranslation('title', 'ar') }}" id="title_ar">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="email"> اسم المتجر بالانجليزية: <span class="required">*</span></label>
-                <input type="text" name="title_en" required class="form-control"
-                    value="{{ $store->getTranslation('title', 'en') }}" id="title_en">
-            </div>
-
-            <div class="form-group col-md-6">
-                <label for="commercial_register">رقم السجل التجاري:</label>
-                <input type="number" name="commercial_register" value="{{ $store->commercial_register }}"
-                    class="form-control" id="commercial_register">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="commercial_register">رابط الربط للمتجر (API)    :<span class="required">*</span></label>
-                <input type="text"  name="api_link"
-                    value="{{ $store->api_link }}" class="form-control" id="api_link">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="benift">   فائدة استخدام الكود    :<span class="required">*</span></label>
-                
-                    <fieldset class="form-group position-relative">
-
-                            <input type="number"  name="benift"
-                            value="{{ $store->benift }}" class="form-control" id="benift">
-                            <div class="form-control-position phoneicon"
-                                style="margin-top: -3px;display: flex">
-                                %
-                            </div>
-                        </fieldset>
-                    
-            </div>
-            <div class="form-group col-md-6">
-                <label for="commercial_register">الموقع الاكتروني :</label>
-                <input type="text" name="website" value="{{ $store->website}}" class="form-control" id="website">
-            </div>
-
-
-            <div class="form-group col-md-6">
-                <label for="commercial_register">رابط تطبيق الاندرويد :</label>
-                <input type="text" name="android" value="{{ $store->android }}" class="form-control" id="android">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="commercial_register">رابط تطبيق الايفون :</label>
-                <input type="text" name="ios" value="{{ $store->ios }}" class="form-control" id="ios">
-            </div>
+    
+        <div class="input-item">
+            <label for="">رابط الربط للمتجر (API) </label>
+            <input type="text" name="api_link" value="{{ $store->api_link }}" class="form-control" id="api_link">
         </div>
-
-
-        <button class="btn btn-info" type="submit">تعديل </i></button>
+    
+        <div class="input-item">
+            <label for="">
+                فائدة استخدام الكود :</label>
+            <input type="number" name="benift" value="{{ $store->benift }}" class="form-control" id="benift">
+        </div>
+    
+        <div class="input-item">
+            <label for="">رقم السجل التجاري</label>
+            <input type="number" name="commercial_register" value="{{ $store->commercial_register }}" class="form-control"
+                id="commercial_register">
+        </div>
+    
+        <div class="input-item">
+            <label for="">الموقع الالكتروني</label>
+            <input type="text" name="website" value="{{ $store->website }}" class="form-control" id="website">
+        </div>
+    
+    
+        <div class="input-item">
+            <label for="">رابط تطبيق الاندرويد</label>
+            <input type="text" name="android" value="{{ $store->android }}" class="form-control" id="android">
+    
+            <img src="{{ asset('new_dash/images/icons/android.png') }}" alt="" class="me-1 android-img">
+        </div>
+    
+        <div class="input-item">
+            <label for="">رابط تطبيق الآيفون</label>
+            <input type="text" name="ios" value="{{ $store->ios }}" class="form-control" id="ios">
+            <img src="{{ asset('new_dash/images/icons/apple.png') }}" alt="" class="me-1 apple-img">
+        </div>
+    
+        <div class="input-item">
+            <label for="file">صورة الشعار<span class="text-danger">*</span></label>
+    
+            <label class="custom-file-upload d-block form-control p-0" style="height:46px; direction: ltr;">
+                <input type="file" id="imageedit"  name="image" />
+                <span class="border h-100 upload-img">رفع صورة <img src="{{ asset('new_dash/images/icons/upload.png') }}"
+                        alt="" class="me-1"></span> <img src="{{ asset('uploads/'.$store->image) }}"
+                    alt="" class="me-1 ms-2 " width="20">
+            </label>
+        </div>
+        <br>
+    
+        <div class="input-item">
+            <button class="btn text-end add-store"> تعديل</button>
+        </div>
+    
     </form>
+    
 
 </div>
 <script>

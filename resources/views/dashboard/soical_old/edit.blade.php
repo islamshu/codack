@@ -1,39 +1,36 @@
 <div class="modal-body ">
     <div id="form-errors" class="text-center"></div>
     <div id="success" class="text-center"></div>
-  
     <form id="edit_form">
         @csrf
-        <div class="input-item">
-            <label for="">اسم المنصة بالعربي <span class="text-danger">*</span></label>
-            <input type="text" name="title_ar" required class="form-control"
-                value="{{ $soical->getTranslation('title', 'ar') }}" id="title_ar">
+
+        <div class="form-group">
+            <label data-error="wrong" data-success="right" for="form3">ايقونة التطبيق  (30*30) <span
+                class="required">*</span></label>
+            <input type="file" id="imageedit"  name="icon" class="form-control image">
         </div>
-    
-        <div class="input-item">
-            <label for="">اسم المنصة بالانجليزي<span class="text-danger">*</span></label>
-            <input type="text" name="title_en" required class="form-control"
-                value="{{ $soical->getTranslation('title', 'en') }}" id="title_en">
+        <div class="form-group">
+            <img src="{{ asset('uploads/' . $soical->icon) }}" style="width: 100px" class="img-thumbnail image-preview"
+                alt="">
         </div>
-    
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="email"> اسم التطبيق بالعربية: <span class="required">*</span></label>
+                <input type="text" name="title_ar" required class="form-control"
+                    value="{{ $soical->getTranslation('title', 'ar') }}" id="title_ar">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email"> اسم التطبيق بالانجليزية: <span class="required">*</span></label>
+                <input type="text" name="title_en" required class="form-control"
+                    value="{{ $soical->getTranslation('title', 'en') }}" id="title_en">
+            </div>
+
         
-        <div class="input-item">
-            <label for="file">أيفونة المنصة <span class="text-danger">*</span></label>
-    
-            <label class="custom-file-upload d-block form-control p-0"
-                style="height:46px; direction: ltr;">
-                <input type="file" id="imageedit"  name="icon" />
-                <span class="border h-100 upload-img">رفع صورة <img
-                        src="{{ asset('new_dash/images/icons/upload.png') }}" alt=""
-                        class="me-1"></span> <img src="{{ asset('uploads/'.$soical->icon) }}"
-                    alt="" class="me-1 ms-2 " width="20">
-            </label>
+         
         </div>
-    
-        <div class="input-item">
-            <button class="btn text-end add-store">+ تعديل المنصة</button>
-        </div>
-    
+
+
+        <button class="btn btn-info" type="submit">تعديل </i></button>
     </form>
 
 </div>

@@ -3,26 +3,23 @@
     <div id="success" class="text-center"></div>
     <form id="edit_form">
         @csrf
-
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="email"> اسم المجال بالعربية: <span class="required">*</span></label>
-                <input type="text" name="title_ar" required class="form-control"
-                    value="{{ $famous->getTranslation('title', 'ar') }}" id="title_ar">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="email"> اسم المجال بالانجليزية: <span class="required">*</span></label>
-                <input type="text" name="title_en" required class="form-control"
-                    value="{{ $famous->getTranslation('title', 'en') }}" id="title_en">
-            </div>
-
-           
-         
+        <div class="input-item">
+            <label for="">اسم المجال بالعربي <span class="text-danger">*</span></label>
+            <input type="text" name="title_ar" required class="form-control"
+                value="{{ $famous->getTranslation('title', 'ar') }}" id="title_ar">
         </div>
+    
+        <div class="input-item">
+            <label for="">اسم المجال بالانجليزي<span class="text-danger">*</span></label>
+            <input type="text" name="title_en" required class="form-control"
+                value="{{ $famous->getTranslation('title', 'en') }}" id="title_en">
+        </div>
+       
 
 
-        <button class="btn btn-info" type="submit">تعديل </i></button>
-    </form>
+        <div class="input-item">
+            <button class="btn text-end add-store">+ تعديل المجال</button>
+        </div>    </form>
 
 </div>
 <script>
