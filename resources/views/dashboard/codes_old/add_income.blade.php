@@ -2,27 +2,29 @@
 <div class="modal-body ">
     <div id="form-errors" class="text-center"></div>
     <div id="success" class="text-center"></div>
-
-    <form id="add_encome_ajax">
-        @csrf
-        <input type="hidden" name="code_id" value="{{ $code }}" id="">
-
-        <div class="input-item">
-          <label for="">القيمة المراد اضافتها على العمليات :</label>
-          <input type="number" required min="0" class="form-control" name="amount_title" id="">
+<form id="add_encome_ajax">
+    @csrf
+    <input type="hidden" name="code_id" value="{{ $code }}" id="">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email"> القيمة المراد اضافتها على العمليات :</label>
+               <input type="number" required min="0" class="form-control" name="amount_title" id="">
+            </div>
         </div>
-
-        <div class="input-item">
-          <label for="">القيمة المراد اضافتها على الايرادات :</label>
-          <input type="number" required min="0" class="form-control" name="amount" id="">
-        </div> 
-
-        <div class="input-item">
-          <button ype="submit" id="add_code_edit" class="btn text-end add-store">اضافة</button>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email"> القيمة المراد اضافتها على الايرادات :</label>
+               <input type="number" required min="0" class="form-control" name="amount" id="">
+            </div>
         </div>
+       
+       
+    </div>
+   
 
-      </form>
-
+    <button type="submit" id="add_code_edit" class="btn btn-info">اضافة</button>
+</form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 

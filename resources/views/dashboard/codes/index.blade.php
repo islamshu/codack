@@ -1,297 +1,289 @@
-@extends('layouts.backend')
+@extends('layouts.backend_new')
 @section('content')
-    <div class="content-body">
-        <section id="configuration">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">اكواد الخصم</h4>
-                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                    <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                    <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                    <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                    <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="card-content collapse show">
-                            <div class="card-body card-dashboard">
-                                @include('dashboard.parts._error')
-                                @include('dashboard.parts._success')
-
-                                <a data-toggle="modal" data-target="#myModal3" class="btn btn-info mb-2 ">
-                                    اضف كود خصم
-                                </a>
-
-                                <table class="table table-striped table-bordered zero-configuration" id="storestable">
-
-
-
-                                    <br>
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th> اسم المتجر</th>
-                                            <th> اسم كود الخصم </th>
-                                            <th>نسبة كود الخصم</th>
-                                            <th>اسم المشهور</th>
-                                            <th>عدد العمليات </th>
-                                            <th>اجمالي الايرادات </th>
-
-
-                                            @if (auth()->user()->hasRole('Admin'))
-                                                <th>فايدة اسخدام الكود</th>
-                                                <th>الفايدة من المبيعات  </th>
-
-                                                <th>ايراد كودك</th>
-                                                <th>ايراد المشهور</th>
-                                            @else
-                                                <th>ايراد المشهور</th>
-                                            @endif
-
-
-                                            <th>الاجراءات</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody id="stores">
-                                        @foreach ($codes as $key => $item)
-                                            <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td> {{ @$item->store->title }}</td>
-
-                                                {{-- <td> {{ get_total_code($item->id) }}</td> --}}
-                                                <td>{{ $item->code }}</td>
-                                                <td>{{ $item->discount_percentage }}</td>
-
-                                                <td>{{ @$item->famous->name }} </td>
-                                                <td> {{ get_total_code($item->id)}}  &nbsp; &nbsp;
-                                                    @if (auth()->user()->hasRole('Admin'))
-
-                                                    <button class="btn btn-info"  data-toggle="modal" data-target="#myModal6"
-                                                    onclick="add_income('{{ $item->id }}')"><i class="fa fa-plus"></i></button>
-                                                    @endif
-                                                </td>
-                                                <td> {{ get_total_mount_code($item->id) }} &nbsp; 
-                                                    @if (auth()->user()->hasRole('Admin'))
-                                                    <button class="btn btn-info"  data-toggle="modal" data-target="#myModal6"
-                                                    onclick="add_income('{{ $item->id }}')"><i class="fa fa-plus"></i></button>
-                                                    @endif
-                                                </td>
-
-                                                @if (auth()->user()->hasRole('Admin'))
-                                                    <td> {{ get_total_benefit($item->id) }} ريال</td>
-                                                    <td> {{$item->benefit_percentage}}%</td>
-
-                                                    <td>
-                                                        {{ get_total_system_code_api($item->id) }}
-                                                    </td>
-                                                    <td>
-                                                        {{ get_total_famous_code_api($item->id) }}
-                                                    </td>
-                                                @else
-                                                    <td>
-                                                        {{ get_total_famous_code_api($item->id) }}
-                                                    </td>
-                                                @endif
-
-
-                                                <td>
-
-
-                                                    <button class="btn btn-info" data-toggle="modal" data-target="#myModal4"
-                                                        onclick="make('{{ $item->id }}')"><i
-                                                            class="fa fa-edit"></i></button>
-                                                    <form style="display: inline"
-                                                        action="{{ route('codes.destroy', $item->id) }}" method="post">
-                                                        @method('delete') @csrf
-                                                        <button type="submit" class="btn btn-danger delete-confirm"><i
-                                                                class="fa fa-trash"></i></button>
-                                                    </form>
-                                                </td>
-
-
-
-                                            </tr>
-                                        @endforeach
-
-                                    </tbody>
-
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+<div class="row">
+    <div class="col-2 p-0 me-auto flex-column flex-center justify-content-between p-4">
+      <h2>اكواد الخصم</h2>
     </div>
-
+    <div class="col-2 p-0 ms-auto flex-column flex-center justify-content-between p-4">
+      <a class="btn btn-primary btn-lg w-100 add" data-bs-toggle="modal" data-bs-target="#addDisCode">
+        <img src="{{asset('new_dash/images/icons/add-vendor.png')}}" alt="" class="me-1" />
+        اضافة كود
+      </a>
     </div>
-    <div class="modal" id="myModal3">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">اضافة كود خصم </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body ">
-                    <form id="sendform">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email"> المتجر :</label>
-                                    <select name="store_id" required class="form-control" id="select_store">
-                                        <option value="" selected disabled>اختر المتجر</option>
-
-                                        @foreach ($stores as $item)
-                                            <option value="{{ $item->id }}">{{ $item->title }} </option>
-                                        @endforeach
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email"> المشهور :</label>
-                                    @if (auth()->user()->hasRole('Admin'))
-                                        <select name="famous_id" required class="form-control">
-                                            <option value="" selected disabled>اختر المشهور </option>
-
-                                            @foreach ($famous as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }} </option>
-                                            @endforeach
-                                        </select>
-                                    @else
-                                        <input type="hidden" name="famous_id" value="{{ auth()->user()->famous->id }}"
-                                            readonly class="form-control" id="email">
-                                        <input type="text" class="form-control" readonly
-                                            value="{{ auth()->user()->famous->name }}" id="">
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email"> اسم كود الخصم :</label>
-                                    <input type="text" required name="code" class="form-control" id="codechange">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email"> نسبة كود الخصم :</label>
-                                    <fieldset class="form-group position-relative">
-                                        <input type="text" name="discount_percentage" required
-                                            class="form-control form-control-lg input-lg" value="" readonly id="discount_code">
-                                        <div class="form-control-position phoneicon" style="margin-top: -3px;display: flex">
-                                            %
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </div>
-                      <input type="hidden" id="benefit" name="benefit_percentage" >
-                      <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email"> فائدة استخدام الكود  :</label>
-                                <fieldset class="form-group position-relative">
-
-                                    <input type="number" max="100" min="0" readonly
-                                        class="form-control form-control-lg input-lg" id="penifet_new">
-                                    <div class="form-control-position phoneicon"
-                                        style="margin-top: -3px;display: flex">
-                                        ريال
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
-                      </div>
-                        <div class="row">
-
-                            
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email"> نسبة كودك:</label>
-                                    <fieldset class="form-group position-relative">
-
-                                        <input type="number" max="100" min="0"  name="system_percentage" required
-                                            class="form-control form-control-lg input-lg" id="system_percentage">
-                                        <div class="form-control-position phoneicon"
-                                            style="margin-top: -3px;display: flex">
-                                            %
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                     
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email"> نسبة المشهور:</label>
-                                    <fieldset class="form-group position-relative">
-
-                                        <input type="number" max="100" min="0"  name="famous_percentage" required
-                                            class="form-control form-control-lg input-lg" id="famous_percentage">
-                                        <div class="form-control-position phoneicon"
-                                            style="margin-top: -3px;display: flex">
-                                            %
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email"> تاريخ البداية  :</label>
-                                    <fieldset class="form-group position-relative">
-
-                                        <input type="date" readonly name="start_at" required
-                                            class="form-control form-control-lg input-lg" id="start_at">
-                                        
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email"> تاريخ النهاية  :</label>
-                                    <fieldset class="form-group position-relative">
-
-                                        <input type="date" readonly name="end_at" required
-                                            class="form-control form-control-lg input-lg" id="end_at">
-                                        
-                                    </fieldset>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <button type="submit" disabled id="add_code" class="btn btn-info">اضافة</button>
-                    </form>
-
-                </div>
-
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
-                </div>
-
-            </div>
+  </div>
+  <div class="filters mt-3">
+    <form action="">
+      <div class="d-flex">
+     
+        <div class="flex-basis-20 pe-3 d-flex flex-column">
+          <label class="flex-fill" for="">المتجر</label>
+          <div class="input-group input-group-lg flex-fill">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>الكل</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex-basis-20 pe-3 d-flex flex-column">
+          <label class="flex-fill" for="">المشهور</label>
+          <div class="input-group input-group-lg flex-fill">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>الكل</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
         </div>
 
+        <div class="flex-basis-20 align-items-end d-flex">
+          <span class="p-2 border rounded-3">
+            <img src="{{asset('new_dash/images/icons/filters.png')}}" alt="" />
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="content mt-5" >
+    <div class="border-top border-secondary" >
+        <table id="examplee" class="display_nowrap" style="width:100%">
+
+
+
+            <br>
+            <thead>
+                <tr>
+                    <th class="text-right">#</th>
+                    <th class="text-right"> اسم المتجر</th>
+                    <th class="text-right"> اسم كود الخصم </th>
+                    <th class="text-right">نسبة كود الخصم</th>
+                    <th class="text-right">اسم المشهور</th>
+                    <th class="text-right">عدد العمليات </th>
+                    <th class="text-right">اجمالي الايرادات </th>
+
+
+                    @if (auth()->user()->hasRole('Admin'))
+                        <th class="text-right">فايدة اسخدام الكود</th>
+                        <th class="text-right">الفايدة من المبيعات  </th>
+
+                        <th class="text-right">ايراد كودك</th>
+                        <th class="text-right">ايراد المشهور</th>
+                    @else
+                        <th class="text-right">ايراد المشهور</th>
+                    @endif
+
+
+                    <th class="text-right">الاجراءات</th>
+
+                </tr>
+            </thead>
+            <tbody id="stores">
+                @foreach ($codes as $key => $item)
+                    <tr>
+                        <td class="text-right">{{ $key + 1 }}</td>
+                        <td class="text-right"> {{ @$item->store->title }}</td>
+
+                        {{-- <td class="text-right"> {{ get_total_code($item->id) }}</td> --}}
+                        <td class="text-right">{{ $item->code }}</td>
+                        <td class="text-right">{{ $item->discount_percentage }}</td>
+
+                        <td class="text-right">{{ @$item->famous->name }} </td>
+                        <td class="text-right"> {{ get_total_code($item->id)}}  &nbsp; &nbsp;
+                            @if (auth()->user()->hasRole('Admin'))
+
+                            <button class="btn "  data-toggle="modal" data-target="#myModal6"
+                            onclick="add_income('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/plus.png')}}" data-bs-toggle="modal" data-bs-target="#addValue" class="w-25 ms-2 pointer" alt="" /></button>
+                            @endif
+                        </td>
+                        <td class="text-right"> {{ get_total_mount_code($item->id) }} &nbsp; 
+                            @if (auth()->user()->hasRole('Admin'))
+                            <button class="btn "  data-toggle="modal" data-target="#myModal6"
+                            onclick="add_income('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/plus.png')}}" data-bs-toggle="modal" data-bs-target="#addValue" class="w-25 ms-2 pointer" alt="" /></button>
+                            @endif
+                        </td>
+
+                        @if (auth()->user()->hasRole('Admin'))
+                            <td class="text-right"> {{ get_total_benefit($item->id) }} ريال</td>
+                            <td class="text-right"> {{$item->benefit_percentage}}%</td>
+
+                            <td class="text-right">
+                                {{ get_total_system_code_api($item->id) }}
+                            </td>
+                            <td class="text-right">
+                                {{ get_total_famous_code_api($item->id) }}
+                            </td>
+                        @else
+                            <td class="text-right">
+                                {{ get_total_famous_code_api($item->id) }}
+                            </td>
+                        @endif
+
+
+                        <td class="text-right">
+
+
+                            <button class="btn btn-inf" data-toggle="modal" data-target="#myModal4"
+                            onclick="make('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/edit.png')}}" class="pointer"
+                            alt=""></button>
+                            <form style="display: inline" action="{{ route('codes.destroy',$item->id) }}" method="post">
+                                @method('delete') @csrf
+                                <button type="submit"  class="btn  delete-confirm"><img src="{{asset('new_dash/images/icons/delete.png')}}" class="pointer"
+                                    alt=""></button>
+                            </form>
+                        </td>
+
+
+
+                    </tr>
+                @endforeach
+
+            </tbody>
+
+        </table>
     </div>
+    
+  </div>
+  <div class="modal fade" id="addDisCode" tabindex="-1" aria-labelledby="addDisCodeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addDisCodeLabel">
+            <img src="./assets/images/icons/code.png" alt="" class="me-1"> إضافة كود خصم
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="sendform">
+                @csrf
+
+
+            <input type="hidden" id="benefit" name="benefit_percentage" >
+
+            <div class="input-item">
+              <label for="">المتجر</label>
+              <select name="store_id" required class="form-control" id="select_store">
+                <option value="" selected disabled>اختر المتجر</option>
+
+                @foreach ($stores as $item)
+                    <option value="{{ $item->id }}">{{ $item->title }} </option>
+                @endforeach
+
+            </select>
+            </div>
+
+
+
+            <div class="input-item">
+              <label for="">المشهور</label>
+              @if (auth()->user()->hasRole('Admin'))
+              <select name="famous_id" required class="form-control">
+                  <option value="" selected disabled>اختر المشهور </option>
+
+                  @foreach ($famous as $item)
+                      <option value="{{ $item->id }}">{{ $item->name }} </option>
+                  @endforeach
+              </select>
+          @else
+              <input type="hidden" name="famous_id" value="{{ auth()->user()->famous->id }}"
+                  readonly class="form-control" id="email">
+              <input type="text" class="form-control" readonly
+                  value="{{ auth()->user()->famous->name }}" id="">
+          @endif
+            </div>
+
+
+
+            <div class="input-item">
+              <label for="">اسم كود الخصم</label>
+              <input type="text" required name="code" class="form-control" id="codechange">
+            </div>
+
+
+
+            <div class="input-item">
+              <label for="">نسبة كود الخصم</label>
+              <input type="text" name="discount_percentage" required
+              class="form-control form-control-lg input-lg" value="" readonly id="discount_code">
+            </div>
+
+
+
+            <div class="input-item">
+              <label for="">فايدة استخدام الكود</label>
+              <input type="number" max="100" min="0" readonly
+                                        class="form-control form-control-lg input-lg" id="penifet_new">
+            </div>
+
+
+
+            <div class="input-item">
+              <label for="">نسبة المشهور</label>
+              <input type="number" max="100" min="0"  name="famous_percentage" required
+              class="form-control form-control-lg input-lg" id="famous_percentage">
+            </div>
+
+            <div class="input-item">
+              <label for="">نسبة كودك</label>
+              <input type="number" max="100" min="0"  name="system_percentage" required
+                                            class="form-control form-control-lg input-lg" id="system_percentage">
+            </div>
+
+            <div class="input-item">
+              <label for="date">تاريخ بداية الكود</label>
+
+              <div class="inner-input d-block form-control p-0 date" style="height:46px; direction: ltr;">
+                <input type="date" readonly name="start_at" required
+                class="form-control form-control-lg input-lg" id="start_at">
+                <!-- <span class="border h-100 upload-img"> <img src="./assets/images/icons/date.png" alt="" class="me-1"></span> -->
+              </div>
+            </div>
+
+            <div class="input-item">
+              <label for="date">تاريخ نهاية الكود</label>
+
+              <div class="inner-input d-block form-control p-0 date" style="height:46px; direction: ltr;">
+                <input type="date" readonly name="end_at" required
+                class="form-control form-control-lg input-lg" id="end_at">
+                <!-- <span class="border h-100 upload-img"> <img src="./assets/images/icons/date.png" alt="" class="me-1"></span> -->
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="input-item">
+              <button type="submit"  class="btn text-end add-store">+ إضافة كود خصم</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="updateDisCode" tabindex="-1" aria-labelledby="updateDisCodeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateDisCodeLabel">
+            <img src="./assets/images/icons/code.png" alt="" class="me-1"> تعديل كود خصم
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="company_edit_code">
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+    
     <div class="modal fase " id="myModal4" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -364,6 +356,23 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="addValue" tabindex="-1" aria-labelledby="addValueLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addValueLabel">
+                <img src="{{asset('new_dash/images/icons/doc.png')}}" alt="" class="me-1"> اضافة قيم للايرادات
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="addValue_edit">
+              
+            </div>
+    
+          </div>
+        </div>
+      </div>
 @endsection
 @section('script')
     <script>
@@ -406,6 +415,9 @@
                         ' تم الاضافة بنجاح ',
                         'success'
                     )
+                    setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
 
 
 
@@ -423,7 +435,7 @@
 
 
         function make(id) {
-            $("#myModal4").show();
+            $("#updateDisCode").modal('show');
 
             // $('#staticBackdrop').modal();
             $('.c-preloader').show();
@@ -437,37 +449,16 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    $('#company_edit').html(data);
+                    $('#company_edit_code').html(data);
 
 
                 }
             });
 
         }
-        function add_total(id) {
-            $("#myModal6").show();
-
-            // $('#staticBackdrop').modal();
-            $('.c-preloader').show();
-
-            $.ajax({
-                type: 'post',
-                url: "{{ route('get_form_total') }}",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    'id': id
-                },
-                beforeSend: function() {},
-                success: function(data) {
-                    $('#company_edit_total').html(data);
-
-
-                }
-            });
-
-        }
+        
         function add_income(id){
-            $("#myModal6").show();
+            $("#addValue").modal('show');
 
 // $('#staticBackdrop').modal();
             $('.c-preloader').show();
@@ -481,7 +472,7 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    $('#company_edit_income').html(data);
+                    $('#addValue_edit').html(data);
 
 
                 }
@@ -559,6 +550,14 @@
                 error: function(data) {
 
                 },
+            });
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#examplee').DataTable({
+                scrollX: true,
             });
         });
     </script>

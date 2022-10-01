@@ -94,7 +94,7 @@
               
             
                 <div class="input-item">
-                    <button class="btn text-end add-store">+ اضافة منصة</button>
+                    <button class="btn text-end add-store">+ اضافة مجال</button>
                 </div>
             
             </form>

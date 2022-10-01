@@ -10,10 +10,13 @@
     <link rel="stylesheet" href="{{asset('new_dash/all/css/styles.css')}}" />
     <link rel="stylesheet" href="{{asset('new_dash/ar/css/styles.css')}}" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+  referrerpolicy="no-referrer" />
     <style>
       .text-right{
         text-align: right !important
       }
+    
     </style>
 
   </head>
@@ -37,6 +40,9 @@
     <script src="{{asset('new_dash/lib/bootstrap-slider/bootstrap-slider.min.js')}}"></script>
 
     <script src="{{asset('new_dash/all/js/scripts.js')}}"></script>
+    <script src="{{asset('new_dash/ar/js/bootstrap-select.min.js')}}"></script>
+
+    
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     <script>
@@ -56,12 +62,39 @@
                     }
                 });
         });
+        $('select.selectpicker').selectpicker();
     </script>
-    <script>
-        $(document).ready( function () {
-    $('table').DataTable();
-} );
-    </script>
+   
     @yield('script')
+    @if (get_lang() == 'ar')
+        <script>
+            $('#example').DataTable({
+
+                "initComplete": function(settings, json) {
+                    $("#example").wrap("<div style='overflow:auto; width:100%;position:relative;'></div>");
+                },
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخلات",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+            
+          
+        </script>
+    @endif
+
   </body>
 </html>

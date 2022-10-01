@@ -1,90 +1,116 @@
-@extends('layouts.backend')
+@extends('layouts.backend_new')
 @section('content')
-    <div class="content-wrapper">
-        <div class="content-body">
-            <section id="configuration">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">طلبات التعديل </h4>
-                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                <div class="heading-elements">
-                                    <ul class="list-inline mb-0">
-                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+    <div class="row">
 
-                            <div class="card-content collapse show">
-                                <div class="card-body card-dashboard">
-                                    @include('dashboard.parts._error')
-                                    @include('dashboard.parts._success')
-
-                                    <br>
-                                   
-
-                                    <table class="table table-striped table-bordered zero-configuration" id="storestable">
-
-
-                                        <br>
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>اسم المشهور     </th>
-
-                                                <th>قيمة الطلب    </th>
-                                                <th>الحالة</th>
-                                                <th> التاريخ  </th>
-                                                <th>معانية</th>
-                                                <th>الاجراءات</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody id="stores">
-                                            @foreach ($changes as $key => $item)
-                                                <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td>{{ @$item->famous->name }}</td>
-                                                   <td>{{ $item->amount }}</td>
-                                                    <td><button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button></td>
-                                                    <td>{{ $item->created_at->format('Y-m-d') }}</td>
-                                                    <td>
-                                                        @if($item->status ==1)
-                                                    
-                                                        <a href="{{ asset('uploads/'.$item->image) }}" target="_blank">
-                                                           معاينة الحوالة
-                                                          </a>
-                                                          @else
-                                                          _ 
-
-                                                    @endif
-                                                    </td>
-                                                    <td>
-                                                        <a class="btn btn-info" href="{{ route('show_order_money',$item->id) }}"><i class="fa fa-eye"></i></a>
-                                                    </td>
-
-                                                    
-                                                </tr>
-                                            @endforeach
-
-                                        </tbody>
-
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <div class="col-2 p-0 me-auto flex-column flex-center justify-content-start p-4">
+            <h2 class="">طلبات التحويل</h2>
 
         </div>
 
+
     </div>
-  
+    <div class="filters mt-3">
+        <form action="">
+            <div class="d-flex">
+
+                <div class="flex-basis-20 pe-3 d-flex flex-column">
+                    <label class="flex-fill" for="">المشاهير</label>
+                    <div class="input-group input-group-lg flex-fill">
+                        <select class="form-select" name="famous_id" aria-label="Default select example">
+                            <option selected value="">اختر المشهور</option>
+                           @foreach (App\Models\Famous::get() as $item)
+                               <option value="{{ $item->id }}" @if($request->famous_id == $item->id ) selected @endif>{{ $item->name }}</option>
+                           @endforeach
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="flex-basis-20 align-items-end d-flex">
+                    <span class="p-2 border rounded-3">
+                        <button type="submit"><img src="{{ asset('new_dash/images/icons/filters.png') }}" alt="" /></button>
+                        
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="content mt-5">
+        <div class="border-top border-secondary">
+            <table id="example" class="display compact" style="width:100%" id="storestable">
+
+
+                <br>
+                <thead>
+                    <tr>
+                        <th class="text-right">#</th>
+                        <th class="text-right">صورة المشهور   </th>
+
+                        <th class="text-right">اسم المشهور   </th>
+                        <th class="text-right">قيمة الطلب  </th>
+                        <th class="text-right">الحالة</th>
+                        <th class="text-right">التاريخ</th>
+                        <th class="text-right">معاينة</th>
+
+                        <th class="text-right">الاجراءات</th>
+
+                    </tr>
+                </thead>
+                <tbody id="stores">
+                    @foreach ($changes as $key => $item)
+                        <tr>
+                            <td class="text-right">{{ $key + 1 }}</td>
+                            <td><img src="{{ asset('uploads/'.@$item->famous->image) }}" width="80" height="50" alt=""> </td>
+
+                            <td class="text-right">{{ @$item->famous->name }} </td>
+                            <td class="text-right">{{ $item->amount }} </td>
+                            <td class="text-right"> 
+                                   <button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button>
+                            </td>
+                            <td class="text-right">{{ $item->created_at->format('Y-m-d') }}</td>
+                            <td  class="text-right">
+                                @if($item->status ==1)
+                            
+                                <a href="{{ asset('uploads/'.$item->image) }}" target="_blank">
+                                   معاينة الحوالة
+                                  </a>
+                                  @else
+                                  _ 
+
+                            @endif
+                            </td>
+
+                            <td ><button class="btn btn-inf" data-toggle="modal" data-target="#myModal4"
+                            onclick="make('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/view.png')}}" class="pointer"
+                            alt=""></button>
+                            </td>
+
+                           
+                        </tr>
+                    @endforeach
+    
+                </tbody>
+    
+            </table>
+        </div>
+
+    </div>
+    <div class="modal fade" id="transRequst" tabindex="-1" aria-labelledby="transRequstLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="transRequstLabel">
+                <img src="./assets/images/icons/doc.png" alt="" class="me-1"> طلب تحويل
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></button>
+            </div>
+            <div class="modal-body" id="edit_order">
+            
+            </div>
+    
+          </div>
+        </div>
+      </div>
 @endsection
 @section('script')
     <script>
@@ -135,21 +161,21 @@
 
 
         function make(id) {
-            $("#myModal4").show();
+            $("#transRequst").modal('show');
 
             // $('#staticBackdrop').modal();
             $('.c-preloader').show();
 
             $.ajax({
                 type: 'post',
-                url: "{{ route('get_form_soical') }}",
+                url: "{{ route('get_form_order') }}",
                 data: {
                     "_token": "{{ csrf_token() }}",
                     'id': id
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    $('#company_edit').html(data);
+                    $('#edit_order').html(data);
 
 
                 }

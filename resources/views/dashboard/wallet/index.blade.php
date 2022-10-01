@@ -1,271 +1,144 @@
-@extends('layouts.backend')
+@extends('layouts.backend_new')
 @section('content')
-    <div class="content-wrapper">
-        <div class="content-body">
-            <section id="configuration">
-                <div class="row">
-                    @if(auth()->user()->hasRole('Famous'))
-                    <div class="col-xl-3 col-lg-6 col-12">
-                        <div class="radies card bg-info">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="media d-flex">
-                                        <div class="align-self-center" style="margin-right:10%">
-                                            <i class="icon-wallet text-white font-large-2 float-right"></i>
-                                        </div>
-                                        <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                            <h3 class="text-white">{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_famous')  }}</h3>
-                                            <span> اجمالي المحفظة   </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-12">
-                        <div class="radies card bg-success">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="media d-flex">
-                                        <div class="align-self-center" style="margin-right:10%">
-                                            <i class="icon-check text-white font-large-2 float-right"></i>
-                                        </div>
-                                        <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                            <h3 class="text-white">0</h3>
-                                            <span>  ما تم تحويله   </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-12">
-                        <div class="radies card bg-warning">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="media d-flex">
-                                        <div class="align-self-center" style="margin-right:10%">
-                                            <i class="icon-compass text-white font-large-2 float-right"></i>
-                                        </div>
-                                        <div class="media-body text-white text-right" style="margin-left: 33px;">
-                                            <h3 class="text-white">0</h3>
-                                            <span>   المبالغ المعلقة    </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- <div class="col-xl-3 col-lg-6 col-12">
-                        <div class="card bg-info">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="media d-flex">
-                                        <div class="align-self-center">
-                                            <i class="icon-wallet text-white font-large-2 float-right"></i>
-                                        </div>
-                                        <div class="media-body text-white text-right">
-                                            <h3 class="text-white">2500</h3>
-                                            <span> اجمالي المحفظة </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-12">
-                        <div class="card bg-success">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="media d-flex">
-                                        <div class="align-self-center">
-                                            <i class="icon-check text-white font-large-2 float-right"></i>
-                                        </div>
-                                        <div class="media-body text-white text-right">
-                                            <h3 class="text-white">500</h3>
-                                            <span> اجمالي ما تم تحويله </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-12">
-                        <div class="card bg-warning">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="media d-flex">
-                                        <div class="align-self-center">
-                                            <i class="icon-compass text-white font-large-2 float-right"></i>
-                                        </div>
-                                        <div class="media-body text-white text-right">
-                                            <h3 class="text-white">500</h3>
-                                            <span> اجمالي المبالغ المعلقة </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-                    @endif
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">الاجمالي</h4>
-                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                <div class="heading-elements">
-                                    <ul class="list-inline mb-0">
-                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <form>
+    <div class="row">
 
-                                <div class="row" style="margin-right: 2%">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="userinput2">@lang('المتجر')</label>
-                                            <select name="nationality_id" id="" class="form-control">
+        <div class="col-2 p-0 me-auto flex-column flex-center justify-content-between p-4">
+            <h2>المحفظة</h2>
 
-                                                <option value="">@lang('اختر المتجر')</option>
-                                                @foreach (App\Models\Stores::get() as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+        </div>
 
-                                    </div>
-                                    <div class="col-md-3">
-                                       <label for="userinput2">قيمة التحويل </label>
+        <!-- <div class="col-2 p-0 ms-auto flex-column flex-center justify-content-between p-4">
+                      <a class="btn btn-primary  btn-lg w-100" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                        <img src="{{ asset('new_dash/images/icons/famousLight.png') }}" alt="" class="me-1 text-white" />
+                        اضافة مشهور
+                      </a>
 
-                                                <div class="min-max-slider" data-legendnum="2" style="direction: ltr">
-                                                    <label for="min">من</label>
-                                                    <input id="min" class="min" name="min" type="range" step="1" min="0" max="15000" />
-                                                    <label for="max">الى</label>
-                                                    <input id="max" class="max" name="max" type="range" step="1" min="0" max="15000" />
-                                                </div>
-                                    </div>
-                                   
-                                    <div class="col-md-3 mt-1 pt-1">
-                                        <button type="submit" class="btn btn-info"><i class="fa fa-filter"
-                                                aria-hidden="true"></i></button>
-                                    </div>
-
-                                </div>
-                            </form>
-
-                            <div class="card-content collapse show">
-
-                                <div class="card-body card-dashboard">
-                                    @include('dashboard.parts._error')
-                                    @include('dashboard.parts._success')
-
-                                    <br>
+                    </div> -->
 
 
-                                    <table class="table table-striped table-bordered zero-configuration" id="storestable">
+    </div>
+    <div class="filters mt-3">
+        <form action="">
+            <div class="d-flex">
 
+                <div class="flex-basis-20 pe-3 d-flex flex-column">
+                    <label class="flex-fill" for="">المتجر</label>
+                    <div class="input-group input-group-lg flex-fill">
+                        <select name="store_id" id="" class="form-control">
 
-                                        <br>
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>اسم المتجر </th>
-                                                @if(auth()->user()->hasRole('Admin'))
-                                                <th>اسم المشهور</th>
-                                                @endif 
-                                                <th>اجمالي التحويل </th>
-                                                <th>الكود</th>
-
-                                                <th>الاجراءات</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($codes as $key=> $item)
-                                                
-                                            <tr>
-                                                <td>{{ $key +1 }} </td>
-                                                <td>{{ @$item->store->title }} </td>
-                                                @if(auth()->user()->hasRole('Admin'))
-                                                <td>{{ @$item->famous->name }} </td>
-                                                @endif
-
-                                                <td>{{ get_total_mount_code($item->id) }} </td>
-                                                <td>{{ @$item->code }}</td>
-
-                                                <td>
-                                                    {{-- <a data-toggle="modal" data-target="#myModal3" class="btn btn-info"><i
-                                                            class="fa fa-eye" aria-hidden="true"></i>
-
-                                                    </a> --}}
-                                                    <button class="btn btn-info" data-toggle="modal" data-target="#myModal3"
-                                                        onclick="get_info('{{ $item->id }}')"><i
-                                                            class="fa fa-eye"></i></button>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-
-                                        </tbody>
-
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                            <option value="">@lang('اختر المتجر')</option>
+                            @foreach (App\Models\Stores::get() as $item)
+                                <option value="{{ $item->id }}" @if($request->store_id == $item->id) selected @endif>
+                                    {{ $item->title }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-            </section>
 
+
+                {{-- <div class="flex-basis-20 pe-3 d-flex flex-column">
+                    <label class="flex-fill flex-grow-0" for="">المشهور</label>
+                    <div id="slider-outer-div" class="flex-fill rounded-3">
+                        <div id="slider-max-label" class="slider-label"></div>
+                        <div id="slider-min-label" class="slider-label"></div>
+                        <div id="between-handlers"></div>
+                        <div id="slider-div">
+                            <div class="slider-start">1%</div>
+                            <div>
+                                <input id="ex2" type="text" data-slider-min="1" data-slider-max="100"
+                                    data-slider-value="[50,75]" data-slider-tooltip="hide" />
+                            </div>
+                            <div class="slider-end">100%</div>
+                        </div>
+                    </div>
+                </div> --}}
+
+                <div class="flex-basis-20 align-items-end d-flex">
+                    <span class="p-2 border rounded-3">
+                        <button type="submit" class="btn"> <img src="{{ asset('new_dash/images/icons/filters.png') }}" alt="" /></button>
+                       
+                    </span>
+                </div>
+
+
+
+            </div>
+        </form>
+    </div>
+    <div class="content mt-5">
+        <div class="border-top border-secondary">
+            <table id="example" class="display compact" style="width:100%" id="storestable">
+
+
+                <br>
+                <thead>
+                    <tr>
+                        <th class="text-right">#</th>
+                        <th class="text-right">صورة المتجر </th>
+
+                        <th class="text-right">اسم المتجر </th>
+                        @if (auth()->user()->hasRole('Admin'))
+                            <th class="text-right">اسم المشهور</th>
+                        @endif
+                        <th class="text-right">اجمالي التحويل </th>
+                        <th class="text-right">الكود</th>
+
+                        <th class="text-right">الاجراءات</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($codes as $key => $item)
+                        <tr>
+                            <td class="text-right">{{ $key + 1 }} </td>
+                            <td class="text-right"><img src="{{ asset('uploads/'.@$item->store->image) }}" width="80" height="50" alt=""> </td>
+
+                            <td class="text-right">{{ @$item->store->title }} </td>
+                            @if (auth()->user()->hasRole('Admin'))
+                                <td class="text-right">{{ @$item->famous->name }} </td>
+                            @endif
+
+                            <td class="text-right">{{ get_total_mount_code($item->id) }} </td>
+                            <td class="text-right">{{ @$item->code }}</td>
+
+                            <td class="text-right">
+                                {{-- <a data-toggle="modal" data-target="#myModal3" class="btn btn-info"><i
+                                    class="fa fa-eye" aria-hidden="true"></i>
+
+                            </a> --}}
+
+                                <button class="btn" data-toggle="modal" data-target="#myModal3"
+                                    onclick="get_info('{{ $item->id }}')"> <img
+                                        src="{{ asset('new_dash/images/icons/view.png') }}" alt=""></button>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                </tbody>
+
+            </table>
         </div>
 
     </div>
 
-    <div class="modal" id="myModal3">
-        <div class="modal-dialog modal-xl">
+
+    <div class="modal fade" id="dataOrder" tabindex="-1" aria-labelledby="dataOrderLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
-
-                <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">بينات الطلب   </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+                    <h5 class="modal-title" id="dataOrderLabel">
+                        <img src="{{ asset('new_dash/images/icons/famous.png') }}" alt="" class="me-1"> بيانات
+                        الطلب
 
-                <!-- Modal body -->
-                <div class="modal-body" style="max-height: 500px;overflow: auto" >
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th >#</th>
-                            <th  >المتجر</th>
-                            <th style="  width: 31% !important" >المشهور</th>
-                            <th  style="width: 1% !important">المبلغ</th>
-                            <th  style="width: 1% !important">الخصم من الكود</th>
-                            <th >التاريخ </th>
-                          </tr>
-                        </thead>
-                        <tbody id="company_edit">
-                            
-                         
-                       
-                          
-                        </tbody>
-                      </table>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></button>
+                </div>
+                <div class="modal-body" id="company_edit" style="max-height: 500px;overflow: auto">
+                 
 
                 </div>
-
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">اغلاق</button>
-                </div>
-
             </div>
         </div>
-
     </div>
 @endsection
 @section('script')
@@ -278,10 +151,11 @@
                 'error'
             )
         });
+
         function get_info(id) {
 
 
-            $("#myModal13").show();
+            $("#dataOrder").modal('show');
 
             // $('#staticBackdrop').modal();
             $('.c-preloader').show();
@@ -301,6 +175,6 @@
                 }
             });
 
-            }
+        }
     </script>
 @endsection

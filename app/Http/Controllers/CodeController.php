@@ -176,12 +176,11 @@ class CodeController extends Controller
      * @param  \App\Models\Code  $code
      * @return \Illuminate\Http\Response
      */
-    public function update_code(Request $request)
+    public function update_code(Request $request,$id)
     {
-        $exsitst = Code::where('famous_id',$request->famous_id)->where('code',$request->code)->where('store_id',$request->store_id)->first();
+        $exsitst = Code::where('id','!=',$id)->where('famous_id',$request->famous_id)->where('code',$request->code)->where('store_id',$request->store_id)->first();
         if($exsitst){
             return response()->json(['message'=>"هذا الكود مستخدم من قبل"], 500);
-
         }
         $country = Code::find($request->id);
         $country->code =$request->code;

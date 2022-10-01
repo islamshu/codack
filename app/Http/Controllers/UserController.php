@@ -198,6 +198,14 @@ class UserController extends Controller
     {
         return view('dashboard.change.edit')->with('change', Changbank::find($id));
     }
+    public function delete_changes($id)
+    {
+        Changbank::find($id)->delete();
+        return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
+    }
+    public function get_form_change(Request $request){
+        return view('dashboard.change.edit')->with('change',Changbank::find($request->id));
+    }
     public function codes()
     {
         return view('dashboard.codes.index');
@@ -238,10 +246,23 @@ class UserController extends Controller
     {
         return view('dashboard.user.order_mony')->with('changes', MoneyOrder::where('famous_id',auth()->user()->famous->id)->get())->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
     }
-    public function my_order_admin()
+    public function my_order_admin(Request $request)
     {
-        return view('dashboard.user.order_mony_admin')->with('changes', MoneyOrder::orderby('id','desc')->get())->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+       $query =  MoneyOrder::query();
+       if($request->famous_id != null){
+        $query->where('famous_id',$request->famous_id);
+       }
+       $changes = $query->orderby('id','desc')->get();
+
+        return view('dashboard.user.order_mony_admin')->with('request',$request)->with('changes',$changes)->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
     }
+    public function get_form_order(Request $request)
+    {
+        return view('dashboard.user._order')->with('order', MoneyOrder::find($request->id))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
+
+    }
+
+    
 
     public function show_order_money($id){
         return view('dashboard.user.show_order')->with('order', MoneyOrder::find($id))->with('countries', Country::get())->with('typs', FamousType::get())->with('soicals', SoicalType::get());
@@ -311,21 +332,23 @@ class UserController extends Controller
     }
 
 
-    public function wallet()
+    public function wallet(Request $request)
     {
         if( auth()->user()->hasRole('Admin')){
-            $codes = Code::orderBy('id','desc')->get();
-        
-    }else{
-        $codes = Code::where('famous_id',auth()->user()->famous->id)->orderBy('id','desc')->get();
+            $codes = Code::query();
+            if($request->store_id != null){
+                $codes->where('store_id',$request->store_id);
+            } 
+            $codes = $codes->orderBy('id','desc')->get();
+        }else{
+            $codes = Code::query();
+            if($request->store_id != null){
+                $codes->where('store_id',$request->store_id);
+            } 
+            $codes = $codes->where('famous_id',auth()->user()->famous->id)->orderBy('id','desc')->get();
 
-    }
-        
-            
-       
-        
-    
-        return view('dashboard.wallet.index')->with('codes',$codes);
+        }  
+        return view('dashboard.wallet.index')->with('codes',$codes)->with('request',$request);
     }
 
     public function index(Request $request)

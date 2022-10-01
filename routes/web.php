@@ -28,12 +28,18 @@ Route::group(['middleware' => ['role:Admin'], 'prefix' => 'dashboard'], function
     Route::get('changes', 'App\Http\Controllers\UserController@changes')->name('changes.index');
     Route::put('changes/{id}', 'App\Http\Controllers\UserController@update_changes')->name('changes.update');
     Route::get('changes/{id}/edit', 'App\Http\Controllers\UserController@edit_changes')->name('changes.edit');
+    Route::delete('changes/{id}', 'App\Http\Controllers\UserController@delete_changes')->name('changes.destroy');
+    Route::post('get_form_changes', 'App\Http\Controllers\UserController@get_form_change')->name('get_form_change');
+
+
+    
     Route::get('my_order_admin', 'App\Http\Controllers\UserController@my_order_admin')->name('my_order_admin');
     Route::get('show_order_money/{id}', 'App\Http\Controllers\UserController@show_order_money')->name('show_order_money');
     Route::post('status_ok_order', 'App\Http\Controllers\UserController@status_ok_order')->name('status_ok_order');
     Route::resource('copouns', 'App\Http\Controllers\CouponController');
     Route::get('update_copoun_status', 'App\Http\Controllers\CouponController@updateStatus')->name('copoun.update.status');
     Route::post('get_form_copoun', 'App\Http\Controllers\CouponController@get_form_copoun')->name('get_form_copoun');
+    Route::post('get_form_order', 'App\Http\Controllers\UserController@get_form_order')->name('get_form_order');
     Route::post('get_form_total', 'App\Http\Controllers\CodeController@get_form_total')->name('get_form_total');
     Route::post('store_total','App\Http\Controllers\CodeController@store_total')->name('store_total');
     Route::post('get_form_income', 'App\Http\Controllers\CodeController@get_form_income')->name('get_form_income');

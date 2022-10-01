@@ -511,14 +511,3 @@ body.modal-open .main{
     clear: both;
 }
 
-.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
-    width: 70% !important;
-}
-
-.bootstrap-select .dropdown-toggle .filter-option{
-    text-align: right;
-}
-
-.dropdown-toggle::after{
-    margin-right: 15.255em !important;
-}
