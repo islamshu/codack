@@ -48,7 +48,9 @@
   </div>
   <div class="content mt-5" >
     <div class="border-top border-secondary" >
-        <table id="examplee" class="display_nowrap" style="width:100%">
+        <div class="border-top border-secondary" style="overflow:auto ;">
+
+        <table id="examplee" class="display_nowrap"  style="width:120% ;overflow:auto; position:relative">
 
 
 
@@ -142,6 +144,7 @@
             </tbody>
 
         </table>
+        </div>
     </div>
     
   </div>
