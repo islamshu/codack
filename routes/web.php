@@ -106,7 +106,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
 
     // Route::resource('users','UserController');
     Route::get('home', function () {
-        return view('dashboard.index');
+        return view('dashboard.part_new.index');
     })->name('home');
 
 
