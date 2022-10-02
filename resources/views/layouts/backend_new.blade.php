@@ -14,7 +14,8 @@
   referrerpolicy="no-referrer" />
     <style>
       .text-right{
-        text-align: right !important
+        text-align: right !important;
+        padding-right: 2%
       }
     
     </style>
