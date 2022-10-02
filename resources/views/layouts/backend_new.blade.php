@@ -15,7 +15,7 @@
     <style>
       .text-right{
         text-align: right !important;
-        padding-right: 2%
+        padding-right: 2% !important;
       }
     
     </style>
