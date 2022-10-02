@@ -169,7 +169,7 @@
                 <li>
                   <a href="{{ route('wallet') }}" class="nav-link align-middle px-0">
                     <img src="{{asset('new_dash/images/icons/nav-icons/discount-coupons.png')}}" class="nav-icon me-2" alt="" />
-                    <span class="ms-1 d-none d-sm-inline"> اجمالي طلبات التحويل </span>
+                    <span class="ms-1 d-none d-sm-inline"> الايرادات   </span>
                   </a>
                 </li>
                 <li>
