@@ -97,7 +97,7 @@
                 </tbody>
                 <tr>
                     <td style="font-size: 30px;text-align: center;">
-                        <a title="اضف جديد" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addDisCode">اضف جديد</a>
+                        <a title="اضف جديد" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDisCode">اضف جديد</a>
                     </td>
                     <td class="text-right"></td>
                     <td class="text-right"></td>
@@ -283,8 +283,10 @@
                         <div class="input-item">
                             <label for="">
                                 فائدة استخدام الكود :</label><span class="text-danger">*</span>
-                            <input type="text" name="benift" value="{{ old('benift') }}" class="form-control"
+                            <input type="number" name="benift" value="{{ old('benift') }}" class="form-control"
                                 id="benift">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Percent_18e.svg/1200px-Percent_18e.svg.png" alt=""
+                                class="me-1 apple-img">
                         </div>
 
                         <div class="input-item">
