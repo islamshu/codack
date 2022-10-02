@@ -47,7 +47,7 @@
                         <th class="text-right">صورة المشهور   </th>
 
                         <th class="text-right">اسم المشهور   </th>
-                        <th class="text-right">قيمة الطلب  </th>
+                        <th class="text-right">قيمة التحويل  </th>
                         <th class="text-right">الحالة</th>
                         <th class="text-right">التاريخ</th>
                         <th class="text-right">معاينة</th>
