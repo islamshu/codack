@@ -1,5 +1,6 @@
 @extends('layouts.backend_new')
 @section('content')
+@if(auth()->user()->hasRole('Admin'))
     <div class="row">
         <div class="col-2 p-0">
             <div class="card-background w-100 h-100 p-4 ps-5 zoom">
@@ -66,25 +67,25 @@
             <table id="example" class="row-border" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col"> اسم المتجر</th>
-                        <th scope="col"> اسم كود الخصم </th>
-                        <th scope="col">اسم المشهور</th>
-                        <th scope="col">نسبة كود الخصم</th>
-                        <th scope="col">فايدة اسخدام الكود</th>
-                        <th scope="col">نسبة كودك</th>
-                        <th scope="col">نسبة المشهور</th>
+                        <th class="text-right"> اسم المتجر</th>
+                        <th class="text-right"> اسم كود الخصم </th>
+                        <th class="text-right">اسم المشهور</th>
+                        <th class="text-right">نسبة كود الخصم</th>
+                        <th class="text-right">فايدة اسخدام الكود</th>
+                        <th class="text-right">نسبة كودك</th>
+                        <th class="text-right">نسبة المشهور</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (App\Models\Code::orderBy('id', 'desc')->get() as $item)
                         <tr style="text-align: center">
-                            <td>{{ $item->store->title }} </td>
-                            <td>{{ @$item->code }}</td>
-                            <td>{{ @$item->famous->name }}</td>
-                            <td>{{ @$item->discount_percentage }} %</td>
-                            <td>{{ @$item->store->benift }} %</td>
-                            <td>{{ @$item->system_percentage }} %</td>
-                            <td>{{ @$item->famous_percentage }} %</td>
+                            <td class="text-right">{{ $item->store->title }} </td>
+                            <td class="text-right">{{ @$item->code }}</td>
+                            <td class="text-right">{{ @$item->famous->name }}</td>
+                            <td class="text-right">{{ @$item->discount_percentage }} %</td>
+                            <td class="text-right">{{ @$item->store->benift }} %</td>
+                            <td class="text-right">{{ @$item->system_percentage }} %</td>
+                            <td class="text-right">{{ @$item->famous_percentage }} %</td>
                         </tr>
                     @endforeach
 
@@ -98,12 +99,12 @@
                     <td style="font-size: 30px;text-align: center;">
                         <a title="اضف جديد" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addDisCode">اضف جديد</a>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="text-right"></td>
+                    <td class="text-right"></td>
+                    <td class="text-right"></td>
+                    <td class="text-right"></td>
+                    <td class="text-right"></td>
+                    <td class="text-right"></td>
                 </tr>
             </table>
         </div>
@@ -112,6 +113,8 @@
     </div>
     </div>
     </div>
+
+
     <div class="modal fade" id="addDisCode" tabindex="-1" aria-labelledby="addDisCodeLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -679,6 +682,108 @@
             </div>
     
           </div>
+        </div>
+    </div>
+    @else
+    <div class="row">
+        <div class="col-2 p-0">
+            <div class="card-background w-150 h-100 p-4 ps-5 zoom">
+                <h2>{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_famous') }}</h2>
+                <div class="mb-2">
+                    <img src="{{ asset('new_dash/images/icons/vendors.png') }}" alt="" class="me-1" />
+                    <span>إجمالي المحفظة</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 p-0">
+            <div class="card-background w-100 h-100 p-4 ps-5 zoom">
+                <h2>{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_trans') }}</h1>
+                <div class="mb-2">
+                    <img src="{{ asset('new_dash/images/icons/account.png') }}" alt="" class="me-1" />
+                    <span> ما تم تحويله </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 p-0">
+            <div class="card-background w-100 h-100 p-4 ps-5 zoom">
+                <h2>{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_pending') }}</h1>
+                <div class="mb-2">
+                    <img src="{{ asset('new_dash/images/icons/inactive-coupons.png') }}" alt="" class="me-1" />
+                    <span>المبالغ المعلقة   </span>
+                </div>
+            </div>
+        </div>
+       
+
+    </div>
+    <div class="content mt-5">
+        <div class="border-top border-secondary">
+
+          
+            <table   style="width:100%" id="example">
+
+
+                <br>
+                <thead>
+                    <tr>
+                        <th class="text-right">#</th>
+                        <th class="text-right">اسم المتجر  </th>
+                        <th class="text-right">اسم المشهور </th>
+                        <th class="text-right">الكود</th>
+                        <th class="text-right">الاجمالي</th>
+                        <th class="text-right">ما تم تحويله</th>
+                        <th class="text-right">المبلغ المعلق</th>
+                        <th class="text-right">المتبقي </th>
+                        <th class="text-right">الاجراءات</th>
+
+                    </tr>
+                </thead>
+                <tbody >
+                        @foreach (App\Models\Code::where('famous_id',auth()->user()->famous->id)->orderby('id','desc')->get() as $key=> $item)
+                        <tr>
+                            <td class="text-right">{{ $key }}</td>
+                            <td class="text-right">{{ @$item->store->title }}</td>
+                            <td class="text-right">{{ @$item->famous->name }}</td>
+                            <td class="text-right">{{ $item->code }}</td>
+                            <td class="text-right">{{ get_total_famous_code_api($item->id) }} </td>
+                            <td class="text-right">{{ $item->total_trans }}</td>
+                            <td class="text-right">{{  $item->total_pending }}</td>
+                            <td class="text-right">{{ get_total_famous_code_api($item->id) - $item->total_trans - $item->total_pending   }}</td>
+                            <td class="text-right">
+                                <button class="btn " data-toggle="modal" data-target="#myModal20"
+                                        onclick="get_wallet('{{ $item->id }}')"> <img src="{{ asset('new_dash/images/icons/view.png') }}" class="pointer w-20" alt="" /></button>
+                                {{-- <a data-toggle="modal"    onclick="make('{{ $item->id }}')" data-target="#myModal20" class="btn btn-info"><i class="fa fa-cog" aria-hidden="true"></i> --}}
+                                    
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+    
+
+    @endif
+   
+    <div class="modal fade" id="get_info" tabindex="-1" aria-labelledby="addPlatformLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPlatformLabel">
+                        <img src="{{asset('new_dash/images/icons/famous.png')}}" alt="" class="me-1"> طلب تحويل مالي
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="modal" data-bs-target="#addFamous"></button></button>
+                </div>
+                <div class="modal-body" id="company_edit_eddd">
+                    
+                </div>
+    
+            </div>
         </div>
     </div>
 @endsection
@@ -1433,6 +1538,30 @@
                 });
     
             }
+            function get_wallet(id) {
+
+
+                $("#get_info").modal('show');
+
+                // $('#staticBackdrop').modal();
+                $('.c-preloader').show();
+
+                $.ajax({
+                    type: 'get',
+                    url: "{{ route('get_waalet_transfare') }}",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        'id': id
+                    },
+                    beforeSend: function() {},
+                    success: function(data) {
+                        $('#company_edit_eddd').html(data);
+
+
+                    }
+                });
+
+                }
             
             function add_income(id){
                 $("#addValue").modal('show');

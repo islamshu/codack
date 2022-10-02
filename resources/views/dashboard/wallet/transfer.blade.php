@@ -32,8 +32,9 @@
             </div>
         </div>
 
-
-        <button @if($error == 'success') type="submit"  @else type="button" @endif id="{{ $error }}" class="btn btn-info">ارسال</button>
+        <div class="input-item">
+            <button @if($error == 'success') type="submit"  @else type="button" @endif id="{{ $error }}" class="btn text-end add-store">ارسال</button>
+        </div>
     </form>
 
 </div>

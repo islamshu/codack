@@ -17,6 +17,39 @@
 
 
     </div>
+    @if(auth()->user()->hasRole('Famous'))
+    <div class="row">
+        <div class="col-2 p-0">
+            <div class="card-background w-150 h-100 p-4 ps-5 zoom">
+                <h2>{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_famous') }}</h2>
+                <div class="mb-2">
+                    <img src="{{ asset('new_dash/images/icons/vendors.png') }}" alt="" class="me-1" />
+                    <span>إجمالي المحفظة</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 p-0">
+            <div class="card-background w-100 h-100 p-4 ps-5 zoom">
+                <h2>{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_trans') }}</h1>
+                <div class="mb-2">
+                    <img src="{{ asset('new_dash/images/icons/account.png') }}" alt="" class="me-1" />
+                    <span> ما تم تحويله </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 p-0">
+            <div class="card-background w-100 h-100 p-4 ps-5 zoom">
+                <h2>{{ App\Models\Code::where('famous_id',auth()->user()->famous->id)->sum('total_pending') }}</h1>
+                <div class="mb-2">
+                    <img src="{{ asset('new_dash/images/icons/inactive-coupons.png') }}" alt="" class="me-1" />
+                    <span>المبالغ المعلقة   </span>
+                </div>
+            </div>
+        </div>
+       
+
+    </div>
+    @endif
     <div class="filters mt-3">
         <form action="">
             <div class="d-flex">

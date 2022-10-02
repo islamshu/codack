@@ -216,8 +216,8 @@ class UserController extends Controller
         $change = Changbank::find($request->id);
         $bank = FamousBank::where('famous_id', $id)->first();
         $bank->bank_name = $request->bank_name;
-        $bank->account_name = $request->account_name;
-        $bank->account_nubmer = $request->account_number;
+        $bank->account_name = $request->account_number;
+        $bank->account_nubmer = $request->account_name;
         $bank->save();
         $change->status = 1;
         $change->save();
