@@ -75,12 +75,7 @@
                   <span class="ms-1 d-none d-sm-inline">الإعدادات</span>
                 </a>
                 <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#main-nav">
-                  <li class="w-100">
-                    <a href="{{ route('wallet') }}" class="nav-link align-middle px-0">
-                      <img src="{{asset('new_dash/images/icons/nav-icons/discount-coupons.png')}}" class="nav-icon me-2" alt="" />
-                      <span class="ms-1 d-none d-sm-inline">عمليات     </span>
-                    </a>
-                  </li>
+                
                   <li class="w-100">
                     <a href="{{ route('generalinfo.index') }}" class="nav-link align-middle px-0">
                         <img src="{{ asset('new_dash/images/icons/nav-icons/discount-coupons.png') }}" class="nav-icon me-2"
