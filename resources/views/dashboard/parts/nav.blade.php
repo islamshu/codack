@@ -51,7 +51,7 @@
           $notifications = auth()->user()->unreadNotifications;
           $count = auth()->user()->unreadNotifications->count();
 
-      @endphp
+         @endphp
           <li class="dropdown dropdown-notification nav-item">
             <a class="nav-link nav-link-label" id="reeed" href="#" data-toggle="dropdown" aria-expanded="false"><i class="ficon ft-bell"></i>
               <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow usercount " id="count">{{ $count }}</span>
