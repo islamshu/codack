@@ -748,7 +748,7 @@
                             <td class="text-right">{{ get_total_famous_code_api($item->id) }} </td>
                             <td class="text-right">{{ $item->total_trans }}</td>
                             <td class="text-right">{{  $item->total_pending }}</td>
-                            <td class="text-right">{{ get_total_famous_code_api($item->id) - $item->total_trans - $item->total_pending   }}</td>
+                            <td class="text-right">{{ number_format(get_total_famous_code_api($item->id) - $item->total_trans - $item->total_pending, 2, '.', '' )  }}</td>
                             <td class="text-right">
                                 <button class="btn " data-toggle="modal" data-target="#myModal20"
                                         onclick="get_wallet('{{ $item->id }}')"> <img src="{{ asset('new_dash/images/icons/view.png') }}" class="pointer w-20" alt="" /></button>
