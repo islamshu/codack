@@ -124,7 +124,7 @@
             
             <li class="nav-item ps-4 pe-3 has-children">
               <a href="#submenu3" data-bs-toggle="collapse" class="nav-link align-middle px-0">
-                <img src="{{asset('new_dash/images/icons/nav-icons/user.png')}}" class="nav-icon me-2" alt="" />
+                <img src="{{asset('new_dash/images/icons/user.png')}}" class="nav-icon me-2" alt="" />
                 <span class="ms-1 d-none d-sm-inline">حسابي</span>
               </a>
               <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#main-nav">
