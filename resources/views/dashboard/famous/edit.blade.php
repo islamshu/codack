@@ -28,7 +28,7 @@
             
                                     <div class="row">
                                         <div class="input-item">
-                                            <label for="file">أيفونة المنصة <span class="text-danger">*</span></label>
+                                            <label for="file">صورة المشهور  <span class="text-danger">*</span></label>
                                     
                                             <label class="custom-file-upload d-block form-control p-0"
                                                 style="height:46px; direction: ltr;">
@@ -789,7 +789,7 @@
             });
         });
         $(document).on("click",".add_sss",function(){
-            alert('ff');
+            
             $('#addFamous').modal('hide');
             $('#myModalsocail').modal('show');
     });
