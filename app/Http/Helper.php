@@ -95,7 +95,7 @@ function get_total_famous_code_api($id){
     $code->total_system = ($total*$code->system_percentage)/100;
     $code->save();
 
-    return number_format(($total*$code->famous_percentage)/100);
+    return number_format(($total*$code->famous_percentage)/100,3);
 }
 
 function active_code_count(){
