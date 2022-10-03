@@ -144,13 +144,13 @@
                         id="api_link">
                 </div>
             
-                <div class="input-item">
-                  <label for="">
-                      فائدة استخدام الكود :</label><span class="text-danger">*</span>
-                  <input type="number" name="benift" value="{{ old('benift') }}" class="form-control"
-                      id="benift">
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Percent_18e.svg/1200px-Percent_18e.svg.png" alt=""
-                      class="me-1 apple-img">
+            
+              <div class="input-item">
+                <label for="">  فائدة استخدام الكود   </label><span class="text-danger">*</span>
+                <input type="number" name="benift" value="{{ old('benift') }}" class="form-control"
+                id="benift"> 
+                     <img src="{{ asset('new_dash/images/icons/percentage.png') }}" alt="" class="me-1  percentage-img">
+  
               </div>
             
                 <div class="input-item">

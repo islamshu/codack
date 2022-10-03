@@ -430,6 +430,13 @@ body.modal-open .main {
     width: 20px;
 }
 
+.percentage-img {
+    position: absolute;
+    left: 13px;
+    top: 58%;
+    width: 20px;
+}
+
 .input-item .inner-input {
     display: flex;
     justify-content: space-between;
