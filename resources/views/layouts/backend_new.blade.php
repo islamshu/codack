@@ -26,7 +26,7 @@
       <div class="row flex-nowrap">
         @include('dashboard.part_new.aside')
 
-        <div class="col pb-3 px-0">
+        <div class="col pb-3 px-0" style="overflow: auto">
          
           @include('dashboard.part_new.nav')
           <div id="page-content" class="container-fluid mt-5">
