@@ -20,6 +20,9 @@
             text-align: right !important;
             padding-right: 2% !important;
         }
+        .setwidth{
+          width: 25px !important;
+        }
 
         td span {
             display: inline-block;

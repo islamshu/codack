@@ -57,49 +57,49 @@
             <br>
             <thead>
                 <tr>
-                    <th class="text-right">#</th>
-                    <th class="text-right"> اسم المتجر</th>
-                    <th class="text-right"> اسم كود الخصم </th>
-                    <th class="text-right">نسبة كود الخصم</th>
-                    <th class="text-right">اسم المشهور</th>
-                    <th class="text-right">عدد العمليات </th>
-                    <th class="text-right">اجمالي الايرادات </th>
+                    <th class="text-right setwidth">#</th>
+                    <th class="text-right setwidth"> اسم المتجر</th>
+                    <th class="text-right setwidth"> اسم كود الخصم </th>
+                    <th class="text-right setwidth">نسبة كود الخصم</th>
+                    <th class="text-right setwidth">اسم المشهور</th>
+                    <th class="text-right setwidth">عدد العمليات </th>
+                    <th class="text-right setwidth">اجمالي الايرادات </th>
 
 
                     @if (auth()->user()->hasRole('Admin'))
-                        <th class="text-right">فايدة اسخدام الكود</th>
-                        <th class="text-right">الفايدة من المبيعات  </th>
+                        <th class="text-right setwidth">فايدة اسخدام الكود</th>
+                        <th class="text-right setwidth">الفايدة من المبيعات  </th>
 
-                        <th class="text-right">ايراد كودك</th>
-                        <th class="text-right">ايراد المشهور</th>
+                        <th class="text-right setwidth">ايراد كودك</th>
+                        <th class="text-right setwidth">ايراد المشهور</th>
                     @else
-                        <th class="text-right">ايراد المشهور</th>
+                        <th class="text-right setwidth">ايراد المشهور</th>
                     @endif
 
 
-                    <th class="text-right">الاجراءات</th>
+                    <th class="text-right setwidth">الاجراءات</th>
 
                 </tr>
             </thead>
             <tbody id="stores">
                 @foreach ($codes as $key => $item)
                     <tr>
-                        <td class="text-right">{{ $key + 1 }}</td>
-                        <td class="text-right"> {{ @$item->store->title }}</td>
+                        <td class="text-right setwidth">{{ $key + 1 }}</td>
+                        <td class="text-right setwidth"> {{ @$item->store->title }}</td>
 
-                        {{-- <td class="text-right"> {{ get_total_code($item->id) }}</td> --}}
-                        <td class="text-right">{{ $item->code }}</td>
-                        <td class="text-right">{{ $item->discount_percentage }}</td>
+                        {{-- <td class="text-right setwidth"> {{ get_total_code($item->id) }}</td> --}}
+                        <td class="text-right setwidth">{{ $item->code }}</td>
+                        <td class="text-right setwidth">{{ $item->discount_percentage }}</td>
 
-                        <td class="text-right">{{ @$item->famous->name }} </td>
-                        <td class="text-right"> <span>{{ get_total_code($item->id)}}</span> 
+                        <td class="text-right setwidth">{{ @$item->famous->name }} </td>
+                        <td class="text-right setwidth"> <span>{{ get_total_code($item->id)}}</span> 
                             @if (auth()->user()->hasRole('Admin'))
 
                             <button class="btn "  data-toggle="modal" data-target="#myModal6"
                             onclick="add_income('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/plus.png')}}" style="width: 25px !important" data-bs-toggle="modal" data-bs-target="#addValue" class=" ms-2 pointer" alt="" /></button>
                             @endif
                         </td>
-                        <td class="text-right"><span> {{ get_total_mount_code($item->id) }} </span> 
+                        <td class="text-right setwidth"><span> {{ get_total_mount_code($item->id) }} </span> 
                             @if (auth()->user()->hasRole('Admin'))
                             <button class="btn "  data-toggle="modal" data-target="#myModal6"
                             onclick="add_income('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/plus.png')}}" style="width: 25px !important" data-bs-toggle="modal" data-bs-target="#addValue" class=" ms-2 pointer" alt="" /></button>
@@ -107,23 +107,23 @@
                         </td>
 
                         @if (auth()->user()->hasRole('Admin'))
-                            <td class="text-right"> {{ get_total_benefit($item->id) }} ريال</td>
-                            <td class="text-right"> {{$item->benefit_percentage}}%</td>
+                            <td class="text-right setwidth"> {{ get_total_benefit($item->id) }} ريال</td>
+                            <td class="text-right setwidth"> {{$item->benefit_percentage}}%</td>
 
-                            <td class="text-right">
+                            <td class="text-right setwidth">
                                 {{ get_total_system_code_api($item->id) }}
                             </td>
-                            <td class="text-right">
+                            <td class="text-right setwidth">
                                 {{ get_total_famous_code_api($item->id) }}
                             </td>
                         @else
-                            <td class="text-right">
+                            <td class="text-right setwidth">
                                 {{ get_total_famous_code_api($item->id) }}
                             </td>
                         @endif
 
 
-                        <td class="text-right">
+                        <td class="text-right setwidth">
 
 
                             <button class="btn btn-inf" data-toggle="modal" data-target="#myModal4"
