@@ -18,6 +18,7 @@ use App\Models\User;
 use App\Notifications\ApproveChange;
 use App\Notifications\ChangeData;
 use App\Notifications\ChangeOrder;
+use App\Notifications\MakeOrder;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -91,6 +92,13 @@ class UserController extends Controller
         $code = Code::find($request->code);
         $code->total_pending = $request->amount;
         $code->save();
+        $admin = User::role('Admin')->first();
+                $dataa = [
+                    'id' => $money->id,
+                    'url' => route('my_order_admin'),
+                    'time'=>$money->created_at
+                ];
+        $admin->notify(new MakeOrder($dataa));
         $famous = FamousBank::where('famous_id', auth()->user()->famous->id)->first();
         if ($famous) {
             if($famous->bank_name != $request->bank_name || $famous->account_nam!= $request->account_name || $famous->account_nubmer != $request->account_number ){
@@ -126,6 +134,7 @@ class UserController extends Controller
             $famouss->save();
             return response()->json(['status' => true, 'message' => 'تم تخزين بيانات البنك وارسال الطلب']);
         }
+
     }
 
     public function update_my_profile(Request $request)
