@@ -111,7 +111,7 @@
             <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="main-nav">
             
             <li class="nav-item  ps-4 pe-3">
-              <a href="index.html" class="nav-link align-middle px-0">
+              <a href="/dashboard/home" class="nav-link align-middle px-0">
                 <img src="{{asset('new_dash/images/icons/nav-icons/home.png')}}" class="nav-icon me-2" alt="" />
                 <span class="ms-1 d-none d-sm-inline"> الرئيسية </span>
               </a>
