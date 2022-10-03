@@ -57,49 +57,49 @@
             <br>
             <thead>
                 <tr>
-                    <th class="text-right setwidthnew">#</th>
-                    <th class="text-right setwidthnew"> اسم المتجر</th>
-                    <th class="text-right setwidthnew"> اسم كود الخصم </th>
-                    <th class="text-right setwidthnew">نسبة كود الخصم</th>
-                    <th class="text-right setwidthnew">اسم المشهور</th>
-                    <th class="text-right setwidthnew">عدد العمليات </th>
-                    <th class="text-right setwidthnew">اجمالي الايرادات </th>
+                    <th class="text-rightt setwidthnew">#</th>
+                    <th class="text-rightt setwidthnew"> اسم المتجر</th>
+                    <th class="text-rightt setwidthnew"> اسم كود الخصم </th>
+                    <th class="text-rightt setwidthnew">نسبة كود الخصم</th>
+                    <th class="text-rightt setwidthnew">اسم المشهور</th>
+                    <th class="text-rightt setwidthnew">عدد العمليات </th>
+                    <th class="text-rightt setwidthnew">اجمالي الايرادات </th>
                 
                 
                     @if (auth()->user()->hasRole('Admin'))
-                        <th class="text-right setwidthnew">فايدة اسخدام الكود</th>
-                        <th class="text-right setwidthnew">الفايدة من المبيعات  </th>
+                        <th class="text-rightt setwidthnew">فايدة اسخدام الكود</th>
+                        <th class="text-rightt setwidthnew">الفايدة من المبيعات  </th>
                 
-                        <th class="text-right setwidthnew">ايراد كودك</th>
-                        <th class="text-right setwidthnew">ايراد المشهور</th>
+                        <th class="text-rightt setwidthnew">ايراد كودك</th>
+                        <th class="text-rightt setwidthnew">ايراد المشهور</th>
                     @else
-                        <th class="text-right setwidthnew">ايراد المشهور</th>
+                        <th class="text-rightt setwidthnew">ايراد المشهور</th>
                     @endif
                 
                 
-                    <th class="text-right setwidthnew">الاجراءات</th>
+                    <th class="text-rightt setwidthnew">الاجراءات</th>
                 
                 </tr>
             </thead>
             <tbody id="stores">
                 @foreach ($codes as $key => $item)
                     <tr>
-                        <td class="text-right setwidth">{{ $key + 1 }}</td>
-                        <td class="text-right setwidth"> {{ @$item->store->title }}</td>
+                        <td class="text-rightt setwidth">{{ $key + 1 }}</td>
+                        <td class="text-rightt setwidth"> {{ @$item->store->title }}</td>
 
-                        {{-- <td class="text-right setwidth"> {{ get_total_code($item->id) }}</td> --}}
-                        <td class="text-right setwidth">{{ $item->code }}</td>
-                        <td class="text-right setwidth">{{ $item->discount_percentage }}</td>
+                        {{-- <td class="text-rightt setwidth"> {{ get_total_code($item->id) }}</td> --}}
+                        <td class="text-rightt setwidth">{{ $item->code }}</td>
+                        <td class="text-rightt setwidth">{{ $item->discount_percentage }}</td>
 
-                        <td class="text-right setwidth">{{ @$item->famous->name }} </td>
-                        <td class="text-right setwidth"> <span>{{ get_total_code($item->id)}}</span> 
+                        <td class="text-rightt setwidth">{{ @$item->famous->name }} </td>
+                        <td class="text-rightt setwidth"> <span>{{ get_total_code($item->id)}}</span> 
                             @if (auth()->user()->hasRole('Admin'))
 
                             <button class="btn "  data-toggle="modal" data-target="#myModal6"
                             onclick="add_income('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/plus.png')}}" style="width: 25px !important" data-bs-toggle="modal" data-bs-target="#addValue" class=" ms-2 pointer" alt="" /></button>
                             @endif
                         </td>
-                        <td class="text-right setwidth"><span> {{ get_total_mount_code($item->id) }} </span> 
+                        <td class="text-rightt setwidth"><span> {{ get_total_mount_code($item->id) }} </span> 
                             @if (auth()->user()->hasRole('Admin'))
                             <button class="btn "  data-toggle="modal" data-target="#myModal6"
                             onclick="add_income('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/plus.png')}}" style="width: 25px !important" data-bs-toggle="modal" data-bs-target="#addValue" class=" ms-2 pointer" alt="" /></button>
@@ -107,23 +107,23 @@
                         </td>
 
                         @if (auth()->user()->hasRole('Admin'))
-                            <td class="text-right setwidth"> {{ get_total_benefit($item->id) }} ريال</td>
-                            <td class="text-right setwidth"> {{$item->benefit_percentage}}%</td>
+                            <td class="text-rightt setwidth"> {{ get_total_benefit($item->id) }} ريال</td>
+                            <td class="text-rightt setwidth"> {{$item->benefit_percentage}}%</td>
 
-                            <td class="text-right setwidth">
+                            <td class="text-rightt setwidth">
                                 {{ get_total_system_code_api($item->id) }}
                             </td>
-                            <td class="text-right setwidth">
+                            <td class="text-rightt setwidth">
                                 {{ get_total_famous_code_api($item->id) }}
                             </td>
                         @else
-                            <td class="text-right setwidth">
+                            <td class="text-rightt setwidth">
                                 {{ get_total_famous_code_api($item->id) }}
                             </td>
                         @endif
 
 
-                        <td class="text-right setwidth">
+                        <td class="text-rightt setwidth">
 
 
                             <button class="btn btn-inf" data-toggle="modal" data-target="#myModal4"

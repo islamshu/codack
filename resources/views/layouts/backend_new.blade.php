@@ -20,6 +20,9 @@
             text-align: right !important;
             padding-right: 2% !important;
         }
+        .text-rightt {
+            text-align: right !important;
+        }
         .setwidth{
           width: 25px !important;
         }
