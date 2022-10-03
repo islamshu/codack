@@ -57,28 +57,28 @@
             <br>
             <thead>
                 <tr>
-                    <th class="text-right setwidth">#</th>
-                    <th class="text-right setwidth"> اسم المتجر</th>
-                    <th class="text-right setwidth"> اسم كود الخصم </th>
-                    <th class="text-right setwidth">نسبة كود الخصم</th>
-                    <th class="text-right setwidth">اسم المشهور</th>
-                    <th class="text-right setwidth">عدد العمليات </th>
-                    <th class="text-right setwidth">اجمالي الايرادات </th>
-
-
+                    <th class="text-right setwidthnew">#</th>
+                    <th class="text-right setwidthnew"> اسم المتجر</th>
+                    <th class="text-right setwidthnew"> اسم كود الخصم </th>
+                    <th class="text-right setwidthnew">نسبة كود الخصم</th>
+                    <th class="text-right setwidthnew">اسم المشهور</th>
+                    <th class="text-right setwidthnew">عدد العمليات </th>
+                    <th class="text-right setwidthnew">اجمالي الايرادات </th>
+                
+                
                     @if (auth()->user()->hasRole('Admin'))
-                        <th class="text-right setwidth">فايدة اسخدام الكود</th>
-                        <th class="text-right setwidth">الفايدة من المبيعات  </th>
-
-                        <th class="text-right setwidth">ايراد كودك</th>
-                        <th class="text-right setwidth">ايراد المشهور</th>
+                        <th class="text-right setwidthnew">فايدة اسخدام الكود</th>
+                        <th class="text-right setwidthnew">الفايدة من المبيعات  </th>
+                
+                        <th class="text-right setwidthnew">ايراد كودك</th>
+                        <th class="text-right setwidthnew">ايراد المشهور</th>
                     @else
-                        <th class="text-right setwidth">ايراد المشهور</th>
+                        <th class="text-right setwidthnew">ايراد المشهور</th>
                     @endif
-
-
-                    <th class="text-right setwidth">الاجراءات</th>
-
+                
+                
+                    <th class="text-right setwidthnew">الاجراءات</th>
+                
                 </tr>
             </thead>
             <tbody id="stores">

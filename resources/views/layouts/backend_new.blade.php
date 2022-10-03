@@ -23,6 +23,9 @@
         .setwidth{
           width: 25px !important;
         }
+        .setwidthnew{
+          width: 10px !important;
+        }
 
         td span {
             display: inline-block;
