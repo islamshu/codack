@@ -96,13 +96,13 @@
                             @if (auth()->user()->hasRole('Admin'))
 
                             <button class="btn "  data-toggle="modal" data-target="#myModal6"
-                            onclick="add_income('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/plus.png')}}" data-bs-toggle="modal" data-bs-target="#addValue" class="w-25 ms-2 pointer" alt="" /></button>
+                            onclick="add_income('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/plus.png')}}" style="width: 25px !important" data-bs-toggle="modal" data-bs-target="#addValue" class=" ms-2 pointer" alt="" /></button>
                             @endif
                         </td>
                         <td class="text-right"><span> {{ get_total_mount_code($item->id) }} </span> 
                             @if (auth()->user()->hasRole('Admin'))
                             <button class="btn "  data-toggle="modal" data-target="#myModal6"
-                            onclick="add_income('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/plus.png')}}" data-bs-toggle="modal" data-bs-target="#addValue" class="w-25 ms-2 pointer" alt="" /></button>
+                            onclick="add_income('{{ $item->id }}')"><img src="{{asset('new_dash/images/icons/plus.png')}}" style="width: 25px !important" data-bs-toggle="modal" data-bs-target="#addValue" class=" ms-2 pointer" alt="" /></button>
                             @endif
                         </td>
 
