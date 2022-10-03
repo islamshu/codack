@@ -13,18 +13,18 @@
         @foreach ($orders as $key => $item)
         <tr>
             <th scope="row">{{ $key + 1 }}</th>
-            <td>{{ @$store }} </td>
-            <td>{{ @$famous }} </td>
-            <td>
+             <td class="text-right">{{ @$store }} </td>
+             <td class="text-right">{{ @$famous }} </td>
+             <td class="text-right">
                 {{ $item['total_amount'] }}
             </td>
-            <td>
+             <td class="text-right">
                 {{ $item['discount'] }}
     
             </td>
     
     
-            <td>{{ date('Y-m-d', strtotime($item['date'])) }}</td>
+             <td class="text-right">{{ date('Y-m-d', strtotime($item['date'])) }}</td>
         </tr>
     @endforeach
 

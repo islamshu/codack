@@ -45,11 +45,11 @@
                                         <tbody id="stores">
                                             @foreach ($famoustype as $key => $item)
                                                 <tr>
-                                                    <td>{{ $key + 1 }}</td>
+                                                     <td class="text-right">{{ $key + 1 }}</td>
                                                  
-                                                    <td>{{ $item->title }} </td>
+                                                     <td class="text-right">{{ $item->title }} </td>
 
-                                                    <td>
+                                                     <td class="text-right">
                                                         @if(auth()->user()->hasRole('Admin'))
 
                                                         <button class="btn btn-info" data-toggle="modal"

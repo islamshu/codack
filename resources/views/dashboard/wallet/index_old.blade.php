@@ -189,16 +189,16 @@
                                             @foreach ($codes as $key=> $item)
                                                 
                                             <tr>
-                                                <td>{{ $key +1 }} </td>
-                                                <td>{{ @$item->store->title }} </td>
+                                                 <td class="text-right">{{ $key +1 }} </td>
+                                                 <td class="text-right">{{ @$item->store->title }} </td>
                                                 @if(auth()->user()->hasRole('Admin'))
-                                                <td>{{ @$item->famous->name }} </td>
+                                                 <td class="text-right">{{ @$item->famous->name }} </td>
                                                 @endif
 
-                                                <td>{{ get_total_mount_code($item->id) }} </td>
-                                                <td>{{ @$item->code }}</td>
+                                                 <td class="text-right">{{ get_total_mount_code($item->id) }} </td>
+                                                 <td class="text-right">{{ @$item->code }}</td>
 
-                                                <td>
+                                                 <td class="text-right">
                                                     {{-- <a data-toggle="modal" data-target="#myModal3" class="btn btn-info"><i
                                                             class="fa fa-eye" aria-hidden="true"></i>
 

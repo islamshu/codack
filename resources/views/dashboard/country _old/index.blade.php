@@ -77,13 +77,13 @@
                                         <tbody id="stores">
                                             @foreach ($country as $key => $item)
                                                 <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td><img src="{{ asset('uploads/' . $item->flag) }}" width="100"
+                                                     <td class="text-right">{{ $key + 1 }}</td>
+                                                     <td class="text-right"><img src="{{ asset('uploads/' . $item->flag) }}" width="100"
                                                             height="70" alt=""> </td>
-                                                    <td>{{ $item->title }} </td>
-                                                    <td>{{ $item->code }}</td>
+                                                     <td class="text-right">{{ $item->title }} </td>
+                                                     <td class="text-right">{{ $item->code }}</td>
 
-                                                    <td>
+                                                     <td class="text-right">
                                                         @if (auth()->user()->hasRole('Admin'))
                                                             <button class="btn btn-info" data-toggle="modal"
                                                                 data-target="#myModal4"

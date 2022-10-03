@@ -60,7 +60,7 @@
                     @foreach ($changes as $key => $item)
                         <tr>
                             <td class="text-right">{{ $key + 1 }}</td>
-                            <td><img src="{{ asset('uploads/'.@$item->famous->image) }}" width="80" height="50" alt=""> </td>
+                             <td class="text-right"><img src="{{ asset('uploads/'.@$item->famous->image) }}" width="80" height="50" alt=""> </td>
 
                             <td class="text-right">{{ @$item->famous->name }} </td>
                             <td class="text-right">{{ $item->amount }} </td>

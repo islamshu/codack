@@ -43,13 +43,13 @@
                                         <tbody id="stores">
                                             @foreach ($changes as $key => $item)
                                                 <tr>
-                                                    <td>{{ $key + 1 }}</td>
+                                                     <td class="text-right">{{ $key + 1 }}</td>
                                                     
-                                                    <td>{{ $item->famous->name }} </td>
-                                                    <td><button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button></td>
+                                                     <td class="text-right">{{ $item->famous->name }} </td>
+                                                     <td class="text-right"><button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button></td>
 
 
-                                                    <td>
+                                                     <td class="text-right">
                                                        <a href="{{ route('changes.edit',$item->id) }}" class="btn btn-info"><i
                                                         class="fa fa-edit"></i></a>
                                                         <form style="display: inline"

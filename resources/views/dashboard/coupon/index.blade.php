@@ -82,14 +82,14 @@
                                         <tbody id="stores">
                                             @foreach ($coupons as $key => $item)
                                                 <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $item->code }} </td>
-                                                    <td>{{ $item->discount }} </td>
-                                                    <td>{{ $item->use_count }} </td>
-                                                    <td>
+                                                     <td class="text-right">{{ $key + 1 }}</td>
+                                                     <td class="text-right">{{ $item->code }} </td>
+                                                     <td class="text-right">{{ $item->discount }} </td>
+                                                     <td class="text-right">{{ $item->use_count }} </td>
+                                                     <td class="text-right">
                                                     <input type="checkbox" data-id="{{ $item->id }}" name="status" class="js-switch" {{ $item->status == 1 ? 'checked' : '' }}>
                                                     </td>
-                                                    <td>
+                                                     <td class="text-right">
 
                                                         <button class="btn btn-info" data-toggle="modal"
                                                             data-target="#myModal4" onclick="make('{{ $item->id }}')"><i

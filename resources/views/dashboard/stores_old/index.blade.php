@@ -86,16 +86,16 @@
                                         <tbody id="stores" >
                                             @foreach ($stores as $key => $item)
                                                 <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td><img src="{{ asset('uploads/'.$item->image) }}" width="50" height="30" alt=""> </td>
-                                                    <td>{{ $item->title }} </td>
-                                                    <td>{{ App\Models\Code::where('store_id',$item->id)->where('status',1)->count() }} </td>
-                                                    <td>{{ App\Models\Code::where('store_id',$item->id)->where('status',0)->count() }}</td>
+                                                     <td class="text-right">{{ $key + 1 }}</td>
+                                                     <td class="text-right"><img src="{{ asset('uploads/'.$item->image) }}" width="50" height="30" alt=""> </td>
+                                                     <td class="text-right">{{ $item->title }} </td>
+                                                     <td class="text-right">{{ App\Models\Code::where('store_id',$item->id)->where('status',1)->count() }} </td>
+                                                     <td class="text-right">{{ App\Models\Code::where('store_id',$item->id)->where('status',0)->count() }}</td>
                                                     @if(auth()->user()->hasRole('Admin'))
 
-                                                    <td>{{ @$item->user->hasRole('Admin') ?'الادارة' : @$item->user->name }}</td>
+                                                     <td class="text-right">{{ @$item->user->hasRole('Admin') ?'الادارة' : @$item->user->name }}</td>
                                                     @endif
-                                                    <td>
+                                                     <td class="text-right">
                                                         @if(auth()->user()->hasRole('Admin'))
 
                                                         <button class="btn btn-info" data-toggle="modal" data-target="#myModal4"

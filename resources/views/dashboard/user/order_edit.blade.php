@@ -48,11 +48,11 @@
                 <tbody id="stores">
                     @foreach ($changes as $key => $item)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
-                           <td>{{ $item->bank_name }}</td>
-                            <td>{{  $item->account_name }} </td>
-                            <td>{{  $item->account_number }} </td>
-                            <td><button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button></td>
+                             <td class="text-right">{{ $key + 1 }}</td>
+                            <td class="text-right">{{ $item->bank_name }}</td>
+                             <td class="text-right">{{  $item->account_name }} </td>
+                             <td class="text-right">{{  $item->account_number }} </td>
+                             <td class="text-right"><button type="button" class="btn btn-sm btn-outline-{{ get_account_status_color($item->status) }} round">{{  get_account_status($item->status) }} </button></td>
                             
             
                             

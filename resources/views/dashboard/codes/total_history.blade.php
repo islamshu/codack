@@ -49,13 +49,13 @@
                                                 @php
                                                     $code =@App\Models\Code::find($item->code_id);
                                                 @endphp
-                                                <td>{{ $key + 1 }}</td>
-                                                <td> {{$code->code }}</td>
-                                                <td> {{$item->amount }}</td>
-                                                <td>{{ @$code->famous->name }}</td>
-                                                <td>{{ @$item->user->email }}</td>
+                                                 <td class="text-right">{{ $key + 1 }}</td>
+                                                 <td class="text-right"> {{$code->code }}</td>
+                                                 <td class="text-right"> {{$item->amount }}</td>
+                                                 <td class="text-right">{{ @$code->famous->name }}</td>
+                                                 <td class="text-right">{{ @$item->user->email }}</td>
 
-                                                <td>{{ $item->created_at }}</td>
+                                                 <td class="text-right">{{ $item->created_at }}</td>
 
                                              
                                             </tr>

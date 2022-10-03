@@ -634,25 +634,25 @@
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col"> اسم المتجر</th>
-                                    <th scope="col"> اسم كود الخصم </th>
-                                    <th scope="col">اسم المشهور</th>
-                                    <th scope="col">نسبة كود الخصم</th>
-                                    <th scope="col">فايدة اسخدام الكود</th>
-                                    <th scope="col">نسبة كودك</th>
-                                    <th scope="col">نسبة المشهور</th>
+                                    <th class="text-right"> اسم المتجر</th>
+                                    <th class="text-right"> اسم كود الخصم </th>
+                                    <th class="text-right">اسم المشهور</th>
+                                    <th class="text-right">نسبة كود الخصم</th>
+                                    <th class="text-right">فايدة اسخدام الكود</th>
+                                    <th class="text-right">نسبة كودك</th>
+                                    <th class="text-right">نسبة المشهور</th>
                                 </tr>
                             </thead>
                             <tbody>
                                     @foreach (App\Models\Code::orderBy('id','desc')->get() as $item)
                                     <tr>
-                                        <td>{{ $item->store->title }} </td>
-                                        <td>{{ @$item->code  }}</td>
-                                        <td>{{ @$item->famous->name }}</td>
-                                        <td>{{ @$item->discount_percentage }} %</td>
-                                        <td>{{ @$item->store->benift }} %</td>
-                                        <td>{{ @$item->system_percentage }} %</td>
-                                        <td>{{ @$item->famous_percentage }} %</td>
+                                         <td class="text-right">{{ $item->store->title }} </td>
+                                         <td class="text-right">{{ @$item->code  }}</td>
+                                         <td class="text-right">{{ @$item->famous->name }}</td>
+                                         <td class="text-right">{{ @$item->discount_percentage }} %</td>
+                                         <td class="text-right">{{ @$item->store->benift }} %</td>
+                                         <td class="text-right">{{ @$item->system_percentage }} %</td>
+                                         <td class="text-right">{{ @$item->famous_percentage }} %</td>
                                     </tr> 
                                     @endforeach
                                
@@ -665,12 +665,12 @@
                             <tr>
                                 <td style="font-size: 30px;text-align: center;">
                                     <a title="اضف جديد" data-toggle="modal" class="btn btn-success" data-target="#myModal3">اضف جديد</a></td>
-                                <td></td> 
-                                <td></td> 
-                                <td></td> 
-                                <td></td> 
-                                <td></td> 
-                                <td></td> 
+                                 <td class="text-right"></td> 
+                                 <td class="text-right"></td> 
+                                 <td class="text-right"></td> 
+                                 <td class="text-right"></td> 
+                                 <td class="text-right"></td> 
+                                 <td class="text-right"></td> 
                             </tr>
                         </table>
                     </div>
@@ -991,15 +991,15 @@
                                     <tr>
                                         @foreach (App\Models\Code::where('famous_id',auth()->user()->famous->id)->orderby('id','desc')->get() as $key=> $item)
                                         <tr>
-                                            <td>{{ $key }}</td>
-                                            <td>{{ @$item->store->title }}</td>
-                                            <td>{{ @$item->famous->name }}</td>
-                                            <td>{{ $item->code }}</td>
-                                            <td>{{ get_total_famous_code_api($item->id) }} </td>
-                                            <td>{{ $item->total_trans }}</td>
-                                            <td>{{  $item->total_pending }}</td>
-                                            <td>{{ get_total_famous_code_api($item->id) - $item->total_trans - $item->total_pending   }}</td>
-                                            <td>
+                                             <td class="text-right">{{ $key }}</td>
+                                             <td class="text-right">{{ @$item->store->title }}</td>
+                                             <td class="text-right">{{ @$item->famous->name }}</td>
+                                             <td class="text-right">{{ $item->code }}</td>
+                                             <td class="text-right">{{ get_total_famous_code_api($item->id) }} </td>
+                                             <td class="text-right">{{ $item->total_trans }}</td>
+                                             <td class="text-right">{{  $item->total_pending }}</td>
+                                             <td class="text-right">{{ get_total_famous_code_api($item->id) - $item->total_trans - $item->total_pending   }}</td>
+                                             <td class="text-right">
                                                 <button class="btn btn-info" data-toggle="modal" data-target="#myModal20"
                                                         onclick="get_wallet('{{ $item->id }}')"><i
                                                             class="fa fa-eye"></i></button>

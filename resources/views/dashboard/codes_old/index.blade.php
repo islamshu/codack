@@ -61,22 +61,22 @@
                                     <tbody id="stores">
                                         @foreach ($codes as $key => $item)
                                             <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td> {{ @$item->store->title }}</td>
+                                                 <td class="text-right">{{ $key + 1 }}</td>
+                                                 <td class="text-right"> {{ @$item->store->title }}</td>
 
-                                                {{-- <td> {{ get_total_code($item->id) }}</td> --}}
-                                                <td>{{ $item->code }}</td>
-                                                <td>{{ $item->discount_percentage }}</td>
+                                                {{--  <td class="text-right"> {{ get_total_code($item->id) }}</td> --}}
+                                                 <td class="text-right">{{ $item->code }}</td>
+                                                 <td class="text-right">{{ $item->discount_percentage }}</td>
 
-                                                <td>{{ @$item->famous->name }} </td>
-                                                <td> {{ get_total_code($item->id)}}  &nbsp; &nbsp;
+                                                 <td class="text-right">{{ @$item->famous->name }} </td>
+                                                 <td class="text-right"> {{ get_total_code($item->id)}}  &nbsp; &nbsp;
                                                     @if (auth()->user()->hasRole('Admin'))
 
                                                     <button class="btn btn-info"  data-toggle="modal" data-target="#myModal6"
                                                     onclick="add_income('{{ $item->id }}')"><i class="fa fa-plus"></i></button>
                                                     @endif
                                                 </td>
-                                                <td> {{ get_total_mount_code($item->id) }} &nbsp; 
+                                                 <td class="text-right"> {{ get_total_mount_code($item->id) }} &nbsp; 
                                                     @if (auth()->user()->hasRole('Admin'))
                                                     <button class="btn btn-info"  data-toggle="modal" data-target="#myModal6"
                                                     onclick="add_income('{{ $item->id }}')"><i class="fa fa-plus"></i></button>
@@ -84,23 +84,23 @@
                                                 </td>
 
                                                 @if (auth()->user()->hasRole('Admin'))
-                                                    <td> {{ get_total_benefit($item->id) }} ريال</td>
-                                                    <td> {{$item->benefit_percentage}}%</td>
+                                                     <td class="text-right"> {{ get_total_benefit($item->id) }} ريال</td>
+                                                     <td class="text-right"> {{$item->benefit_percentage}}%</td>
 
-                                                    <td>
+                                                     <td class="text-right">
                                                         {{ get_total_system_code_api($item->id) }}
                                                     </td>
-                                                    <td>
+                                                     <td class="text-right">
                                                         {{ get_total_famous_code_api($item->id) }}
                                                     </td>
                                                 @else
-                                                    <td>
+                                                     <td class="text-right">
                                                         {{ get_total_famous_code_api($item->id) }}
                                                     </td>
                                                 @endif
 
 
-                                                <td>
+                                                 <td class="text-right">
 
 
                                                     <button class="btn btn-info" data-toggle="modal" data-target="#myModal4"
