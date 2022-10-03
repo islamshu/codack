@@ -57,27 +57,27 @@
             <br>
             <thead>
                 <tr>
-                    <th class="text-rightt setwidthnew">#</th>
-                    <th class="text-rightt setwidthnew"> اسم المتجر</th>
-                    <th class="text-rightt setwidthnew"> اسم كود الخصم </th>
-                    <th class="text-rightt setwidthnew">نسبة كود الخصم</th>
-                    <th class="text-rightt setwidthnew">اسم المشهور</th>
-                    <th class="text-rightt setwidthnew">عدد العمليات </th>
-                    <th class="text-rightt setwidthnew">اجمالي الايرادات </th>
+                    <th class="text-rightt ">#</th>
+                    <th class="text-rightt "> اسم المتجر</th>
+                    <th class="text-rightt "> اسم كود الخصم </th>
+                    <th class="text-rightt ">نسبة كود الخصم</th>
+                    <th class="text-rightt ">اسم المشهور</th>
+                    <th class="text-rightt ">عدد العمليات </th>
+                    <th class="text-rightt ">اجمالي الايرادات </th>
                 
                 
                     @if (auth()->user()->hasRole('Admin'))
-                        <th class="text-rightt setwidthnew">فايدة اسخدام الكود</th>
-                        <th class="text-rightt setwidthnew">الفايدة من المبيعات  </th>
+                        <th class="text-rightt ">فايدة اسخدام الكود</th>
+                        <th class="text-rightt ">الفايدة من المبيعات  </th>
                 
-                        <th class="text-rightt setwidthnew">ايراد كودك</th>
-                        <th class="text-rightt setwidthnew">ايراد المشهور</th>
+                        <th class="text-rightt ">ايراد كودك</th>
+                        <th class="text-rightt ">ايراد المشهور</th>
                     @else
-                        <th class="text-rightt setwidthnew">ايراد المشهور</th>
+                        <th class="text-rightt ">ايراد المشهور</th>
                     @endif
                 
                 
-                    <th class="text-rightt setwidthnew">الاجراءات</th>
+                    <th class="text-rightt ">الاجراءات</th>
                 
                 </tr>
             </thead>
