@@ -42,14 +42,14 @@
                             $code =@App\Models\Code::find($item->code_id);
                         @endphp
                         <td class="text-right">{{ $key + 1 }}</td>
-                        <td class="text-right"> {{$code->code }}</td>
-                        <td class="text-right"> {{$item->amount }}</td>
-                        <td class="text-right"> {{$item->amount_total }}</td>
+                        <td class="text-right"> {{@$code->code }}</td>
+                        <td class="text-right"> {{@$item->amount }}</td>
+                        <td class="text-right"> {{@$item->amount_total }}</td>
 
                         <td class="text-right">{{ @$code->famous->name }}</td>
                         <td class="text-right">{{ @$item->user->email }}</td>
 
-                        <td class="text-right">{{ $item->created_at }}</td>
+                        <td class="text-right">{{ @$item->created_at }}</td>
                         </tr>
                     @endforeach
     
